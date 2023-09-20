@@ -87,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () {
                       // Get.toNamed('/forgot_password');
+                      Modular.to.pushNamed('/auth/forgot-password');
                     },
                     child: TextWidget(
                       'Forgot Password',

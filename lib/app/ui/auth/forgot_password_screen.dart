@@ -3,21 +3,21 @@ import 'package:erastar_apps/app/themes/color_themes.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: 16,
+            horizontal: defaultMargin,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +26,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               Container(
                 margin: EdgeInsets.only(bottom: 24),
                 child: Image.asset(
-                  'assets/logo/logo_transparent.png',
+                  'assets/images/logo_transparent.png',
                   width: 75,
                 ),
               ),
@@ -54,7 +54,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 backgroundColor: AppColor.primayRedColor,
                 onPressed: () {},
                 // _showSuccessDialog,
-                // controller.doForgotPassword,
+                // controller.doForgotPasswordScreen,
                 //     () {
                 //   showDialog(
                 //       context: context,
