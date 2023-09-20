@@ -33,9 +33,11 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.text,
         )
             .then((result) async {
+          print(result!.status);
           if (result != null) {
+            print('oe');
             if (result.status == "success") {
-              print('sini');
+              print(result.status);
               // dataProfile = result.dataProfile;
               // // dataShift = dataProfile!.shift;
               // LocalStorageService.save("headerToken", result.token.toString());
@@ -56,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
               //     }
               //   }
               // });
-            } else {
+            } else if (result.status == "failed") {
               // isLoading = false;
               print('salah');
               setState(() {});
@@ -65,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
           } else {
             isLoading = false;
             setState(() {});
-            print('elah');
+            // print(result!.message);
             // UiUtils.errorMessage(
             //     "Sedang Terjadi Kesalahan Silahkan Coba Kembali", context);
           }

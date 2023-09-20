@@ -30,9 +30,9 @@ class AuthServices extends ChangeNotifier {
       print("response  Data $response");
 
       if (response.statusCode == 200) {
-        ProfileModel homeRes = ProfileModel.fromJson(response.data);
+        // ProfileModel homeRes = ProfileModel.fromJson(response.data);
         // print("balikan ata " + '${homeRes}');
-        return homeRes;
+        // return homeRes;
       }
       return null;
 
