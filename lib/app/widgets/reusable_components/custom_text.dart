@@ -1,6 +1,4 @@
-import 'package:erastar_apps/app/themes/app_themes.dart';
-import 'package:erastar_apps/app/themes/color_themes.dart';
-import 'package:flutter/material.dart';
+part of 'reusable_components.dart';
 
 enum TextWidgetType {
   text,

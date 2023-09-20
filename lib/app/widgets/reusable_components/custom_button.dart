@@ -1,6 +1,4 @@
-import 'package:erastar_apps/app/themes/color_themes.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/custom_text.dart';
-import 'package:erastar_apps/export.dart';
+part of 'reusable_components.dart';
 
 enum ButtonType { outLined, noOutLined }
 

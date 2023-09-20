@@ -1,7 +1,4 @@
-import 'package:erastar_apps/app/themes/app_themes.dart';
-import 'package:erastar_apps/app/themes/color_themes.dart';
-import 'package:erastar_apps/export.dart';
-import 'package:flutter/services.dart';
+part of 'reusable_components.dart';
 
 Widget displayNone() => SizedBox.shrink();
 

@@ -1,8 +1,6 @@
 import 'package:erastar_apps/app/themes/app_themes.dart';
 import 'package:erastar_apps/app/themes/color_themes.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/custom_button.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/custom_text.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/custom_text_field.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class LoginScreen extends StatefulWidget {
