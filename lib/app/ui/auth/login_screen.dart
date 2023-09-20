@@ -1,6 +1,8 @@
+import 'package:erastar_apps/app/services/auth_service.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,9 +12,71 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = true;
+  bool _isPhoneNumberError = false;
+  bool _isPasswordError = false;
+  bool isLoading = false;
+
+  void _login(AuthServices authServices2) {
+    setState(() {
+      _isPhoneNumberError = _phoneNumberController.text.isEmpty;
+      _isPasswordError = _passwordController.text.isEmpty;
+
+      if (!_isPhoneNumberError && !_isPasswordError) {
+        // isLoading = true;
+        authServices2
+            .loginProfile(
+          context,
+          _phoneNumberController.text,
+          _passwordController.text,
+        )
+            .then((result) async {
+          if (result != null) {
+            if (result.status == "success") {
+              print('sini');
+              // dataProfile = result.dataProfile;
+              // // dataShift = dataProfile!.shift;
+              // LocalStorageService.save("headerToken", result.token.toString());
+
+              // LocalStorageService.save(
+              //     "statusVerif", dataProfile!.statusVerifId);
+
+              // HomeController().getShift().then((result) async {
+              //   if (result != null) {
+              //     if (result.status == "success") {
+              //       dataShift = result.shiftData;
+              //       await _databaseHelper!.deleteAll();
+
+              //       await _databaseHelper!
+              //           .insertProfile(dataProfile!, dataShift!);
+
+              //       Modular.to.popAndPushNamed('/home/');
+              //     }
+              //   }
+              // });
+            } else {
+              // isLoading = false;
+              print('salah');
+              setState(() {});
+              // UiUtils.errorMessage(result.message!, context);
+            }
+          } else {
+            isLoading = false;
+            setState(() {});
+            print('elah');
+            // UiUtils.errorMessage(
+            //     "Sedang Terjadi Kesalahan Silahkan Coba Kembali", context);
+          }
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    var authServices = Provider.of<AuthServices>(context);
     return Scaffold(
       body: Center(
         child: Container(
@@ -39,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 10,
               ),
               CustomTextField(
-                // controller: controller.emailCon,
+                controller: _phoneNumberController,
                 prefixIcon: const Icon(Icons.mail),
                 labelText: "Email",
                 hintText: "erastar@mail.com",
@@ -47,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 textStyle: labelTextStyle,
               ),
               CustomTextField(
-                // controller: controller.passCon,
+                controller: _passwordController,
                 prefixIcon: const Icon(Icons.lock),
                 labelText: "Password",
                 hintText: "Password",
@@ -104,7 +168,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 isRounded: true,
                 borderRadius: 10,
                 backgroundColor: AppColor.primayRedColor,
-                onPressed: () {},
+                onPressed: () {
+                  _login(authServices);
+                },
                 text: const TextWidget(
                   "Login",
                   color: AppColor.whiteColor,

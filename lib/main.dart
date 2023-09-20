@@ -1,8 +1,10 @@
 import 'package:erastar_apps/app/modules/app_modules.dart';
+import 'package:erastar_apps/app/services/auth_service.dart';
 import 'package:erastar_apps/app/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,16 +14,16 @@ void main() {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(ModularApp(module: AppModule(), child: const MyApp()));
+  // runApp(ModularApp(module: AppModule(), child: const MyApp()));
 
-  // runApp(MultiProvider(
-  //   providers: [
-  //     // ChangeNotifierProvider<AuthServices>(
-  //     //   create: (context) => AuthServices(),
-  //     // ),
-  //   ],
-  //   child: ModularApp(module: AppModule(), child: const MyApp()),
-  // ));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AuthServices>(
+        create: (context) => AuthServices(),
+      ),
+    ],
+    child: ModularApp(module: AppModule(), child: const MyApp()),
+  ));
 }
 
 class MyApp extends StatefulWidget {
