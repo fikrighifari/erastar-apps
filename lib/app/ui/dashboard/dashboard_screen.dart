@@ -1,4 +1,4 @@
-import 'package:erastar_apps/app/export.dart';
+import 'package:erastar_apps/export.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});

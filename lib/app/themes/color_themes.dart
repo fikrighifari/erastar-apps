@@ -1,4 +1,4 @@
-import 'package:erastar_apps/app/export.dart';
+import 'package:erastar_apps/export.dart';
 
 class AppColor {
   static const Color backgroundColor = Color(0xffFFFFFF);

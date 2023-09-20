@@ -1,4 +1,4 @@
-import 'package:erastar_apps/app/export.dart';
+import 'package:erastar_apps/export.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -16,7 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     Future.delayed(Duration(seconds: duration), () async {
-      Modular.to.popAndPushNamed('/home/');
+      // Modular.to.popAndPushNamed('/home/');
+      Modular.to.popAndPushNamed('/auth/');
       // LocalStorageService.load("headerToken").then((value) {
       //   //    print("headerTokenValue :--------------->>> " + value.toString());
       //   if (value == null) {
