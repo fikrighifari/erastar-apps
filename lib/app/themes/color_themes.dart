@@ -1,6 +1,6 @@
 import 'package:erastar_apps/app/export.dart';
 
-class AppColors {
+class AppColor {
   static const Color backgroundColor = Color(0xffFFFFFF);
   static const Color primayRedColor = Color(0xffB8113C);
   static const Color backgroundGrey = Color(0xffF5F5F5);
