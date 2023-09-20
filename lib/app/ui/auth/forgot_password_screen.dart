@@ -1,5 +1,4 @@
-import 'package:erastar_apps/app/themes/app_themes.dart';
-import 'package:erastar_apps/app/themes/color_themes.dart';
+import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
@@ -24,7 +23,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 24),
+                margin: const EdgeInsets.only(bottom: 24),
                 child: Image.asset(
                   'assets/images/logo_transparent.png',
                   width: 75,
@@ -35,7 +34,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 color: AppColor.primayRedColor,
                 fontSize: 16,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               CustomTextField(

@@ -53,6 +53,10 @@ class CustomButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          shape: getBorderType(),
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -61,10 +65,6 @@ class CustomButton extends StatelessWidget {
             text!,
             const Expanded(child: SizedBox())
           ],
-        ),
-        style: ElevatedButton.styleFrom(
-          primary: backgroundColor,
-          shape: getBorderType(),
         ),
       ),
     );

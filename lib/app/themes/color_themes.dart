@@ -1,4 +1,4 @@
-import 'package:erastar_apps/export.dart';
+part of 'themes.dart';
 
 class AppColor {
   static const Color backgroundColor = Color(0xffFFFFFF);
@@ -26,7 +26,7 @@ class AppColor {
   static Color success() => const Color(0xff3B9659);
   static Color successLight() => const Color(0xffE5FFED);
 
-  static Color danger() => const Color(0xff3C8372D);
+  static Color danger() => const Color(0xff3c8372d);
   static Color dangerLight() => const Color(0xffFFE3E0);
 
   static Color warning() => const Color(0xffF49F37);

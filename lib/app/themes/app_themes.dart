@@ -1,6 +1,4 @@
-import 'package:erastar_apps/app/themes/color_themes.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+part of 'themes.dart';
 
 double defaultMargin = 16;
 

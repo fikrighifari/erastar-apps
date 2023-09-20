@@ -1,5 +1,4 @@
-import 'package:erastar_apps/app/themes/app_themes.dart';
-import 'package:erastar_apps/app/themes/color_themes.dart';
+import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
@@ -17,26 +16,26 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Center(
         child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
+          padding: EdgeInsets.symmetric(
+            horizontal: defaultMargin,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 24),
+                margin: const EdgeInsets.only(bottom: 24),
                 child: Image.asset(
                   'assets/images/logo_transparent.png',
                   width: 75,
                 ),
               ),
-              const TextWidget(
+              const TextWidget.titleMedium(
                 "Hi, Selamat Datang!",
-                color: AppColor.primayRedColor,
                 fontSize: 20,
+                color: AppColor.primayRedColor,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               CustomTextField(
@@ -86,10 +85,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   // ),
                   GestureDetector(
                     onTap: () {
-                      // Get.toNamed('/forgot_password');
                       Modular.to.pushNamed('/auth/forgot-password');
                     },
-                    child: TextWidget(
+                    child: const TextWidget(
                       'Forgot Password',
                       color: AppColor.blueColor,
                       fontSize: 12,
@@ -97,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               CustomButton(
@@ -106,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 isRounded: true,
                 borderRadius: 10,
                 backgroundColor: AppColor.primayRedColor,
-                // onPressed: controller.doLogin,
+                onPressed: () {},
                 text: const TextWidget(
                   "Login",
                   color: AppColor.whiteColor,
