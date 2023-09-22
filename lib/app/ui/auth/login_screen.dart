@@ -33,11 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.text,
         )
             .then((result) async {
-          print(result!.status);
           if (result != null) {
-            print('oe');
-            if (result.status == "success") {
-              print(result.status);
+            if (result.data['status'] == "success") {
+              Modular.to.popAndPushNamed('/home/');
               // dataProfile = result.dataProfile;
               // // dataShift = dataProfile!.shift;
               // LocalStorageService.save("headerToken", result.token.toString());
@@ -60,14 +58,13 @@ class _LoginScreenState extends State<LoginScreen> {
               // });
             } else if (result.status == "failed") {
               // isLoading = false;
-              print('salah');
               setState(() {});
               // UiUtils.errorMessage(result.message!, context);
             }
           } else {
             isLoading = false;
             setState(() {});
-            // print(result!.message);
+            print('failed in login');
             // UiUtils.errorMessage(
             //     "Sedang Terjadi Kesalahan Silahkan Coba Kembali", context);
           }
@@ -89,13 +86,13 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 24),
-                child: Image.asset(
-                  'assets/images/logo_transparent.png',
-                  width: 75,
-                ),
-              ),
+              // Container(
+              //   margin: const EdgeInsets.only(bottom: 24),
+              //   child: Image.asset(
+              //     'assets/images/logo_transparent.png',
+              //     width: 75,
+              //   ),
+              // ),
               const TextWidget.titleMedium(
                 "Hi, Selamat Datang!",
                 fontSize: 20,
