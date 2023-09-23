@@ -5,7 +5,9 @@ import 'package:erastar_apps/app/services/local_storage_service.dart';
 
 class DashboardController {
   Future<ProfileModel?> getProfile() async {
-    String? authToken = await LocalStorageService.load('token');
+    String? authToken = await LocalStorageService.load("headerToken");
+    // final String authToken = await LocalStorageService.load("headerToken");
+    print('cooookkkk ----> ' + authToken.toString());
     try {
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
@@ -15,19 +17,21 @@ class DashboardController {
         options: Options(
           contentType: 'application/json',
           headers: {
-            'era-auth-token': ' $authToken',
+            'era-auth-token': authToken,
           },
         ),
       );
       print('response profile data $response');
       if (response.statusCode == 200) {
         ProfileModel profileRes = ProfileModel.fromJson(response.data);
+        print('profile masuk aja');
 
         return profileRes;
       } else {
         return null;
       }
     } catch (e) {
+      print('error controlller');
       print(e);
       return null;
     }

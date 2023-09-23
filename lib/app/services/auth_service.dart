@@ -33,7 +33,8 @@ class AuthServices extends ChangeNotifier {
       print(response.data['token']);
 
       if (response.statusCode == 200) {
-        await LocalStorageService.save("token", response.data['token']);
+        await LocalStorageService.save(
+            "headerToken", response.data['token'].toString());
 
         // ProfileModel homeRes = ProfileModel.fromJson(response.data);
         // print("balikan ata " + '${homeRes}');

@@ -1,4 +1,5 @@
 import 'package:erastar_apps/app/services/auth_service.dart';
+import 'package:erastar_apps/app/services/local_storage_service.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
@@ -33,12 +34,15 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.text,
         )
             .then((result) async {
+          // print('tokennya --> ' + result.data['token']);
+
           if (result != null) {
             if (result.data['status'] == "success") {
-              Modular.to.popAndPushNamed('/home/');
               // dataProfile = result.dataProfile;
               // // dataShift = dataProfile!.shift;
-              // LocalStorageService.save("headerToken", result.token.toString());
+              // LocalStorageService.save(
+              //     "headerToken", result.data['token'].toString());
+              Modular.to.popAndPushNamed('/home/');
 
               // LocalStorageService.save(
               //     "statusVerif", dataProfile!.statusVerifId);
