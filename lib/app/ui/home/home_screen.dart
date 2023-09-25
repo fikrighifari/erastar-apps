@@ -18,12 +18,14 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header Content
               CustomContainer(
                 padding: EdgeInsets.symmetric(
                   horizontal: defaultMargin,
-                  vertical: 8,
+                  vertical: 10,
                 ),
                 width: double.infinity,
                 backgroundColor: AppColor.primayRedColor,
@@ -64,25 +66,223 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-              // New Properti List
-              // SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-              //   child: Row(
-              //     children: [
-              //       AssetCard(),
-              //       AssetCard(),
-              //     ],
-              //   ),
-              // ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: defaultMargin,
+                  vertical: 8,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AssetCard(),
-                    AssetCard(),
+                    // New Properti List
+                    TextWidget(
+                      'Listing Properti Terbaru',
+                      fontWeight: boldWeight,
+                      fontSize: 16,
+                    ),
+                    const SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          AssetCard(),
+                          AssetCard(),
+                        ],
+                      ),
+                    ),
+                    // Approval List
+                    TextWidget(
+                      'Menunggu Persetujuan',
+                      fontWeight: boldWeight,
+                      fontSize: 16,
+                    ),
+                    CustomContainer(
+                      padding: EdgeInsets.all(8),
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      containerType: RoundedContainerType.outlined,
+                      radius: 10,
+                      borderColor: AppColor.naturalGrey1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          TextWidget('approval.title'),
+                          TextWidget('approval.description'),
+                          const Divider(
+                            color: AppColor.naturalGrey1,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Tanggal",
+                              ),
+                              Text(
+                                'Jiffy(approval.createdAt).yMMMMd',
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Biaya Pengeluaran",
+                              ),
+                              Text(
+                                'rupiah(approval.value.toString())',
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Status",
+                                // style: dateTextStyle,
+                              ),
+                              Text(
+                                'approval.status.toString().toTitleCase()',
+                                // style: incomePriceTextStyle,
+                              )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CustomButton(
+                                isRounded: true,
+                                buttonType: ButtonType.noOutLined,
+                                borderRadius: 8,
+                                onPressed: () {},
+                                width: 100,
+                                height: 40,
+                                text: TextWidget(
+                                  'Approve',
+                                  color: Colors.white,
+                                ),
+                              ),
+                              CustomButton(
+                                isRounded: true,
+                                buttonType: ButtonType.noOutLined,
+                                borderRadius: 8,
+                                onPressed: () {},
+                                width: 100,
+                                height: 40,
+                                text: TextWidget(
+                                  'Tolak',
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    //Arus Kas
+                    TextWidget(
+                      'Arus Kas',
+                      fontWeight: boldWeight,
+                      fontSize: 16,
+                    ),
+                    CustomContainer(
+                      padding: EdgeInsets.all(8),
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      containerType: RoundedContainerType.outlined,
+                      radius: 10,
+                      borderColor: AppColor.naturalGrey1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget(
+                                    'arusKas.title.toString().toTitleCase()',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 1.5,
+                                    child: TextWidget(
+                                      'arusKas.description.toString()',
+                                      // color: AppColors.naturalGrey1,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              // arusKas.type == "cost"
+                              //     ? SvgPicture.asset(
+                              //         "assets/icons/ic_arrow_red.svg",
+                              //         width: 30,
+                              //       )
+                              //     :
+                              SvgPicture.asset(
+                                "assets/icons/ic_arrow.svg",
+                                width: 30,
+                              )
+                            ],
+                          ),
+                          const Divider(
+                            color: AppColor.naturalGrey1,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextWidget(
+                                "Jumlah",
+                                // color: AppColors.naturalGrey1,
+                                fontSize: 13,
+                              ),
+                              Text(
+                                'rupiah(arusKas.value)',
+                                // style: arusKas.type == "cost"
+                                //     ? priceTextStyle
+                                //     : incomePriceTextStyle,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextWidget(
+                                "Tanggal",
+                                color: AppColor.naturalGrey1,
+                                fontSize: 13,
+                              ),
+                              Text(
+                                'Jiffy(arusKas.createdAt).yMMMMd',
+                                // style: listingTextStyle,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextWidget(
+                                "Status",
+                                color: AppColor.naturalGrey1,
+                                fontSize: 13,
+                              ),
+                              Text(
+                                'arusKas.status.toString().toTitleCase()',
+                                // style: listingTextStyle,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColor.cyanColor,

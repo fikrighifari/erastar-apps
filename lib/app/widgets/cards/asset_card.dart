@@ -13,6 +13,12 @@ class _AssetCardState extends State<AssetCard> {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
+      margin: EdgeInsets.fromLTRB(
+        defaultMargin,
+        0,
+        defaultMargin,
+        defaultMargin,
+      ),
       width: 200,
       containerType: RoundedContainerType.outlined,
       radius: 10,
