@@ -279,6 +279,95 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
+
+                    //Arus Kas
+                    TextWidget(
+                      'Penjualan Aset',
+                      fontWeight: boldWeight,
+                      fontSize: 16,
+                    ),
+                    CustomContainer(
+                      padding: EdgeInsets.all(8),
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      containerType: RoundedContainerType.outlined,
+                      radius: 10,
+                      borderColor: AppColor.naturalGrey1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "ID Listing: ",
+                                // +
+                                //     dataSales.asset!.listingId.toString(),
+                                // style: houseTitleTextStyle,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              TextWidget(
+                                'rupiah(dataSales.asset!.price)',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                // color: dataSales.status!.name == 'Sold'
+                                //     ? AppColors.greenColor
+                                //     : AppColors.primayRedColor,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 200,
+                                child: Text(
+                                  'dataSales.asset!.title',
+                                  // .toString()
+                                  // .toTitleCase(),
+                                  // style: listingTextStyle,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 100,
+                                child: TextWidget(
+                                  'Jiffy(dataSales.createdAt).yMMMMd',
+                                  fontSize: 12,
+                                  // color: AppColors.naturalGrey1,
+                                  fontWeight: regularWeight,
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 200,
+                            child: Text(
+                              'dataSales.commission!.marketing!.name.toString()',
+                              // style: dateTextStyle,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Text(
+                            ' dataSales.asset!.office!.name.toString()',
+                            // style: dateTextStyle,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            'dataSales.status!.name.toString().toTitleCase()',
+                            // style: listingTextStyle.copyWith(
+                            //   fontWeight: FontWeight.bold,
+                            //   color: dataSales.status!.name == 'Sold'
+                            //       ? AppColors.greenColor
+                            //       : AppColors.primayRedColor,
+                            // ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
