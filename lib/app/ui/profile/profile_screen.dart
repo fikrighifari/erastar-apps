@@ -1,3 +1,4 @@
+import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -10,9 +11,14 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Profile'),
+    return CustomScaffold.withAppBar(
+      title: 'Profile',
+      centerTitle: true,
+      onBack: () {
+        Navigator.of(context).pop();
+      },
+      child: Column(
+        children: [TextWidget('Profile')],
       ),
     );
   }

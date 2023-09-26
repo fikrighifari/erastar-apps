@@ -6,3 +6,4 @@ part 'custom_button.dart';
 part 'custom_text_field.dart';
 part 'custom_text.dart';
 part 'custom_container.dart';
+part 'custom_scaffold.dart';
