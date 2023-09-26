@@ -219,7 +219,7 @@
 // class ProfileModel {
 //   String? status;
 //   String? message;
-//   Data? data;
+//   DataProfile? data;
 
 //   ProfileModel({
 //     this.status,
@@ -235,7 +235,7 @@
 //   factory ProfileModel.fromMap(Map<String, dynamic> json) => ProfileModel(
 //         status: json["status"],
 //         message: json["message"],
-//         data: json["data"] == null ? null : Data.fromMap(json["data"]),
+//         data: json["data"] == null ? null : DataProfile.fromMap(json["data"]),
 //       );
 
 //   Map<String, dynamic> toMap() => {
@@ -245,7 +245,7 @@
 //       };
 // }
 
-// class Data {
+// class DataProfile {
 //   String? id;
 //   String? name;
 //   String? username;
@@ -260,7 +260,7 @@
 //   String? avatarPath;
 //   DateTime? createdAt;
 
-//   Data({
+//   DataProfile({
 //     this.id,
 //     this.name,
 //     this.username,
@@ -276,11 +276,11 @@
 //     this.createdAt,
 //   });
 
-//   factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+//   factory DataProfile.fromJson(String str) => DataProfile.fromMap(json.decode(str));
 
 //   String toJson() => json.encode(toMap());
 
-//   factory Data.fromMap(Map<String, dynamic> json) => Data(
+//   factory DataProfile.fromMap(Map<String, dynamic> json) => DataProfile(
 //         id: json["_id"],
 //         name: json["name"],
 //         username: json["username"],
@@ -814,12 +814,12 @@ class ProfileModel {
   });
   late final String status;
   late final String message;
-  late final Data data;
+  late final DataProfile data;
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = Data.fromJson(json['data']);
+    data = DataProfile.fromJson(json['data']);
   }
 
   Map<String, dynamic> toJson() {
@@ -831,8 +831,8 @@ class ProfileModel {
   }
 }
 
-class Data {
-  Data({
+class DataProfile {
+  DataProfile({
     required this.id,
     required this.name,
     required this.username,
@@ -861,7 +861,7 @@ class Data {
   late final String avatarPath;
   late final String createdAt;
 
-  Data.fromJson(Map<String, dynamic> json) {
+  DataProfile.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     name = json['name'];
     username = json['username'];
