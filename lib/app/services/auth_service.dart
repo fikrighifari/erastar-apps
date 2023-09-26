@@ -29,8 +29,7 @@ class AuthServices extends ChangeNotifier {
           ));
 
       // print("response  Data $response");
-      // print(response.statusCode);
-      print(response.data['token']);
+      // print(response.data['token']);
 
       if (response.statusCode == 200) {
         await LocalStorageService.save(

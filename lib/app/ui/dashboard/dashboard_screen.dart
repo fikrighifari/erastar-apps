@@ -23,23 +23,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   void initState() {
     super.initState();
-    // fetchData();
+    fetchData();
   }
 
-  // fetchData() async {
-  //   futureProfile = DashboardController().getProfile();
-  //   print('masukkk');
-  //   futureProfile.then((value) async {
-  //     // print('dashboard 1');
-  //     //   print(value);
-  //     //   if (value != null) {
-  //     //     print(value.status);
-  //     //     if (value.status == "success") {
-  //     //       print('dashboard 2');
-  //     //     }
-  //     //   }
-  //   });
-  // }
+  fetchData() async {
+    futureProfile = DashboardController().getProfile();
+    print('masukkk');
+    futureProfile.then((value) async {
+      // print('dashboard 1');
+      //   print(value);
+      //   if (value != null) {
+      //     print(value.status);
+      //     if (value.status == "success") {
+      //       print('dashboard 2');
+      //     }
+      //   }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
