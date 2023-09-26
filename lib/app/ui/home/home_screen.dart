@@ -40,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
   fetchData() async {
     futureProfile = HomeController().getProfile();
     futureProfile.then((value) async {
-      // print('name -> ' + value!.data.name);
       nameProfile = value!.data.name;
       roleProfile = value.data.role.name;
       avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
@@ -52,14 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
       //     nameProfile = value.data.name;
       //   }
       // }
-      // print('dashboard 1');
-      //   print(value);
-      //   if (value != null) {
-      //     print(value.status);
-      //     if (value.status == "success") {
-      //       print('dashboard 2');
-      //     }
-      //   }
     });
   }
 
@@ -87,54 +78,67 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Header Content
-                              CustomContainer(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: defaultMargin,
-                                  vertical: 10,
-                                ),
-                                width: double.infinity,
-                                backgroundColor: AppColor.primayRedColor,
-                                child: Row(
-                                  children: [
-                                    // https://erastarlelangproperty.co.id/uploads/images/users/1695435398000_1695435397_6de1c6b72e5573438c8e.png
-                                    // https://erastarlelangproperty.co.id/uploads/images/users/%201695435398000_1695435397_6de1c6b72e5573438c8e.png
-                                    SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                          '$baseAPIUrlImage$avatarProfile',
-                                        ),
-                                        // NetworkImage(
-                                        //   "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-                                        // ),
-                                        backgroundColor: AppColor.whiteColor,
+                              InkWell(
+                                onTap: () {
+                                  Modular.to.pushNamed('/profile/');
+                                },
+                                child: CustomContainer(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: defaultMargin,
+                                    vertical: 10,
+                                  ),
+                                  width: double.infinity,
+                                  backgroundColor: AppColor.primayRedColor,
+                                  child: Row(
+                                    children: [
+                                      avatarProfile != null
+                                          ? SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircleAvatar(
+                                                backgroundImage: NetworkImage(
+                                                  '$baseAPIUrlImage$avatarProfile',
+                                                ),
+                                                backgroundColor:
+                                                    AppColor.whiteColor,
+                                              ),
+                                            )
+                                          : SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: SvgPicture.asset(
+                                                'assets/icons/ic_default_avatar.svg',
+                                                colorFilter:
+                                                    const ColorFilter.mode(
+                                                  AppColor.whiteColor,
+                                                  BlendMode.srcIn,
+                                                ),
+                                              )),
+                                      const SizedBox(
+                                        width: 10,
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        TextWidget(
-                                          nameProfile,
-                                          color: AppColor.whiteColor,
-                                        ),
-                                        TextWidget(
-                                          roleProfile,
-                                          color: AppColor.whiteColor,
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    SvgPicture.asset(
-                                      'assets/icons/ic_notification.svg',
-                                    )
-                                  ],
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextWidget(
+                                            nameProfile,
+                                            color: AppColor.whiteColor,
+                                          ),
+                                          TextWidget(
+                                            roleProfile,
+                                            color: AppColor.whiteColor,
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      SvgPicture.asset(
+                                        'assets/icons/ic_notification.svg',
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
 
