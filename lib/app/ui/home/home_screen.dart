@@ -1,3 +1,4 @@
+import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/home_controller.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
@@ -17,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<ProfileModel?> futureProfile;
   late DataProfile dataProfile;
   late String? nameProfile = '';
+  late String? roleProfile = '';
+  late String? avatarProfile = '';
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -39,6 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
     futureProfile.then((value) async {
       // print('name -> ' + value!.data.name);
       nameProfile = value!.data.name;
+      roleProfile = value.data.role.name;
+      avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
 
       // if (value != null) {
       //   if (value.status == "success") {
@@ -70,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 case ConnectionState.active:
                   return const Text('Press button to start.');
                 case ConnectionState.waiting:
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 case ConnectionState.done:
                   return RefreshIndicator(
                       onRefresh: refreshHome,
@@ -91,13 +96,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 backgroundColor: AppColor.primayRedColor,
                                 child: Row(
                                   children: [
-                                    const SizedBox(
+                                    // https://erastarlelangproperty.co.id/uploads/images/users/1695435398000_1695435397_6de1c6b72e5573438c8e.png
+                                    // https://erastarlelangproperty.co.id/uploads/images/users/%201695435398000_1695435397_6de1c6b72e5573438c8e.png
+                                    SizedBox(
                                       width: 50,
                                       height: 50,
                                       child: CircleAvatar(
                                         backgroundImage: NetworkImage(
-                                          "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+                                          '$baseAPIUrlImage$avatarProfile',
                                         ),
+                                        // NetworkImage(
+                                        //   "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+                                        // ),
                                         backgroundColor: AppColor.whiteColor,
                                       ),
                                     ),
@@ -115,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color: AppColor.whiteColor,
                                         ),
                                         TextWidget(
-                                          "Director",
+                                          roleProfile,
                                           color: AppColor.whiteColor,
                                         ),
                                       ],
