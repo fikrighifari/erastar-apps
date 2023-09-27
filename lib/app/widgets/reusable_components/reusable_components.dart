@@ -7,3 +7,4 @@ part 'custom_text_field.dart';
 part 'custom_text.dart';
 part 'custom_container.dart';
 part 'custom_scaffold.dart';
+part 'custom_appbar.dart';

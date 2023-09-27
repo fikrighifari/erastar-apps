@@ -113,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   AppColor.whiteColor,
                                                   BlendMode.srcIn,
                                                 ),
-                                              )),
+                                              ),
+                                            ),
                                       const SizedBox(
                                         width: 10,
                                       ),

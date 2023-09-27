@@ -3,7 +3,7 @@ import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
 
-class HomeController {
+class ProfileController {
   Future<ProfileModel?> getProfile() async {
     String? authToken = await LocalStorageService.load("headerToken");
     // final String authToken = await LocalStorageService.load("headerToken");
@@ -21,17 +21,16 @@ class HomeController {
           },
         ),
       );
-      print('response profile data $response');
+      // print('response profile data $response');
       if (response.statusCode == 200) {
         ProfileModel profileRes = ProfileModel.fromJson(response.data);
-        print('profile masuk aja');
+        // print('profile masuk aja');
 
         return profileRes;
       } else {
         return null;
       }
     } catch (e) {
-      print('error controlller');
       print(e);
       return null;
     }
