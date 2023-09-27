@@ -1,6 +1,7 @@
 part of 'themes.dart';
 
 double defaultMargin = 16;
+double defaultSizedbox = 16;
 
 //Font Weight
 FontWeight lightWeight = FontWeight.w300;

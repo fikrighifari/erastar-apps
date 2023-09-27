@@ -17,9 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Future<ProfileModel?> futureProfile;
   late DataProfile dataProfile;
-  late String? nameProfile = '';
-  late String? roleProfile = '';
-  late String? avatarProfile = '';
+  late String? nameProfile, roleProfile, avatarProfile = '';
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -66,7 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 case ConnectionState.active:
                   return const Text('Press button to start.');
                 case ConnectionState.waiting:
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 case ConnectionState.done:
                   return RefreshIndicator(
                       onRefresh: refreshHome,
