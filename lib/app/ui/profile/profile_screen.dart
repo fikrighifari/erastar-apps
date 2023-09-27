@@ -25,6 +25,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       addressOffice,
       provinceOffice = '';
 
+  late String? appVersion = '';
+
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
 
@@ -32,6 +34,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     fetchData();
+    getAppVersion();
+  }
+
+  Future<void> getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String version = packageInfo.version;
+    setState(() {
+      appVersion = version;
+    });
   }
 
   Future<void> refreshProfile() async {
@@ -80,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: AppColor.whiteColor,
             )),
       ),
-      body: FutureBuilder(
+      body: FutureBuilder<ProfileModel?>(
           future: futureProfile,
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             switch (snapshot.connectionState) {
@@ -299,9 +310,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 padding: EdgeInsets.all(defaultMargin),
                                 width: double.infinity,
                                 backgroundColor: AppColor.whiteColor,
-                                child: const Column(
+                                child: Column(
                                   children: [
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -313,10 +324,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         ),
                                       ],
                                     ),
-                                    Divider(
+                                    const Divider(
                                       thickness: 1,
                                     ),
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -327,6 +338,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           Icons.arrow_forward_ios_rounded,
                                         ),
                                       ],
+                                    ),
+                                    const Divider(
+                                      thickness: 1,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        style:
+                                            DefaultTextStyle.of(context).style,
+                                        children: <TextSpan>[
+                                          const TextSpan(
+                                            text: 'Versi Aplikasi ',
+                                            style: TextStyle(
+                                                color: AppColor.blackColor),
+                                          ),
+                                          TextSpan(
+                                            text: appVersion,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColor.blackColor,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
