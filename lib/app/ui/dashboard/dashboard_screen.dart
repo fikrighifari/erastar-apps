@@ -1,4 +1,3 @@
-import 'package:erastar_apps/app/controller/dashboard_controller.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/ui/asset/asset_screen.dart';
@@ -21,42 +20,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   late String? nameProfile = '';
   late String? rolesUser = '';
 
-  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
-      GlobalKey<RefreshIndicatorState>();
   int currentIndex = 0;
   @override
   void initState() {
     super.initState();
-    // fetchData();
-  }
-
-  Future<void> _refreshProfile() async {
-    setState(() {
-      _refreshIndicatorKey.currentState!.show();
-      fetchData();
-    });
-  }
-
-  fetchData() async {
-    futureProfile = DashboardController().getProfile();
-    futureProfile.then((value) async {
-      // print('rolesnya -> ' + value!.data.role.name);
-
-      if (value != null) {
-        if (value.status == "success") {
-          dataProfile = value.data;
-          rolesUser = value.data.role.name;
-        }
-      }
-      // print('dashboard 1');
-      //   print(value);
-      //   if (value != null) {
-      //     print(value.status);
-      //     if (value.status == "success") {
-      //       print('dashboard 2');
-      //     }
-      //   }
-    });
   }
 
   @override

@@ -8,3 +8,4 @@ part 'custom_text.dart';
 part 'custom_container.dart';
 part 'custom_scaffold.dart';
 part 'custom_appbar.dart';
+part 'ui_utils.dart';

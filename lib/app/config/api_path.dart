@@ -6,3 +6,5 @@ const baseAPIUrlImage = "https://erastarlelangproperty.co.id/";
 
 const postAPILogin = "${baseAPIUrl}auth";
 const getAPIProfile = "${baseAPIUrl}profile/me";
+const getAPIAssetHome =
+    "${baseAPIUrl}assets/asset_lists?page=1&limit=4&sort=desc";

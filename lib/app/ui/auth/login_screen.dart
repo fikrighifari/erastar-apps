@@ -1,5 +1,4 @@
 import 'package:erastar_apps/app/services/auth_service.dart';
-import 'package:erastar_apps/app/services/local_storage_service.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
@@ -34,43 +33,20 @@ class _LoginScreenState extends State<LoginScreen> {
           _passwordController.text,
         )
             .then((result) async {
-          // print('tokennya --> ' + result.data['token']);
-
           if (result != null) {
             if (result.data['status'] == "success") {
-              // dataProfile = result.dataProfile;
-              // // dataShift = dataProfile!.shift;
-              // LocalStorageService.save(
-              //     "headerToken", result.data['token'].toString());
               Modular.to.popAndPushNamed('/home/');
-
-              // LocalStorageService.save(
-              //     "statusVerif", dataProfile!.statusVerifId);
-
-              // HomeController().getShift().then((result) async {
-              //   if (result != null) {
-              //     if (result.status == "success") {
-              //       dataShift = result.shiftData;
-              //       await _databaseHelper!.deleteAll();
-
-              //       await _databaseHelper!
-              //           .insertProfile(dataProfile!, dataShift!);
-
-              //       Modular.to.popAndPushNamed('/home/');
-              //     }
-              //   }
-              // });
             } else if (result.status == "failed") {
               // isLoading = false;
               setState(() {});
-              // UiUtils.errorMessage(result.message!, context);
+              UiUtils.errorMessage(result.message!, context);
             }
           } else {
             isLoading = false;
             setState(() {});
             print('failed in login');
-            // UiUtils.errorMessage(
-            //     "Sedang Terjadi Kesalahan Silahkan Coba Kembali", context);
+            UiUtils.errorMessage(
+                "Sedang Terjadi Kesalahan Silahkan Coba Kembali", context);
           }
         });
       }
@@ -90,13 +66,13 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Container(
-              //   margin: const EdgeInsets.only(bottom: 24),
-              //   child: Image.asset(
-              //     'assets/images/logo_transparent.png',
-              //     width: 75,
-              //   ),
-              // ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 24),
+                child: Image.asset(
+                  'assets/images/logo_transparent.png',
+                  width: 75,
+                ),
+              ),
               const TextWidget.titleMedium(
                 "Hi, Selamat Datang!",
                 fontSize: 20,
