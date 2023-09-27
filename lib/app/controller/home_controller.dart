@@ -52,7 +52,7 @@ class HomeController {
           },
         ),
       );
-      print('response asset home $response');
+      // print('response asset home $response');
       if (response.statusCode == 200) {
         AssetModel assetRes = AssetModel.fromJson(response.data);
         // ProfileModel profileRes = ProfileModel.fromJson(response.data);

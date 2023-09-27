@@ -12,24 +12,24 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = true;
-  bool _isPhoneNumberError = false;
+  bool _isEmailError = false;
   bool _isPasswordError = false;
   bool isLoading = false;
 
   void _login(AuthServices authServices2) {
     setState(() {
-      _isPhoneNumberError = _phoneNumberController.text.isEmpty;
+      _isEmailError = _emailController.text.isEmpty;
       _isPasswordError = _passwordController.text.isEmpty;
 
-      if (!_isPhoneNumberError && !_isPasswordError) {
+      if (!_isEmailError && !_isPasswordError) {
         // isLoading = true;
         authServices2
             .loginProfile(
           context,
-          _phoneNumberController.text,
+          _emailController.text,
           _passwordController.text,
         )
             .then((result) async {
@@ -44,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
           } else {
             isLoading = false;
             setState(() {});
-            print('failed in login');
             UiUtils.errorMessage(
                 "Sedang Terjadi Kesalahan Silahkan Coba Kembali", context);
           }
@@ -82,10 +81,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 10,
               ),
               CustomTextField(
-                controller: _phoneNumberController,
+                controller: _emailController,
                 prefixIcon: const Icon(Icons.mail),
                 labelText: "Email",
-                hintText: "erastar@mail.com",
+                hintText: "mail@erastarlelangproperty.co.id",
                 labelStyle: labelTextStyle,
                 textStyle: labelTextStyle,
               ),
