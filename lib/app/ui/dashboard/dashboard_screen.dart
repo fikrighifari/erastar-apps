@@ -1,13 +1,11 @@
 import 'package:erastar_apps/app/controller/dashboard_controller.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
-import 'package:erastar_apps/app/services/local_storage_service.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/ui/asset/asset_screen.dart';
 import 'package:erastar_apps/app/ui/home/home_screen.dart';
 import 'package:erastar_apps/app/ui/kas/arus_kas_screen.dart';
 import 'package:erastar_apps/app/ui/sales/sales_screen.dart';
 import 'package:erastar_apps/app/ui/sales/top_sales_screen.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class DashboardScreen extends StatefulWidget {
