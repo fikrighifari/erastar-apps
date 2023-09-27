@@ -317,8 +317,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        Modular.to.popAndPushNamed(
-                                            '/profile/edit-profile');
+                                        Modular.to
+                                            .pushNamed('/profile/edit-profile');
                                       },
                                       child: const Row(
                                         mainAxisAlignment:
@@ -336,17 +336,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     const Divider(
                                       thickness: 1,
                                     ),
-                                    const Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        TextWidget(
-                                          "Ubah Password",
-                                        ),
-                                        Icon(
-                                          Icons.arrow_forward_ios_rounded,
-                                        ),
-                                      ],
+                                    InkWell(
+                                      onTap: () {
+                                        Modular.to.pushNamed(
+                                            '/profile/change-password');
+                                      },
+                                      child: const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          TextWidget(
+                                            "Ubah Password",
+                                          ),
+                                          Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     const Divider(
                                       thickness: 1,

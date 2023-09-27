@@ -14,7 +14,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final TextEditingController _phoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold.withAppBar(
+    return CustomScaffold(
+      centralize: true,
       centerTitle: true,
       title: 'Edit Profile',
       onBack: () {
