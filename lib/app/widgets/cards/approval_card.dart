@@ -1,5 +1,5 @@
 import 'package:erastar_apps/app/themes/themes.dart';
-import 'package:erastar_apps/app/widgets/card_model/card_model_approval.dart';
+import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
@@ -23,18 +23,22 @@ class ApprovalCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextWidget(approvalCardModel.title),
-          TextWidget(approvalCardModel.description),
+          TextWidget.labelLarge(
+            approvalCardModel.title.toString(),
+          ),
+          TextWidget.labelLarge(
+            approvalCardModel.description.toString(),
+          ),
           const Divider(
             color: AppColor.naturalGrey1,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const TextWidget.labelLarge(
                 "Tanggal",
               ),
-              Text(
+              TextWidget(
                 approvalCardModel.date.toString(),
               )
             ],
@@ -42,7 +46,7 @@ class ApprovalCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const TextWidget.labelLarge(
                 "Biaya Pengeluaran",
               ),
               Text(
@@ -53,7 +57,7 @@ class ApprovalCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const TextWidget.labelLarge(
                 "Status",
                 // style: dateTextStyle,
               ),
@@ -62,6 +66,9 @@ class ApprovalCard extends StatelessWidget {
                 // style: incomePriceTextStyle,
               )
             ],
+          ),
+          const SizedBox(
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +80,8 @@ class ApprovalCard extends StatelessWidget {
                 onPressed: () {},
                 width: 100,
                 height: 40,
-                text: TextWidget(
+                backgroundColor: AppColor.greenColor,
+                text: const TextWidget(
                   'Approve',
                   color: Colors.white,
                 ),
@@ -81,11 +89,12 @@ class ApprovalCard extends StatelessWidget {
               CustomButton(
                 isRounded: true,
                 buttonType: ButtonType.noOutLined,
+                backgroundColor: AppColor.primayRedColor,
                 borderRadius: 8,
                 onPressed: () {},
                 width: 100,
                 height: 40,
-                text: TextWidget(
+                text: const TextWidget(
                   'Tolak',
                   color: Colors.white,
                 ),
