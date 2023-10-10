@@ -11,9 +11,7 @@ class _TopSalesScreenState extends State<TopSalesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Top Sales Screen'),
-      ),
+      body: Center(child: Text('Top Sales')),
     );
   }
 }
