@@ -1,9 +1,14 @@
 import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/widgets/card_model/arus_kas_card_model.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class ArusKasCard extends StatelessWidget {
-  const ArusKasCard({super.key});
+  final ArusKasCardModel arusKasCardModel;
+  const ArusKasCard({
+    super.key,
+    required this.arusKasCardModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +30,13 @@ class ArusKasCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget(
-                    'arusKas.title.toString().toTitleCase()',
+                    arusKasCardModel.title,
                     fontWeight: FontWeight.bold,
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width / 1.5,
                     child: TextWidget(
-                      'arusKas.description.toString()',
+                      arusKasCardModel.description,
                       // color: AppColors.naturalGrey1,
                     ),
                   ),
@@ -60,8 +65,8 @@ class ArusKasCard extends StatelessWidget {
                 // color: AppColors.naturalGrey1,
                 fontSize: 13,
               ),
-              Text(
-                'rupiah(arusKas.value)',
+              TextWidget(
+                arusKasCardModel.value.toString(),
                 // style: arusKas.type == "cost"
                 //     ? priceTextStyle
                 //     : incomePriceTextStyle,
@@ -76,8 +81,8 @@ class ArusKasCard extends StatelessWidget {
                 color: AppColor.naturalGrey1,
                 fontSize: 13,
               ),
-              Text(
-                'Jiffy(arusKas.createdAt).yMMMMd',
+              TextWidget(
+                arusKasCardModel.date.toString(),
                 // style: listingTextStyle,
               ),
             ],
@@ -90,8 +95,8 @@ class ArusKasCard extends StatelessWidget {
                 color: AppColor.naturalGrey1,
                 fontSize: 13,
               ),
-              Text(
-                'arusKas.status.toString().toTitleCase()',
+              TextWidget(
+                arusKasCardModel.status,
                 // style: listingTextStyle,
               ),
             ],

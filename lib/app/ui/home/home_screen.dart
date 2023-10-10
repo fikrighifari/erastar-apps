@@ -7,6 +7,7 @@ import 'package:erastar_apps/app/models/invoice_model.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
+import 'package:erastar_apps/app/widgets/card_model/arus_kas_card_model.dart';
 import 'package:erastar_apps/app/widgets/cards/approval_card.dart';
 import 'package:erastar_apps/app/widgets/cards/arus_kas_card.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late String? nameProfile, roleProfile, avatarProfile = '';
 
   late List<DataListApproval>? listApproval = [];
+  late List<ListDataCashFlow>? listCashFlow = [];
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -50,10 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
   fetchData() async {
     futureProfile = HomeController().getProfile();
     futureAssetHome = HomeController().getAssetHome();
-    futureInvoiceHome = HomeController().getInvoiceHome();
 
     //Get Profile
-    futureCashFlowHome = HomeController().getCashFlowHome();
     futureProfile.then((value) async {
       if (value != null) {
         if (value.status == "success") {
@@ -74,6 +74,17 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       });
     });
+
+    futureCashFlowHome = HomeController().getCashFlowHome();
+    futureCashFlowHome.then((valueCashFlow) {
+      if (valueCashFlow != null) {
+        if (valueCashFlow.status == 'success') {
+          listCashFlow = valueCashFlow.data!.dataListCashFlow;
+        }
+      }
+    });
+
+    futureInvoiceHome = HomeController().getInvoiceHome();
 
     // return futureProfile;
   }
@@ -223,7 +234,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: boldWeight,
                                 fontSize: 16,
                               ),
-                              ArusKasCard(),
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: listCashFlow!.length,
+                                  itemBuilder: (context, index) {
+                                    var cashFlowList = listCashFlow![index];
+                                    return Column(
+                                      children: [
+                                        ArusKasCard(
+                                          arusKasCardModel: ArusKasCardModel(
+                                            title: cashFlowList.title,
+                                            description:
+                                                cashFlowList.description,
+                                            date: cashFlowList.createdAt
+                                                .toString(),
+                                            value: cashFlowList.value,
+                                            status: cashFlowList.status,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  }),
 
                               //Penjualan Aset
                               TextWidget(
