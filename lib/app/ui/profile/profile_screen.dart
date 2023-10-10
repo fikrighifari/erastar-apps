@@ -68,6 +68,71 @@ class _ProfileScreenState extends State<ProfileScreen> {
     });
   }
 
+  void showLogoutDialog() {
+    showDialog(
+      builder: (_) => AlertDialog(
+        title: const TextWidget.titleMedium(
+          'Logout',
+          textAlign: TextAlign.center,
+          color: AppColor.blackColor,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const TextWidget.bodyMedium(
+              'Apakah anda yakin ingin keluar dari akun anda?',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: defaultMargin,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: const BorderSide(color: Colors.green))),
+                  child: TextWidget.titleSmall(
+                    'No',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primayRedColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: TextWidget.titleSmall(
+                    'Logout',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    LocalStorageService.remove("headerToken");
+                    Modular.to.popAndPushNamed('/auth/');
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      context: context,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,9 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: 'Profile',
         rightWidget: GestureDetector(
             onTap: () {
-              // Modular.to.pushNamed('/profile/setting_screen');
-              LocalStorageService.remove("headerToken");
-              Modular.to.popAndPushNamed('/auth/');
+              showLogoutDialog();
             },
             child: const Icon(
               Icons.logout,
@@ -118,30 +181,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: MediaQuery.of(context).size.height,
                           child: Column(
                             children: [
-                              // Center(
-                              //   child: avatarProfile != null
-                              //       ? SizedBox(
-                              //           width: 100,
-                              //           height: 100,
-                              //           child: CircleAvatar(
-                              //             backgroundImage: NetworkImage(
-                              //               '$baseAPIUrlImage$avatarProfile',
-                              //             ),
-                              //             backgroundColor: AppColor.whiteColor,
-                              //           ),
-                              //         )
-                              //       : SizedBox(
-                              //           width: 100,
-                              //           height: 100,
-                              //           child: SvgPicture.asset(
-                              //             'assets/icons/ic_avatar.svg',
-                              //             colorFilter: const ColorFilter.mode(
-                              //               AppColor.whiteColor,
-                              //               BlendMode.srcIn,
-                              //             ),
-                              //           ),
-                              //         ),
-                              // ),
+                              Center(
+                                child: avatarProfile != null
+                                    ? SizedBox(
+                                        width: 100,
+                                        height: 100,
+                                        child: CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                            '$baseAPIUrlImage$avatarProfile',
+                                          ),
+                                          backgroundColor: AppColor.whiteColor,
+                                        ),
+                                      )
+                                    : SizedBox(
+                                        width: 100,
+                                        height: 100,
+                                        child: SvgPicture.asset(
+                                          'assets/icons/ic_avatar.svg',
+                                          colorFilter: const ColorFilter.mode(
+                                            AppColor.whiteColor,
+                                            BlendMode.srcIn,
+                                          ),
+                                        ),
+                                      ),
+                              ),
                               const SizedBox(
                                 height: 10,
                               ),

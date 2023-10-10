@@ -468,25 +468,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.cyanColor,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          child: TextWidget.titleSmall(
-                            'Logout',
-                            color: AppColor.blackColor,
-                            fontWeight: boldWeight,
-                          ),
-                          onPressed: () {
-                            LocalStorageService.remove("headerToken");
-                            Modular.to.popAndPushNamed('/auth/');
-                          },
-                        ),
                       ],
                     ),
                   ),
