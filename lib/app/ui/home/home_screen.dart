@@ -1,6 +1,8 @@
 import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/home_controller.dart';
+import 'package:erastar_apps/app/models/approval_cost_model.dart';
 import 'package:erastar_apps/app/models/asset_model.dart';
+import 'package:erastar_apps/app/models/cash_flow_model.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
@@ -16,9 +18,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Future<ProfileModel?> futureProfile;
   late Future<AssetModel?> futureAssetHome;
-  late Future futureApprovalCostHome;
+  late Future<ProfileModel?> futureProfile;
+  late Future<CashFlowModel?> futureCashFlowHome;
+  late Future<ApprovalCostModel?> futureApprovalCostHome;
   late DataProfile dataProfile;
   late String? nameProfile, roleProfile, avatarProfile = '';
 
@@ -39,9 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   fetchData() async {
-    futureAssetHome = HomeController().getAssetHome();
-    futureApprovalCostHome = HomeController().getApprovalHome();
     futureProfile = HomeController().getProfile();
+    futureAssetHome = HomeController().getAssetHome();
+    futureCashFlowHome = HomeController().getCashFlowHome();
+    futureApprovalCostHome = HomeController().getApprovalHome();
     futureProfile.then((value) async {
       if (value != null) {
         if (value.status == "success") {
