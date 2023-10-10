@@ -5,8 +5,9 @@ import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/models/cash_flow_model.dart';
 import 'package:erastar_apps/app/models/invoice_model.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
-import 'package:erastar_apps/app/services/local_storage_service.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/widgets/card_model/card_model_approval.dart';
+import 'package:erastar_apps/app/widgets/cards/approval_card.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
@@ -26,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<ApprovalCostModel?> futureApprovalCostHome;
   late DataProfile dataProfile;
   late String? nameProfile, roleProfile, avatarProfile = '';
+
+  late List<DataListApproval>? listApproval = [];
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -47,8 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
     futureProfile = HomeController().getProfile();
     futureAssetHome = HomeController().getAssetHome();
     futureInvoiceHome = HomeController().getInvoiceHome();
+
+    //Get Profile
     futureCashFlowHome = HomeController().getCashFlowHome();
-    futureApprovalCostHome = HomeController().getApprovalHome();
     futureProfile.then((value) async {
       if (value != null) {
         if (value.status == "success") {
@@ -58,6 +62,16 @@ class _HomeScreenState extends State<HomeScreen> {
           roleProfile = value.data.role!.name;
         }
       }
+
+      //Get Approval List
+      futureApprovalCostHome = HomeController().getApprovalHome();
+      futureApprovalCostHome.then((valueApproval) {
+        if (valueApproval != null) {
+          if (valueApproval.status == 'success') {
+            listApproval = valueApproval.data!.dataListApproval;
+          }
+        }
+      });
     });
 
     // return futureProfile;
@@ -180,93 +194,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: boldWeight,
                                 fontSize: 16,
                               ),
-                              CustomContainer(
-                                padding: const EdgeInsets.all(8),
-                                margin: const EdgeInsets.symmetric(
-                                  vertical: 10,
-                                ),
-                                containerType: RoundedContainerType.outlined,
-                                radius: 10,
-                                borderColor: AppColor.naturalGrey1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextWidget('approval.title'),
-                                    TextWidget('approval.description'),
-                                    const Divider(
-                                      color: AppColor.naturalGrey1,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: listApproval!.length,
+                                  itemBuilder: (context, index) {
+                                    var approvalList = listApproval![index];
+                                    return Column(
                                       children: [
-                                        Text(
-                                          "Tanggal",
-                                        ),
-                                        Text(
-                                          'Jiffy(approval.createdAt).yMMMMd',
-                                        )
+                                        ApprovalCard(
+                                            approvalCardModel:
+                                                ApprovalCardModel(
+                                          title: approvalList.title,
+                                          description: approvalList.description,
+                                          date:
+                                              approvalList.createdAt.toString(),
+                                          value: approvalList.value,
+                                          status: approvalList.status,
+                                        ))
                                       ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Biaya Pengeluaran",
-                                        ),
-                                        Text(
-                                          'rupiah(approval.value.toString())',
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Status",
-                                          // style: dateTextStyle,
-                                        ),
-                                        Text(
-                                          'approval.status.toString().toTitleCase()',
-                                          // style: incomePriceTextStyle,
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomButton(
-                                          isRounded: true,
-                                          buttonType: ButtonType.noOutLined,
-                                          borderRadius: 8,
-                                          onPressed: () {},
-                                          width: 100,
-                                          height: 40,
-                                          text: TextWidget(
-                                            'Approve',
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        CustomButton(
-                                          isRounded: true,
-                                          buttonType: ButtonType.noOutLined,
-                                          borderRadius: 8,
-                                          onPressed: () {},
-                                          width: 100,
-                                          height: 40,
-                                          text: TextWidget(
-                                            'Tolak',
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                    );
+                                  }),
 
                               //Arus Kas
                               TextWidget(
