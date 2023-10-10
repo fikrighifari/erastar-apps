@@ -8,9 +8,11 @@ import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/arus_kas_card_model.dart';
+import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
 import 'package:erastar_apps/app/widgets/cards/approval_card.dart';
 import 'package:erastar_apps/app/widgets/cards/arus_kas_card.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
+import 'package:erastar_apps/app/widgets/cards/sales_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
@@ -32,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late List<DataListApproval>? listApproval = [];
   late List<ListDataCashFlow>? listCashFlow = [];
+  late List<DataListInvoice>? listInvoice = [];
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -85,6 +88,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     futureInvoiceHome = HomeController().getInvoiceHome();
+    futureInvoiceHome.then((valueInvoice) {
+      if (valueInvoice != null) {
+        if (valueInvoice.status == 'success') {
+          listInvoice = valueInvoice.data!.dataListInvoice;
+        }
+      }
+    });
 
     // return futureProfile;
   }
@@ -263,90 +273,41 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: boldWeight,
                                 fontSize: 16,
                               ),
-                              CustomContainer(
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.symmetric(
-                                  vertical: 10,
-                                ),
-                                containerType: RoundedContainerType.outlined,
-                                radius: 10,
-                                borderColor: AppColor.naturalGrey1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: listInvoice!.length,
+                                  itemBuilder: (context, index) {
+                                    var listDataInvoice = listInvoice![index];
+                                    return Column(
                                       children: [
-                                        Text(
-                                          "ID Listing: ",
-                                          // +
-                                          //     dataSales.asset!.listingId.toString(),
-                                          // style: houseTitleTextStyle,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        TextWidget(
-                                          'rupiah(dataSales.asset!.price)',
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
-                                          // color: dataSales.status!.name == 'Sold'
-                                          //     ? AppColors.greenColor
-                                          //     : AppColors.primayRedColor,
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width: 200,
-                                          child: Text(
-                                            'dataSales.asset!.title',
-                                            // .toString()
-                                            // .toTitleCase(),
-                                            // style: listingTextStyle,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 100,
-                                          child: TextWidget(
-                                            'Jiffy(dataSales.createdAt).yMMMMd',
-                                            fontSize: 12,
-                                            // color: AppColors.naturalGrey1,
-                                            fontWeight: regularWeight,
-                                            textAlign: TextAlign.right,
+                                        SalesCard(
+                                          salesCardModel: SalesCardModel(
+                                            idListing: listDataInvoice
+                                                .asset!.listingId,
+                                            title: listDataInvoice.asset!.title,
+                                            marketingName: listDataInvoice
+                                                .commission!.marketing!.name,
+                                            officeName: listDataInvoice
+                                                .asset!.office!.name,
+                                            status:
+                                                listDataInvoice.status!.name,
+                                            value: listDataInvoice.valueInvoice,
+                                            date: listDataInvoice.createdAt
+                                                .toString(),
+                                            // title: listDataInvoice.asset!.title,
+                                            // description: listDataInvoice
+                                            //     .asset!.description,
+                                            // date: listDataInvoice.createdAt
+                                            //     .toString(),
+                                            // value: listDataInvoice.valueInvoice,
+                                            // status: listDataInvoice.status
+                                            //     .toString(),
                                           ),
                                         ),
                                       ],
-                                    ),
-                                    SizedBox(
-                                      width: 200,
-                                      child: Text(
-                                        'dataSales.commission!.marketing!.name.toString()',
-                                        // style: dateTextStyle,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    Text(
-                                      ' dataSales.asset!.office!.name.toString()',
-                                      // style: dateTextStyle,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      'dataSales.status!.name.toString().toTitleCase()',
-                                      // style: listingTextStyle.copyWith(
-                                      //   fontWeight: FontWeight.bold,
-                                      //   color: dataSales.status!.name == 'Sold'
-                                      //       ? AppColors.greenColor
-                                      //       : AppColors.primayRedColor,
-                                      // ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                    );
+                                  }),
                             ],
                           ),
                         ),
