@@ -31,6 +31,7 @@ class _ArusKasScreenState extends State<ArusKasScreen>
       body: SafeArea(
         child: Column(
           children: [
+            //Header Profile
             InkWell(
               onTap: () {
                 Modular.to.pushNamed('/profile/');
