@@ -1,3 +1,5 @@
+import 'package:erastar_apps/app/controller/asset_controller.dart';
+import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
@@ -11,6 +13,26 @@ class AssetScreen extends StatefulWidget {
 }
 
 class _AssetScreenState extends State<AssetScreen> {
+  late Future<AssetModel?> futureAsset;
+  late List<DataListAsset>? listAsset = [];
+
+  fetchData() async {
+    futureAsset = AssetController().getAssetHome();
+    futureAsset.then((valueAsset) {
+      if (valueAsset != null) {
+        if (valueAsset.status == 'success') {
+          listAsset = valueAsset.dataAsset!.data;
+        }
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

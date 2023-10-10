@@ -41,11 +41,17 @@ class HomeController {
   Future<AssetModel?> getAssetHome() async {
     String? authToken = await LocalStorageService.load("headerToken");
     try {
+      var params = {
+        "page": 1,
+        "limit": 4,
+        "sort": "desc",
+      };
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
       dio.options.responseType = ResponseType.json;
       Response response = await dio.get(
-        getAPIAssetHome,
+        getAPIAsset,
+        queryParameters: params,
         options: Options(
           contentType: 'application/json',
           headers: {
