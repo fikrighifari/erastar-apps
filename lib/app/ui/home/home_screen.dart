@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late Future<ProfileModel?> futureProfile;
   late Future<AssetModel?> futureAssetHome;
+  late Future futureApprovalCostHome;
   late DataProfile dataProfile;
   late String? nameProfile, roleProfile, avatarProfile = '';
 
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   fetchData() async {
     futureAssetHome = HomeController().getAssetHome();
+    futureApprovalCostHome = HomeController().getApprovalHome();
     futureProfile = HomeController().getProfile();
     futureProfile.then((value) async {
       if (value != null) {

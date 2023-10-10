@@ -61,4 +61,33 @@ class HomeController {
       return null;
     }
   }
+
+  Future getApprovalHome() async {
+    String? authToken = await LocalStorageService.load("headerToken");
+    try {
+      Dio dio = Dio();
+      dio.options.contentType = 'JSON';
+      dio.options.responseType = ResponseType.json;
+      Response response = await dio.get(
+        getAPIApprovalCostHome,
+        options: Options(
+          contentType: 'application/json',
+          headers: {
+            'era-auth-token': authToken,
+          },
+        ),
+      );
+      print('response approval home $response');
+      // if (response.statusCode == 200) {
+      //   AssetModel assetRes = AssetModel.fromJson(response.data);
+      //   return assetRes;
+      // } else {
+      return null;
+      // }
+    } catch (e) {
+      print('catch error $e');
+      // print(e);
+      return null;
+    }
+  }
 }
