@@ -1,23 +1,22 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-
+// // ignore_for_file: no_leading_underscores_for_local_identifiers
 class ProfileModel {
   ProfileModel({
     required this.status,
     required this.message,
     required this.data,
   });
-  late final String status;
-  late final String message;
+  late final String? status;
+  late final String? message;
   late final DataProfile data;
 
-  ProfileModel.fromJson(Map<String, dynamic> json) {
+  ProfileModel.fromJson(Map<String?, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = DataProfile.fromJson(json['data']);
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+  Map<String?, dynamic> toJson() {
+    final _data = <String?, dynamic>{};
     _data['status'] = status;
     _data['message'] = message;
     _data['data'] = data.toJson();
@@ -41,22 +40,22 @@ class DataProfile {
     required this.avatarPath,
     required this.createdAt,
   });
-  late final String id;
-  late final String name;
-  late final String username;
-  late final String phone;
-  late final String email;
-  late final Role role;
-  late final List<RoleAccess> roleAccess;
-  late final Office office;
-  late final String device;
-  late final String fcmToken;
-  late final String avatar;
-  late final String avatarPath;
-  late final String createdAt;
+  late final String? id;
+  late final String? name;
+  late final String? username;
+  late final String? phone;
+  late final String? email;
+  late final Role? role;
+  late final List<RoleAccess>? roleAccess;
+  late final Office? office;
+  late final String? device;
+  late final String? fcmToken;
+  late final String? avatar;
+  late final String? avatarPath;
+  late final String? createdAt;
 
-  DataProfile.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
+  DataProfile.fromJson(Map<String?, dynamic> json) {
+    id = json['id'];
     name = json['name'];
     username = json['username'];
     phone = json['phone'];
@@ -73,16 +72,16 @@ class DataProfile {
     createdAt = json['created_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['_id'] = id;
+  Map<String?, dynamic> toJson() {
+    final _data = <String?, dynamic>{};
+    _data['id'] = id;
     _data['name'] = name;
     _data['username'] = username;
     _data['phone'] = phone;
     _data['email'] = email;
-    _data['role'] = role.toJson();
-    _data['role_access'] = roleAccess.map((e) => e.toJson()).toList();
-    _data['office'] = office.toJson();
+    _data['role'] = role!.toJson();
+    _data['role_access'] = roleAccess!.map((e) => e.toJson()).toList();
+    _data['office'] = office!.toJson();
     _data['device'] = device;
     _data['fcm_token'] = fcmToken;
     _data['avatar'] = avatar;
@@ -98,28 +97,32 @@ class Role {
     required this.name,
     required this.slug,
     required this.createdAt,
+    required this.v,
     required this.updatedAt,
   });
-  late final String id;
-  late final String name;
-  late final String slug;
-  late final String createdAt;
-  late final String updatedAt;
+  late final String? id;
+  late final String? name;
+  late final String? slug;
+  late final String? createdAt;
+  late final int? v;
+  late final String? updatedAt;
 
-  Role.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
+  Role.fromJson(Map<String?, dynamic> json) {
+    id = json['id'];
     name = json['name'];
     slug = json['slug'];
     createdAt = json['created_at'];
+    v = json['__v'];
     updatedAt = json['updated_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['_id'] = id;
+  Map<String?, dynamic> toJson() {
+    final _data = <String?, dynamic>{};
+    _data['id'] = id;
     _data['name'] = name;
     _data['slug'] = slug;
     _data['created_at'] = createdAt;
+    _data['__v'] = v;
     _data['updated_at'] = updatedAt;
     return _data;
   }
@@ -134,34 +137,38 @@ class RoleAccess {
     required this.slug,
     required this.parent,
     required this.createdAt,
+    required this.v,
   });
-  late final String id;
-  late final String roleId;
-  late final String pageId;
-  late final String name;
-  late final String slug;
-  late final String parent;
-  late final String createdAt;
+  late final String? id;
+  late final String? roleId;
+  late final String? pageId;
+  late final String? name;
+  late final String? slug;
+  late final String? parent;
+  late final String? createdAt;
+  late final int? v;
 
-  RoleAccess.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
+  RoleAccess.fromJson(Map<String?, dynamic> json) {
+    id = json['id'];
     roleId = json['role_id'];
     pageId = json['page_id'];
     name = json['name'];
     slug = json['slug'];
     parent = json['parent'];
     createdAt = json['created_at'];
+    v = json['__v'];
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['_id'] = id;
+  Map<String?, dynamic> toJson() {
+    final _data = <String?, dynamic>{};
+    _data['id'] = id;
     _data['role_id'] = roleId;
     _data['page_id'] = pageId;
     _data['name'] = name;
     _data['slug'] = slug;
     _data['parent'] = parent;
     _data['created_at'] = createdAt;
+    _data['__v'] = v;
     return _data;
   }
 }
@@ -184,24 +191,24 @@ class Office {
     required this.email,
     required this.createdAt,
   });
-  late final String id;
-  late final String name;
-  late final String type;
-  late final String address;
-  late final String provinsiId;
-  late final String provinsiName;
-  late final String kabkoId;
-  late final String kabkoName;
-  late final String kecamatanId;
-  late final String kecamatanName;
-  late final String kelurahanId;
-  late final String kelurahanName;
-  late final int phone;
-  late final String email;
-  late final String createdAt;
+  late final String? id;
+  late final String? name;
+  late final String? type;
+  late final String? address;
+  late final String? provinsiId;
+  late final String? provinsiName;
+  late final String? kabkoId;
+  late final String? kabkoName;
+  late final String? kecamatanId;
+  late final String? kecamatanName;
+  late final String? kelurahanId;
+  late final String? kelurahanName;
+  late final String? phone;
+  late final String? email;
+  late final String? createdAt;
 
-  Office.fromJson(Map<String, dynamic> json) {
-    id = json['_id'];
+  Office.fromJson(Map<String?, dynamic> json) {
+    id = json['id'];
     name = json['name'];
     type = json['type'];
     address = json['address'];
@@ -218,9 +225,9 @@ class Office {
     createdAt = json['created_at'];
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['_id'] = id;
+  Map<String?, dynamic> toJson() {
+    final _data = <String?, dynamic>{};
+    _data['id'] = id;
     _data['name'] = name;
     _data['type'] = type;
     _data['address'] = address;

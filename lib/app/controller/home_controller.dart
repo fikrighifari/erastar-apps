@@ -7,8 +7,6 @@ import 'package:erastar_apps/app/services/local_storage_service.dart';
 class HomeController {
   Future<ProfileModel?> getProfile() async {
     String? authToken = await LocalStorageService.load("headerToken");
-    // final String authToken = await LocalStorageService.load("headerToken");
-    // print('cooookkkk ----> ' + authToken.toString());
     try {
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
@@ -37,8 +35,6 @@ class HomeController {
 
   Future<AssetModel?> getAssetHome() async {
     String? authToken = await LocalStorageService.load("headerToken");
-    // final String authToken = await LocalStorageService.load("headerToken");
-    // print('cooookkkk ----> ' + authToken.toString());
     try {
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
@@ -55,13 +51,13 @@ class HomeController {
       // print('response asset home $response');
       if (response.statusCode == 200) {
         AssetModel assetRes = AssetModel.fromJson(response.data);
-        // ProfileModel profileRes = ProfileModel.fromJson(response.data);
         return assetRes;
       } else {
         return null;
       }
     } catch (e) {
-      print(e);
+      print('catch error $e');
+      // print(e);
       return null;
     }
   }

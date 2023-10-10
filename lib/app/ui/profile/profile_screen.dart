@@ -59,12 +59,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       nameProfile = value!.data.name;
       emailProfile = value.data.email;
       avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
-      roleProfile = value.data.role.name;
+      roleProfile = value.data.role!.name;
       phoneProfile = value.data.phone;
       deviceProfile = value.data.device;
-      nameOffice = value.data.office.name;
-      addressOffice = value.data.office.address;
-      provinceOffice = value.data.office.provinsiName;
+      nameOffice = value.data.office!.name;
+      addressOffice = value.data.office!.address;
+      provinceOffice = value.data.office!.provinsiName;
     });
   }
 
@@ -118,30 +118,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: MediaQuery.of(context).size.height,
                           child: Column(
                             children: [
-                              Center(
-                                child: avatarProfile != null
-                                    ? SizedBox(
-                                        width: 100,
-                                        height: 100,
-                                        child: CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                            '$baseAPIUrlImage$avatarProfile',
-                                          ),
-                                          backgroundColor: AppColor.whiteColor,
-                                        ),
-                                      )
-                                    : SizedBox(
-                                        width: 100,
-                                        height: 100,
-                                        child: SvgPicture.asset(
-                                          'assets/icons/ic_avatar.svg',
-                                          colorFilter: const ColorFilter.mode(
-                                            AppColor.whiteColor,
-                                            BlendMode.srcIn,
-                                          ),
-                                        ),
-                                      ),
-                              ),
+                              // Center(
+                              //   child: avatarProfile != null
+                              //       ? SizedBox(
+                              //           width: 100,
+                              //           height: 100,
+                              //           child: CircleAvatar(
+                              //             backgroundImage: NetworkImage(
+                              //               '$baseAPIUrlImage$avatarProfile',
+                              //             ),
+                              //             backgroundColor: AppColor.whiteColor,
+                              //           ),
+                              //         )
+                              //       : SizedBox(
+                              //           width: 100,
+                              //           height: 100,
+                              //           child: SvgPicture.asset(
+                              //             'assets/icons/ic_avatar.svg',
+                              //             colorFilter: const ColorFilter.mode(
+                              //               AppColor.whiteColor,
+                              //               BlendMode.srcIn,
+                              //             ),
+                              //           ),
+                              //         ),
+                              // ),
                               const SizedBox(
                                 height: 10,
                               ),

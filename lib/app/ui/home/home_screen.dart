@@ -38,27 +38,26 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   fetchData() async {
-    futureProfile = HomeController().getProfile();
     futureAssetHome = HomeController().getAssetHome();
+    futureProfile = HomeController().getProfile();
     futureProfile.then((value) async {
-      nameProfile = value!.data.name;
-      roleProfile = value.data.role.name;
-      avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
-
-      // if (value != null) {
-      //   if (value.status == "success") {
-      //     // print('rolesnya -> ' + value!.data.role.name);
-      //     dataProfile = value.data;
-      //     nameProfile = value.data.name;
-      //   }
-      // }
+      if (value != null) {
+        if (value.status == "success") {
+          dataProfile = value.data;
+          nameProfile = value.data.name;
+          avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
+          roleProfile = value.data.role!.name;
+        }
+      }
     });
+
+    // return futureProfile;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
+      body: FutureBuilder<ProfileModel?>(
         future: futureProfile,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           switch (snapshot.connectionState) {
@@ -476,7 +475,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           onPressed: () {
                             LocalStorageService.remove("headerToken");
-
                             Modular.to.popAndPushNamed('/auth/');
                           },
                         ),
