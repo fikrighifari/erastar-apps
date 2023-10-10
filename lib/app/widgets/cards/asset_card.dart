@@ -14,7 +14,7 @@ class _AssetCardState extends State<AssetCard> {
   Widget build(BuildContext context) {
     return CustomContainer(
       margin: EdgeInsets.fromLTRB(
-        defaultMargin,
+        0,
         0,
         defaultMargin,
         defaultMargin,
