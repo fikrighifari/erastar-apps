@@ -8,6 +8,7 @@ import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/arus_kas_card_model.dart';
+import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
 import 'package:erastar_apps/app/widgets/cards/approval_card.dart';
 import 'package:erastar_apps/app/widgets/cards/arus_kas_card.dart';
@@ -15,6 +16,7 @@ import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
 import 'package:erastar_apps/app/widgets/cards/sales_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late List<DataListApproval>? listApproval = [];
   late List<ListDataCashFlow>? listCashFlow = [];
   late List<DataListInvoice>? listInvoice = [];
+  late List<DataListAsset>? listAsset = [];
 
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
@@ -55,6 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
   fetchData() async {
     futureProfile = HomeController().getProfile();
     futureAssetHome = HomeController().getAssetHome();
+    futureAssetHome.then((valueAsset) {
+      if (valueAsset != null) {
+        if (valueAsset.status == 'success') {
+          listAsset = valueAsset.dataAsset!.data;
+        }
+      }
+    });
 
     //Get Profile
     futureProfile.then((value) async {
@@ -201,15 +211,54 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: boldWeight,
                                 fontSize: 16,
                               ),
-                              const SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  children: [
-                                    AssetCard(),
-                                    AssetCard(),
-                                  ],
-                                ),
-                              ),
+                              // Container(
+                              //   child: StaggeredGridView.countBuilder(
+                              //     crossAxisCount: 4,
+                              //     itemCount: listAsset!.length,
+                              //     staggeredTileBuilder: (int index) =>
+                              //         new StaggeredTile.count(2, 3.6),
+                              //     itemBuilder: (context, index) {
+                              //       var assetList = listAsset!.length;
+                              //       return Column(
+                              //         children: [
+                              //           AssetCard(
+                              //             assetCardModel: AssetCardModel(
+                              //                 title: assetList.title,
+                              //                 idListing: assetList.listingId,
+                              //                 address: assetList.address,
+                              //                 type: assetList.type,
+                              //                 price: assetList.price,
+                              //                 date: assetList.createdAt
+                              //                     .toString()),
+                              //           )
+                              //         ],
+                              //       );
+                              //     },
+                              //   ),
+                              // ),
+
+                              ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: listAsset!.length,
+                                  itemBuilder: (context, index) {
+                                    var assetList = listAsset![index];
+                                    return Column(
+                                      children: [
+                                        AssetCard(
+                                          assetCardModel: AssetCardModel(
+                                              title: assetList.title,
+                                              idListing: assetList.listingId,
+                                              address: assetList.address,
+                                              type: assetList.type,
+                                              price: assetList.price,
+                                              date: assetList.createdAt
+                                                  .toString()),
+                                        ),
+                                      ],
+                                    );
+                                  }),
+
                               // Approval List
                               TextWidget(
                                 'Menunggu Persetujuan',
@@ -295,14 +344,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                             value: listDataInvoice.valueInvoice,
                                             date: listDataInvoice.createdAt
                                                 .toString(),
-                                            // title: listDataInvoice.asset!.title,
-                                            // description: listDataInvoice
-                                            //     .asset!.description,
-                                            // date: listDataInvoice.createdAt
-                                            //     .toString(),
-                                            // value: listDataInvoice.valueInvoice,
-                                            // status: listDataInvoice.status
-                                            //     .toString(),
                                           ),
                                         ),
                                       ],

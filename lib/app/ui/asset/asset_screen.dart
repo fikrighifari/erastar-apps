@@ -123,7 +123,7 @@ class _AssetScreenState extends State<AssetScreen> {
                     ),
                   ],
                 ),
-                AssetCard()
+                // AssetCard()
               ],
             ),
           )

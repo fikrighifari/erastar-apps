@@ -1,15 +1,15 @@
 import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
-class AssetCard extends StatefulWidget {
-  const AssetCard({super.key});
+class AssetCard extends StatelessWidget {
+  final AssetCardModel assetCardModel;
+  const AssetCard({
+    super.key,
+    required this.assetCardModel,
+  });
 
-  @override
-  State<AssetCard> createState() => _AssetCardState();
-}
-
-class _AssetCardState extends State<AssetCard> {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -53,8 +53,9 @@ class _AssetCardState extends State<AssetCard> {
                           bottomLeft: Radius.circular(5),
                         ),
                       ),
-                      child: const TextWidget(
-                        'New',
+                      child: TextWidget(
+                        assetCardModel.type,
+                        // 'New',
                         // properti.type.toString().toTitleCase(),
                         color:
                             // properti.type == 'new'
@@ -88,8 +89,8 @@ class _AssetCardState extends State<AssetCard> {
                           bottomLeft: Radius.circular(5),
                         ),
                       ),
-                      child: const TextWidget(
-                        'New',
+                      child: TextWidget(
+                        assetCardModel.type,
                         // properti.type.toString().toTitleCase(),
                         color:
                             // properti.type == 'new'
@@ -104,7 +105,7 @@ class _AssetCardState extends State<AssetCard> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               bottom: 8,
               left: 8,
               right: 8,
@@ -115,13 +116,13 @@ class _AssetCardState extends State<AssetCard> {
               children: [
                 Row(
                   children: [
-                    TextWidget(
+                    const TextWidget(
                       "ID Listing: ",
                       color: AppColor.blackColor,
                     ),
                     Expanded(
                       child: Text(
-                        'properti.listingId.toString()',
+                        assetCardModel.idListing.toString(),
                         overflow: TextOverflow.ellipsis,
                         style:
                             defaultTextStyle.copyWith(fontWeight: boldWeight),
@@ -130,18 +131,18 @@ class _AssetCardState extends State<AssetCard> {
                   ],
                 ),
                 TextWidget(
-                  'rupiah(properti.price)',
+                  assetCardModel.price.toString(),
                   color: AppColor.primayRedColor,
                   // properti.price.toString(),
                 ),
 
                 Text(
-                  'properti.title.toString().toUpperCase()',
+                  assetCardModel.title.toString().toUpperCase(),
                   overflow: TextOverflow.ellipsis,
                   style: defaultTextStyle.copyWith(fontWeight: boldWeight),
                 ),
                 Text(
-                  'properti.address.toString().toCapitalized()',
+                  assetCardModel.address.toString().toUpperCase(),
                   overflow: TextOverflow.ellipsis,
                   style: defaultTextStyle.copyWith(fontWeight: boldWeight),
                 ),
@@ -151,7 +152,8 @@ class _AssetCardState extends State<AssetCard> {
                 //   overflow: TextOverflow.ellipsis,
                 // ),
                 TextWidget(
-                  'Jiffy(properti.createdAt).yMMMMd',
+                  // 'Jiffy(properti.createdAt).yMMMMd',
+                  assetCardModel.date.toString(),
                 )
               ],
             ),
