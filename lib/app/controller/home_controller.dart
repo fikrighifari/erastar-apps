@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:erastar_apps/app/config/api_path.dart';
+import 'package:erastar_apps/app/models/approval_cost_model.dart';
 import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
@@ -62,7 +63,7 @@ class HomeController {
     }
   }
 
-  Future getApprovalHome() async {
+  Future<ApprovalCostModel?> getApprovalHome() async {
     String? authToken = await LocalStorageService.load("headerToken");
     try {
       Dio dio = Dio();
@@ -78,12 +79,14 @@ class HomeController {
         ),
       );
       print('response approval home $response');
-      // if (response.statusCode == 200) {
-      //   AssetModel assetRes = AssetModel.fromJson(response.data);
-      //   return assetRes;
-      // } else {
-      return null;
-      // }
+      if (response.statusCode == 200) {
+        print(response.statusCode);
+        ApprovalCostModel approvalCostModel =
+            ApprovalCostModel.fromJson(response.data);
+        return approvalCostModel;
+      } else {
+        return null;
+      }
     } catch (e) {
       print('catch error $e');
       // print(e);
