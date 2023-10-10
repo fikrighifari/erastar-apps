@@ -253,7 +253,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                               type: assetList.type,
                                               price: assetList.price,
                                               date: assetList.createdAt
-                                                  .toString()),
+                                                  .toString(),
+                                              imgUrl: baseAPIUrlImage +
+                                                  assetList.images!.path
+                                                      .toString() +
+                                                  assetList.images!.filename
+                                                      .toString()),
                                         ),
                                       ],
                                     );

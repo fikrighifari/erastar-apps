@@ -56,6 +56,7 @@ class HomeController {
       // print('response asset home $response');
       if (response.statusCode == 200) {
         AssetModel assetRes = AssetModel.fromJson(response.data);
+        // print(assetRes.dataAsset!.data.first.images!.path);
         return assetRes;
       } else {
         return null;
