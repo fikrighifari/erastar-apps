@@ -70,13 +70,21 @@ class HomeController {
 
   //Get Pending Approval in Home Screen
   Future<ApprovalCostModel?> getApprovalHome() async {
-    String? authToken = await LocalStorageService.load("headerToken");
     try {
+      String? authToken = await LocalStorageService.load("headerToken");
+      var params = {
+        "page": 1,
+        "limit": 4,
+        "sort": "desc",
+        "status": "pending",
+      };
+
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
       dio.options.responseType = ResponseType.json;
       Response response = await dio.get(
-        getAPIApprovalCostHome,
+        getAPIApprovalCost,
+        queryParameters: params,
         options: Options(
           contentType: 'application/json',
           headers: {
@@ -104,11 +112,17 @@ class HomeController {
   Future<CashFlowModel?> getCashFlowHome() async {
     String? authToken = await LocalStorageService.load("headerToken");
     try {
+      var params = {
+        "page": 1,
+        "limit": 4,
+        "sort": "desc",
+      };
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
       dio.options.responseType = ResponseType.json;
       Response response = await dio.get(
-        getAPICashFlowHome,
+        getAPICashFlow,
+        queryParameters: params,
         options: Options(
           contentType: 'application/json',
           headers: {
@@ -135,11 +149,17 @@ class HomeController {
   Future<InvoiceModel?> getInvoiceHome() async {
     String? authToken = await LocalStorageService.load("headerToken");
     try {
+      var params = {
+        "page": 1,
+        "limit": 4,
+        "sort": "desc",
+      };
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
       dio.options.responseType = ResponseType.json;
       Response response = await dio.get(
-        getAPIInvoiceHome,
+        getAPIInvoice,
+        queryParameters: params,
         options: Options(
           contentType: 'application/json',
           headers: {
