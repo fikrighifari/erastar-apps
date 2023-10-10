@@ -53,7 +53,7 @@ class HomeController {
           },
         ),
       );
-      // print('response asset home $response');
+      print('response asset home $response');
       if (response.statusCode == 200) {
         AssetModel assetRes = AssetModel.fromJson(response.data);
         return assetRes;
@@ -146,9 +146,9 @@ class HomeController {
           },
         ),
       );
-      print('response invoice home $response');
+      // print('response invoice home $response');
       if (response.statusCode == 200) {
-        print(response.statusCode);
+        // print(response.statusCode);
         InvoiceModel invoiceModel = InvoiceModel.fromJson(response.data);
         return invoiceModel;
       } else {
