@@ -1,7 +1,9 @@
+import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/asset_controller.dart';
 import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
@@ -14,6 +16,7 @@ class AssetScreen extends StatefulWidget {
 }
 
 class _AssetScreenState extends State<AssetScreen> {
+  bool isLoading = false;
   late Future<AssetModel?> futureAsset;
   late Future<ProfileModel?> futureProfile;
   late List<DataListAsset>? listAsset = [];
@@ -40,7 +43,9 @@ class _AssetScreenState extends State<AssetScreen> {
     futureAsset.then((valueAsset) {
       if (valueAsset != null) {
         if (valueAsset.status == 'success') {
-          listAsset = valueAsset.dataAsset!.data;
+          setState(() {
+            listAsset = valueAsset.dataAsset!.data;
+          });
         }
       }
     });
@@ -123,6 +128,7 @@ class _AssetScreenState extends State<AssetScreen> {
               ),
             ),
           ),
+
           Padding(
             padding: EdgeInsets.all(defaultMargin),
             child: Column(
@@ -165,6 +171,41 @@ class _AssetScreenState extends State<AssetScreen> {
                   ],
                 ),
                 // AssetCard()
+                Container(
+                    margin: EdgeInsets.only(top: defaultMargin),
+                    // color: Colors.red,
+                    child: listAsset!.isNotEmpty
+                        ? GridView.count(
+                            primary: true,
+                            crossAxisCount: 2,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            physics: const NeverScrollableScrollPhysics(),
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 1.18),
+                            // mainAxisSpacing: 5.0,
+                            crossAxisSpacing: 5.0,
+                            children: listAsset!.map((dt) {
+                              return Column(
+                                children: [
+                                  AssetCard(
+                                    assetCardModel: AssetCardModel(
+                                        title: dt.title,
+                                        idListing: dt.listingId,
+                                        address: dt.address,
+                                        type: dt.type,
+                                        price: dt.price,
+                                        date: dt.createdAt.toString(),
+                                        imgUrl: baseAPIUrlImage +
+                                            dt.images!.path.toString() +
+                                            dt.images!.filename.toString()),
+                                  ),
+                                ],
+                              );
+                            }).toList(),
+                          )
+                        : Text('Data Asset Kosong')),
               ],
             ),
           )

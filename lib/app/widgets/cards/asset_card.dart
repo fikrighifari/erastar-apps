@@ -32,10 +32,13 @@ class AssetCard extends StatelessWidget {
                       'assets/images/no_image.png',
                       fit: BoxFit.cover,
                     )
-                  : Image.network(
-                      assetCardModel.imgUrl.toString(),
-                      // width: 50,
-                      fit: BoxFit.cover,
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image.network(
+                        assetCardModel.imgUrl.toString(),
+                        // width: 50,
+                        fit: BoxFit.cover,
+                      ),
                     ),
               Align(
                 alignment: Alignment.topLeft,
@@ -56,7 +59,8 @@ class AssetCard extends StatelessWidget {
                             // :
                             AppColor.yellowColor,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5),
+                          topLeft: Radius.circular(5),
                         ),
                       ),
                       child: TextWidget(
@@ -93,6 +97,7 @@ class AssetCard extends StatelessWidget {
                             AppColor.yellowColor,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
                         ),
                       ),
                       child: TextWidget(
