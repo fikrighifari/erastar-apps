@@ -1,5 +1,6 @@
 import 'package:erastar_apps/app/controller/asset_controller.dart';
 import 'package:erastar_apps/app/models/asset_model.dart';
+import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
@@ -14,9 +15,27 @@ class AssetScreen extends StatefulWidget {
 
 class _AssetScreenState extends State<AssetScreen> {
   late Future<AssetModel?> futureAsset;
+  late Future<ProfileModel?> futureProfile;
   late List<DataListAsset>? listAsset = [];
 
+  late DataProfile dataProfile;
+  late String? nameProfile, roleProfile, avatarProfile = '';
+
   fetchData() async {
+    //Get Profile
+    futureProfile = AssetController().getProfile();
+    futureProfile.then((valueProfile) async {
+      if (valueProfile != null) {
+        if (valueProfile.status == "success") {
+          dataProfile = valueProfile.data;
+          nameProfile = valueProfile.data.name;
+          avatarProfile =
+              '${valueProfile.data.avatarPath}${valueProfile.data.avatar}';
+          roleProfile = valueProfile.data.role!.name;
+        }
+      }
+    });
+
     futureAsset = AssetController().getAssetHome();
     futureAsset.then((valueAsset) {
       if (valueAsset != null) {

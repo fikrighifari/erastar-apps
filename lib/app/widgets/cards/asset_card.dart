@@ -1,4 +1,3 @@
-import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
@@ -33,7 +32,11 @@ class AssetCard extends StatelessWidget {
                       'assets/images/no_image.png',
                       fit: BoxFit.cover,
                     )
-                  : Image.network(assetCardModel.imgUrl.toString()),
+                  : Image.network(
+                      assetCardModel.imgUrl.toString(),
+                      // width: 50,
+                      fit: BoxFit.cover,
+                    ),
               Align(
                 alignment: Alignment.topLeft,
                 child: Column(
