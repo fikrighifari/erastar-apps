@@ -1,3 +1,4 @@
+import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/top_marketing_controller.dart';
 import 'package:erastar_apps/app/models/top_marketing_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/top_marketing_card_model.dart';
@@ -28,13 +29,7 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
     futureTopMarketing.then((valueTopMarketing) {
       if (valueTopMarketing != null) {
         if (valueTopMarketing.status == 'success') {
-          print(valueTopMarketing
-              .dataTopMarketing!.dataListTopMarketing[0].avatarPath);
-          print(valueTopMarketing
-              .dataTopMarketing!.dataListTopMarketing[0].avatar);
           setState(() {
-            // avatarProfile = valueTopMarketing
-            //     .dataTopMarketing!.dataListTopMarketing[0].avatarPath;
             listTopMarketing =
                 valueTopMarketing.dataTopMarketing!.dataListTopMarketing;
           });
@@ -50,6 +45,7 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
     return CustomScaffold(
       hideAppBar: true,
       hideBackButton: true,
+      backgroundColor: AppColor.whiteColor,
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -156,6 +152,9 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                                     TopMarketingCard(
                                         topMarketingCardModel:
                                             TopMarketingCardModel(
+                                      avatarUrl: baseAPIUrlImage +
+                                          dt.avatarPath! +
+                                          dt.avatar.toString(),
                                       provinceName: dt.provinsi!.lokasiNama,
                                       officeName: dt.office!.name,
                                       marketingName: dt.name,

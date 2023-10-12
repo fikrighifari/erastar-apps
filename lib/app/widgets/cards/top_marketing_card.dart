@@ -21,7 +21,7 @@ class TopMarketingCard extends StatelessWidget {
       width: 167,
       // height: 154,
       containerType: RoundedContainerType.noOutline,
-      backgroundColor: AppColor.cyanColor,
+      backgroundColor: AppColor.backgroundGrey,
       radius: 10,
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
@@ -41,25 +41,20 @@ class TopMarketingCard extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          // topMarketing.avatar!.isEmpty
-          //     ?
-          SizedBox(
-              width: 60,
-              height: 60,
-              child: SvgPicture.asset(
-                'assets/icons/ic_default_avatar.svg',
-              )),
-          // : Image.network(
-          //     urlImage +
-          //         this
-          //             .topMarketing
-          //             .avatarPath
-          //             .toString()
-          //             .replaceAll('.', '') +
-          //         this.topMarketing.avatar.toString(),
-          //     width: 70,
-          //     fit: BoxFit.cover,
-          //   ),
+
+          topMarketingCardModel.avatarUrl!.isNotEmpty
+              ? Image.network(
+                  topMarketingCardModel.avatarUrl.toString(),
+                  width: 70,
+                  fit: BoxFit.cover,
+                )
+              : SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: SvgPicture.asset(
+                    'assets/icons/ic_default_avatar.svg',
+                  )),
+
           const SizedBox(
             height: 8,
           ),
