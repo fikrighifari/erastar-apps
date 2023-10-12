@@ -1,7 +1,7 @@
 import 'package:erastar_apps/app/controller/top_marketing_controller.dart';
 import 'package:erastar_apps/app/models/top_marketing_model.dart';
-import 'package:erastar_apps/app/themes/themes.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
+import 'package:erastar_apps/app/widgets/card_model/top_marketing_card_model.dart';
+import 'package:erastar_apps/app/widgets/cards/top_marketing_card.dart';
 import 'package:erastar_apps/export.dart';
 
 class TopMarketingScreen extends StatefulWidget {
@@ -15,6 +15,7 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
   bool isLoading = false;
   late Future<TopMarketingModel?> futureTopMarketing;
   late List<DataListTopMarketing>? listTopMarketing = [];
+  String? avatarProfile;
 
   @override
   void initState() {
@@ -27,7 +28,13 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
     futureTopMarketing.then((valueTopMarketing) {
       if (valueTopMarketing != null) {
         if (valueTopMarketing.status == 'success') {
+          print(valueTopMarketing
+              .dataTopMarketing!.dataListTopMarketing[0].avatarPath);
+          print(valueTopMarketing
+              .dataTopMarketing!.dataListTopMarketing[0].avatar);
           setState(() {
+            // avatarProfile = valueTopMarketing
+            //     .dataTopMarketing!.dataListTopMarketing[0].avatarPath;
             listTopMarketing =
                 valueTopMarketing.dataTopMarketing!.dataListTopMarketing;
           });
@@ -112,9 +119,53 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
             ),
             Padding(
               padding: EdgeInsets.all(defaultMargin),
-              child: const Column(
+              child: Column(
                 children: [
                   TextWidget.titleMedium('Top Sales Marketing'),
+                  Container(
+                      margin: EdgeInsets.only(top: defaultMargin),
+                      // color: Colors.red,
+                      child: listTopMarketing!.isNotEmpty
+                          ? GridView.count(
+                              primary: true,
+                              crossAxisCount: 2,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              physics: const NeverScrollableScrollPhysics(),
+                              childAspectRatio: MediaQuery.of(context)
+                                      .size
+                                      .width /
+                                  (MediaQuery.of(context).size.height / 1.18),
+                              // mainAxisSpacing: 5.0,
+                              crossAxisSpacing: 5.0,
+                              children: listTopMarketing!.map((dt) {
+                                return Column(
+                                  children: [
+                                    // AssetCard(
+                                    //   assetCardModel: AssetCardModel(
+                                    //       title: dt.title,
+                                    //       idListing: dt.listingId,
+                                    //       address: dt.address,
+                                    //       type: dt.type,
+                                    //       price: dt.price,
+                                    //       date: dt.createdAt.toString(),
+                                    //       imgUrl: baseAPIUrlImage +
+                                    //           dt.images!.path.toString() +
+                                    //           dt.images!.filename.toString()),
+                                    // ),
+                                    TopMarketingCard(
+                                        topMarketingCardModel:
+                                            TopMarketingCardModel(
+                                      provinceName: dt.provinsi!.lokasiNama,
+                                      officeName: dt.office!.name,
+                                      marketingName: dt.name,
+                                    ))
+                                  ],
+                                );
+                              }).toList(),
+                            )
+                          : Text('Data Asset Kosong')),
+                  // TopMarketingCard()
                 ],
               ),
             )
