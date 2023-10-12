@@ -39,7 +39,7 @@ class _AssetScreenState extends State<AssetScreen> {
       }
     });
 
-    futureAsset = AssetController().getAssetHome();
+    futureAsset = AssetController().getAsset();
     futureAsset.then((valueAsset) {
       if (valueAsset != null) {
         if (valueAsset.status == 'success') {

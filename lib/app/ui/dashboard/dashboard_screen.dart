@@ -4,7 +4,7 @@ import 'package:erastar_apps/app/ui/asset/asset_screen.dart';
 import 'package:erastar_apps/app/ui/home/home_screen.dart';
 import 'package:erastar_apps/app/ui/cash_flow/cash_flow_screen.dart';
 import 'package:erastar_apps/app/ui/sales/sales_screen.dart';
-import 'package:erastar_apps/app/ui/sales/top_sales_screen.dart';
+import 'package:erastar_apps/app/ui/sales/top_marketing_screen.dart';
 import 'package:erastar_apps/export.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -179,7 +179,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         case 3:
           return const SalesScreen();
         case 4:
-          return const TopSalesScreen();
+          return const TopMarketingScreen();
         default:
       }
     }
@@ -191,7 +191,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         case 1:
           return const AssetScreen();
         case 2:
-          return const TopSalesScreen();
+          return const TopMarketingScreen();
         default:
       }
     }

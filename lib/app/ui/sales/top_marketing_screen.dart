@@ -1,15 +1,43 @@
+import 'package:erastar_apps/app/controller/top_marketing_controller.dart';
+import 'package:erastar_apps/app/models/top_marketing_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
-class TopSalesScreen extends StatefulWidget {
-  const TopSalesScreen({super.key});
+class TopMarketingScreen extends StatefulWidget {
+  const TopMarketingScreen({super.key});
 
   @override
-  State<TopSalesScreen> createState() => _TopSalesScreenState();
+  State<TopMarketingScreen> createState() => _TopMarketingScreenState();
 }
 
-class _TopSalesScreenState extends State<TopSalesScreen> {
+class _TopMarketingScreenState extends State<TopMarketingScreen> {
+  bool isLoading = false;
+  late Future<TopMarketingModel?> futureTopMarketing;
+  late List<DataListTopMarketing>? listTopMarketing = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  fetchData() async {
+    futureTopMarketing = TopMarketingController().getTopMarketing();
+    futureTopMarketing.then((valueTopMarketing) {
+      if (valueTopMarketing != null) {
+        if (valueTopMarketing.status == 'success') {
+          setState(() {
+            listTopMarketing =
+                valueTopMarketing.dataTopMarketing!.dataListTopMarketing;
+          });
+        }
+      }
+    });
+
+    return futureTopMarketing;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(

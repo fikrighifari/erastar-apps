@@ -34,7 +34,7 @@ class AssetController {
     }
   }
 
-  Future<AssetModel?> getAssetHome() async {
+  Future<AssetModel?> getAsset() async {
     String? authToken = await LocalStorageService.load("headerToken");
     try {
       var params = {
