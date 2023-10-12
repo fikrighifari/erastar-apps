@@ -2,7 +2,9 @@ import 'package:erastar_apps/app/controller/cash_flow_controller.dart';
 import 'package:erastar_apps/app/models/approval_cost_model.dart';
 import 'package:erastar_apps/app/models/cash_flow_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/cash_flow_card_model.dart';
+import 'package:erastar_apps/app/widgets/cards/approval_card.dart';
 import 'package:erastar_apps/app/widgets/cards/cash_flow_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
@@ -165,43 +167,61 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                         // _filterKas(),
                         // _contentKas(),
                         Text('Arus Kas'),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: listDataCashFlow!.length,
-                          itemBuilder: (context, index) {
-                            var cashFlowList = listDataCashFlow![index];
-                            return Column(
-                              children: [
-                                ArusKasCard(
-                                  arusKasCardModel: ArusKasCardModel(
-                                    title: cashFlowList.title,
-                                    description: cashFlowList.description,
-                                    date: cashFlowList.createdAt.toString(),
-                                    value: cashFlowList.value,
-                                    status: cashFlowList.status,
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        )
+                        listDataCashFlow!.isNotEmpty
+                            ? ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: listDataCashFlow!.length,
+                                itemBuilder: (context, index) {
+                                  var cashFlowList = listDataCashFlow![index];
+                                  return Column(
+                                    children: [
+                                      ArusKasCard(
+                                        arusKasCardModel: ArusKasCardModel(
+                                          title: cashFlowList.title,
+                                          description: cashFlowList.description,
+                                          date:
+                                              cashFlowList.createdAt.toString(),
+                                          value: cashFlowList.value,
+                                          status: cashFlowList.status,
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              )
+                            : Text('Data Arus Kas Kosong')
                       ],
                     ),
                   ),
-                  const Column(
-                    children: [
-                      Text('Approval')
-                      // ApprovalCard(
-                      //   approvalModel: ApprovalModel(
-                      //     title: "Sewa Pengacara",
-                      //     description:
-                      //         "Biaya sewa pengacara untuk sengketa rumah lelang dengan ID Listing M000035",
-                      //     dateTime: DateTime.now(),
-                      //     price: 50000000,
-                      //   ),
-                      // ),
-                    ],
+                  Padding(
+                    padding: EdgeInsets.all(defaultMargin),
+                    child: Column(
+                      children: [
+                        Text('Approval'),
+                        listApproval!.isNotEmpty
+                            ? ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: listApproval!.length,
+                                itemBuilder: (context, index) {
+                                  var approvalList = listApproval![index];
+                                  return Column(
+                                    children: [
+                                      ApprovalCard(
+                                          approvalCardModel: ApprovalCardModel(
+                                        title: approvalList.title,
+                                        description: approvalList.description,
+                                        date: approvalList.createdAt.toString(),
+                                        value: approvalList.value,
+                                        status: approvalList.status,
+                                      ))
+                                    ],
+                                  );
+                                })
+                            : Text('Data Approval Kosong')
+                      ],
+                    ),
                   )
                 ],
               ),
