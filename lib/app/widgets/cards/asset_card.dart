@@ -37,6 +37,7 @@ class AssetCard extends StatelessWidget {
                       child: Image.network(
                         assetCardModel.imgUrl.toString(),
                         // width: 50,
+                        height: 200,
                         fit: BoxFit.cover,
                       ),
                     ),

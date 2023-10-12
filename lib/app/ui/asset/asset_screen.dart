@@ -49,6 +49,8 @@ class _AssetScreenState extends State<AssetScreen> {
         }
       }
     });
+
+    return futureAsset;
   }
 
   @override

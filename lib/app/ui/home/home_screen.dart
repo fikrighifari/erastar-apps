@@ -417,7 +417,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ],
                                               );
-                                            })
+                                            },
+                                          )
                                         : Text('Data Arus Kas Kosong'),
 
                                     //Penjualan Aset

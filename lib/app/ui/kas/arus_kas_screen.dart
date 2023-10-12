@@ -1,4 +1,8 @@
+import 'package:erastar_apps/app/controller/cash_flow_controller.dart';
+import 'package:erastar_apps/app/models/cash_flow_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/widgets/card_model/arus_kas_card_model.dart';
+import 'package:erastar_apps/app/widgets/cards/arus_kas_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
@@ -12,11 +16,28 @@ class ArusKasScreen extends StatefulWidget {
 class _ArusKasScreenState extends State<ArusKasScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  bool isLoading = false;
+  late Future<CashFlowModel?> futureCashFlow;
+  late List<ListDataCashFlow>? listDataCashFlow = [];
 
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
+    fetchData();
     super.initState();
+  }
+
+  fetchData() async {
+    futureCashFlow = CashFlowController().getCashFlow();
+    futureCashFlow.then((valueCashFlow) {
+      if (valueCashFlow != null) {
+        if (valueCashFlow.status == 'success') {
+          setState(() {
+            listDataCashFlow = valueCashFlow.data!.dataListCashFlow;
+          });
+        }
+      }
+    });
   }
 
   @override
@@ -118,17 +139,41 @@ class _ArusKasScreenState extends State<ArusKasScreen>
             Expanded(
               child: TabBarView(
                 controller: tabController,
-                children: const [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // _filterKas(),
-                      // _contentKas(),
-                      Text('Arus Kas')
-                    ],
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(defaultMargin),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // _filterKas(),
+                        // _contentKas(),
+                        Text('Arus Kas'),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: listDataCashFlow!.length,
+                          itemBuilder: (context, index) {
+                            var cashFlowList = listDataCashFlow![index];
+                            return Column(
+                              children: [
+                                ArusKasCard(
+                                  arusKasCardModel: ArusKasCardModel(
+                                    title: cashFlowList.title,
+                                    description: cashFlowList.description,
+                                    date: cashFlowList.createdAt.toString(),
+                                    value: cashFlowList.value,
+                                    status: cashFlowList.status,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        )
+                      ],
+                    ),
                   ),
-                  Column(
+                  const Column(
                     children: [
                       Text('Approval')
                       // ApprovalCard(

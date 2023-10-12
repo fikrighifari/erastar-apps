@@ -55,9 +55,9 @@ class AssetController {
           },
         ),
       );
-      print('response asset home $response');
+      // print('response asset home $response');
       if (response.statusCode == 200) {
-        print(response.statusCode);
+        // print(response.statusCode);
         AssetModel assetRes = AssetModel.fromJson(response.data);
         // print(assetRes.dataAsset!.data.first.images!.path);
         return assetRes;
