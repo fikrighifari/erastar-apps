@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if (value != null) {
         if (value.status == "success") {
           dataProfile = value.data;
-          nameProfile = value.data.name;
+          nameProfile = value.data.name ?? '';
           avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
           roleProfile = value.data.role!.name;
           // data1();
@@ -118,22 +118,81 @@ class _HomeScreenState extends State<HomeScreen> {
     return futureProfile;
   }
 
-  void data1() async {
-    futureAssetHome = HomeController().getAssetHome();
-    futureAssetHome.then((valueAsset) {
-      if (valueAsset != null) {
-        if (valueAsset.status == 'success') {
-          setState(() {
-            listAsset = valueAsset.dataAsset!.data;
-          });
-        }
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(60),
+      //   child: AppBar(
+      //     automaticallyImplyLeading: false,
+      //     backgroundColor: AppColor.primayRedColor,
+      //     centerTitle: false,
+      //     title: Row(
+      //       children: [
+      //         InkWell(
+      //           onTap: () {
+      //             Modular.to.pushNamed('/profile/');
+      //           },
+      //           child: CustomContainer(
+      //             padding: EdgeInsets.symmetric(
+      //               horizontal: defaultMargin,
+      //               vertical: 10,
+      //             ),
+      //             width: double.infinity,
+      //             backgroundColor: AppColor.primayRedColor,
+      //             child: Row(
+      //               children: [
+      //                 avatarProfile != null
+      //                     ? SizedBox(
+      //                         width: 50,
+      //                         height: 50,
+      //                         child: CircleAvatar(
+      //                           backgroundImage: NetworkImage(
+      //                             '$baseAPIUrlImage$avatarProfile',
+      //                           ),
+      //                           backgroundColor: AppColor.whiteColor,
+      //                         ),
+      //                       )
+      //                     : SizedBox(
+      //                         width: 50,
+      //                         height: 50,
+      //                         child: SvgPicture.asset(
+      //                           'assets/icons/ic_default_avatar.svg',
+      //                           colorFilter: const ColorFilter.mode(
+      //                             AppColor.whiteColor,
+      //                             BlendMode.srcIn,
+      //                           ),
+      //                         ),
+      //                       ),
+      //                 const SizedBox(
+      //                   width: 10,
+      //                 ),
+      //                 Column(
+      //                   mainAxisAlignment: MainAxisAlignment.start,
+      //                   crossAxisAlignment: CrossAxisAlignment.start,
+      //                   children: [
+      //                     TextWidget(
+      //                       nameProfile,
+      //                       color: AppColor.whiteColor,
+      //                     ),
+      //                     TextWidget(
+      //                       roleProfile,
+      //                       color: AppColor.whiteColor,
+      //                     ),
+      //                   ],
+      //                 ),
+      //                 const Spacer(),
+      //                 SvgPicture.asset(
+      //                   'assets/icons/ic_notification.svg',
+      //                 )
+      //               ],
+      //             ),
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       body: FutureBuilder<ProfileModel?>(
         future: futureProfile,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {

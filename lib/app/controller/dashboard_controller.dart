@@ -7,7 +7,6 @@ class DashboardController {
   Future<ProfileModel?> getProfile() async {
     String? authToken = await LocalStorageService.load("headerToken");
     // final String authToken = await LocalStorageService.load("headerToken");
-    // print('cooookkkk ----> ' + authToken.toString());
     try {
       Dio dio = Dio();
       dio.options.contentType = 'JSON';
@@ -21,7 +20,7 @@ class DashboardController {
           },
         ),
       );
-      // print('response profile data $response');
+      print('response profile data $response');
       if (response.statusCode == 200) {
         ProfileModel profileRes = ProfileModel.fromJson(response.data);
         // print('profile masuk aja');

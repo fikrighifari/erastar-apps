@@ -19,29 +19,16 @@ class _SplashScreenState extends State<SplashScreen> {
       LocalStorageService.load("headerToken").then((value) {
         // print("headerTokenValue :--------------->>> " + value.toString());
         if (value == null) {
-          Modular.to.popAndPushNamed('/auth/');
+          Modular.to.pushReplacementNamed('/auth/');
           // print("headerTokenValue is Null ");
         } else {
           // fetchData();
-          Modular.to.popAndPushNamed('/home/');
+          Modular.to.pushReplacementNamed('/home/');
           // print("headerTokenValue is There ");
         }
       });
     });
 
-    //   Future.delayed(Duration(seconds: duration), () async {
-    //     // Modular.to.popAndPushNamed('/home/');
-    //     LocalStorageService.check("headerToken").then((value) {
-    //       // print("headerTokenValue :--------------->>> " + value.toString());
-    //       if (value == true) {
-    //         print('ada token');
-    //         Modular.to.popAndPushNamed('/home/');
-    //       } else {
-    //         print('tidak ada token');
-    //         Modular.to.popAndPushNamed('/auth/');
-    //       }
-    //     });
-    //   });
     super.initState();
   }
 
