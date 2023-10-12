@@ -16,6 +16,10 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
   bool isLoading = false;
   late Future<TopMarketingModel?> futureTopMarketing;
   late List<DataListTopMarketing>? listTopMarketing = [];
+
+  String? month = '';
+  String? topName = '';
+  String? topOfficeName = '';
   String? avatarProfile;
 
   @override
@@ -30,6 +34,10 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
       if (valueTopMarketing != null) {
         if (valueTopMarketing.status == 'success') {
           setState(() {
+            avatarProfile =
+                '${valueTopMarketing.dataTopMarketing!.dataListTopMarketing.first.avatarPath}${valueTopMarketing.dataTopMarketing!.dataListTopMarketing.first.avatar}';
+            month =
+                valueTopMarketing.dataTopMarketing!.dataMonthYear.toString();
             listTopMarketing =
                 valueTopMarketing.dataTopMarketing!.dataListTopMarketing;
           });
@@ -116,8 +124,94 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
             Padding(
               padding: EdgeInsets.all(defaultMargin),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextWidget.titleMedium('Top Sales Marketing'),
+
+                  CustomContainer(
+                    margin: EdgeInsets.only(top: 8),
+                    backgroundColor: AppColor.primayRedColor,
+                    padding: EdgeInsets.all(defaultMargin),
+                    radius: 4,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          "assets/images/img_trophy.png",
+                          width: 50,
+                          height: 50,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(bottom: 0.0),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const TextWidget.titleSmall(
+                                        'Top Of The Month',
+                                        color: AppColor.whiteColor,
+                                      ),
+                                      TextWidget.titleSmall(
+                                        month.toString(),
+                                        color: AppColor.whiteColor,
+                                      ),
+                                      const TextWidget.titleSmall(
+                                        'Marketing Associate',
+                                        color: AppColor.whiteColor,
+                                      ),
+                                    ]),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // avatarProfile!.isNotEmpty
+                        //     ? Image.network(
+                        //         '$baseAPIUrlImage$avatarProfile',
+                        //         width: 50,
+                        //       )
+                        //     :
+                        Image.asset(
+                          "assets/images/img_trophy.png",
+                          width: 50,
+                          height: 50,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget.titleSmall(
+                                    'National',
+                                    color: AppColor.whiteColor,
+                                  ),
+                                  TextWidget.titleSmall(
+                                    'ERA STAR',
+                                    color: AppColor.whiteColor,
+                                  ),
+                                  TextWidget.titleSmall(
+                                    'Budi',
+                                    color: AppColor.whiteColor,
+                                  ),
+                                ]),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                   Container(
                       margin: EdgeInsets.only(top: defaultMargin),
                       // color: Colors.red,

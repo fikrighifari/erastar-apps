@@ -2,10 +2,8 @@ import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/asset_controller.dart';
 import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
-import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class AssetScreen extends StatefulWidget {
@@ -97,6 +95,7 @@ class _AssetScreenState extends State<AssetScreen> {
                       )
                     : RefreshIndicator(
                         onRefresh: refreshAsset,
+                        key: _refreshIndicatorKey,
                         child: SafeArea(
                           child: SingleChildScrollView(
                             child: SizedBox(

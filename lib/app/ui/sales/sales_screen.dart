@@ -29,7 +29,7 @@ class _SalesScreenState extends State<SalesScreen> {
 
   Future<void> refreshSales() async {
     setState(() {
-      _refreshIndicatorKey.currentState?.show();
+      _refreshIndicatorKey.currentState!.show();
       fetchData();
     });
   }
@@ -77,6 +77,7 @@ class _SalesScreenState extends State<SalesScreen> {
                       )
                     : RefreshIndicator(
                         onRefresh: refreshSales,
+                        key: _refreshIndicatorKey,
                         child: SafeArea(
                           child: SingleChildScrollView(
                             child: SizedBox(
