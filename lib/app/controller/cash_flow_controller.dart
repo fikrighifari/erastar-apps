@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:erastar_apps/app/config/api_path.dart';
+import 'package:erastar_apps/app/models/approval_cost_model.dart';
 import 'package:erastar_apps/app/models/cash_flow_model.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
 
@@ -36,6 +37,46 @@ class CashFlowController {
       }
     } catch (e) {
       print('Error Cash Flow $e');
+      // print(e);
+      return null;
+    }
+  }
+
+  //Get Approval List
+  Future<ApprovalCostModel?> getApproval() async {
+    try {
+      String? authToken = await LocalStorageService.load("headerToken");
+      var params = {
+        "page": 1,
+        "limit": 4,
+        "sort": "desc",
+        "status": "pending",
+      };
+
+      Dio dio = Dio();
+      dio.options.contentType = 'JSON';
+      dio.options.responseType = ResponseType.json;
+      Response response = await dio.get(
+        getAPIApprovalCost,
+        queryParameters: params,
+        options: Options(
+          contentType: 'application/json',
+          headers: {
+            'era-auth-token': authToken,
+          },
+        ),
+      );
+      print('response approval cashflow screen $response');
+      if (response.statusCode == 200) {
+        // print(response.statusCode);
+        ApprovalCostModel approvalCostModel =
+            ApprovalCostModel.fromJson(response.data);
+        return approvalCostModel;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('Error Approval $e');
       // print(e);
       return null;
     }

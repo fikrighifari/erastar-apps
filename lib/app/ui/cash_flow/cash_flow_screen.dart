@@ -1,24 +1,28 @@
 import 'package:erastar_apps/app/controller/cash_flow_controller.dart';
+import 'package:erastar_apps/app/models/approval_cost_model.dart';
 import 'package:erastar_apps/app/models/cash_flow_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
-import 'package:erastar_apps/app/widgets/card_model/arus_kas_card_model.dart';
-import 'package:erastar_apps/app/widgets/cards/arus_kas_card.dart';
+import 'package:erastar_apps/app/widgets/card_model/cash_flow_card_model.dart';
+import 'package:erastar_apps/app/widgets/cards/cash_flow_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
-class ArusKasScreen extends StatefulWidget {
-  const ArusKasScreen({super.key});
+class CashFlowScreen extends StatefulWidget {
+  const CashFlowScreen({super.key});
 
   @override
-  State<ArusKasScreen> createState() => _ArusKasScreenState();
+  State<CashFlowScreen> createState() => _CashFlowScreenState();
 }
 
-class _ArusKasScreenState extends State<ArusKasScreen>
+class _CashFlowScreenState extends State<CashFlowScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   bool isLoading = false;
   late Future<CashFlowModel?> futureCashFlow;
+  late Future<ApprovalCostModel?> futureApprovalCost;
+
   late List<ListDataCashFlow>? listDataCashFlow = [];
+  late List<DataListApproval>? listApproval = [];
 
   @override
   void initState() {
@@ -34,6 +38,18 @@ class _ArusKasScreenState extends State<ArusKasScreen>
         if (valueCashFlow.status == 'success') {
           setState(() {
             listDataCashFlow = valueCashFlow.data!.dataListCashFlow;
+          });
+        }
+      }
+    });
+
+    //Get Approval List
+    futureApprovalCost = CashFlowController().getApproval();
+    futureApprovalCost.then((valueApproval) {
+      if (valueApproval != null) {
+        if (valueApproval.status == 'success') {
+          setState(() {
+            listApproval = valueApproval.data!.dataListApproval;
           });
         }
       }
