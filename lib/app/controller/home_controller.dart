@@ -151,7 +151,7 @@ class HomeController {
     }
   }
 
-  //Get Arus Kas Data in Home Screen
+  //Get Invoice Data in Home Screen
   Future<InvoiceModel?> getInvoiceHome() async {
     String? authToken = await LocalStorageService.load("headerToken");
     try {

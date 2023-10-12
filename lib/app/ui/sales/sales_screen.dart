@@ -1,4 +1,8 @@
+import 'package:erastar_apps/app/controller/sales_controller.dart';
+import 'package:erastar_apps/app/models/invoice_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
+import 'package:erastar_apps/app/widgets/cards/sales_card.dart';
 import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
@@ -10,6 +14,31 @@ class SalesScreen extends StatefulWidget {
 }
 
 class _SalesScreenState extends State<SalesScreen> {
+  bool isLoading = false;
+  late Future<InvoiceModel?> futureInvoice;
+  late List<DataListInvoice>? listInvoice = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  fetchData() async {
+    futureInvoice = SalesController().getInvoice();
+    futureInvoice.then((valueInvoice) {
+      if (valueInvoice != null) {
+        if (valueInvoice.status == 'success') {
+          setState(() {
+            listInvoice = valueInvoice.data!.dataListInvoice;
+          });
+        }
+      }
+    });
+
+    return futureInvoice;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -87,6 +116,32 @@ class _SalesScreenState extends State<SalesScreen> {
               child: Column(
                 children: [
                   TextWidget.titleMedium('Penjualan Aset'),
+                  listInvoice!.isNotEmpty
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: listInvoice!.length,
+                          itemBuilder: (context, index) {
+                            var listDataInvoice = listInvoice![index];
+                            return Column(
+                              children: [
+                                SalesCard(
+                                  salesCardModel: SalesCardModel(
+                                    idListing: listDataInvoice.asset!.listingId,
+                                    title: listDataInvoice.asset!.title,
+                                    marketingName: listDataInvoice
+                                        .commission!.marketing!.name,
+                                    officeName:
+                                        listDataInvoice.asset!.office!.name,
+                                    status: listDataInvoice.status!.name,
+                                    value: listDataInvoice.valueInvoice,
+                                    date: listDataInvoice.createdAt.toString(),
+                                  ),
+                                ),
+                              ],
+                            );
+                          })
+                      : Text('Data Penjualan Aset Kosong')
                 ],
               ),
             )
