@@ -251,6 +251,7 @@ class _AssetScreenState extends State<AssetScreen> {
                                                         children: [
                                                           AssetCard(
                                                             assetCardModel: AssetCardModel(
+                                                                idAsset: dt.id,
                                                                 title: dt.title,
                                                                 idListing: dt
                                                                     .listingId,

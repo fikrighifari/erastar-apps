@@ -15,7 +15,7 @@ class AssetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // print(assetCardModel.idAsset);
+        print(assetCardModel.idAsset);
         Navigator.push(
           context,
           MaterialPageRoute(

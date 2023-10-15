@@ -1,7 +1,7 @@
 part of 'themes.dart';
 
 class AppColor {
-  static const Color backgroundColor = Color(0xffFFFFFF);
+  static const Color backgroundColor = Color(0xffF5F5F5);
   static const Color primayRedColor = Color(0xffB8113C);
   static const Color backgroundGrey = Color(0xffF5F5F5);
   static const Color naturalGrey1 = Color(0xffC2C2C2);
