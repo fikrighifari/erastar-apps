@@ -13,120 +13,120 @@ FontWeight extraBoldWeight = FontWeight.w800;
 FontWeight blackWeight = FontWeight.w900;
 
 //Text Style
-TextStyle defaultTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle defaultTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 14,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
-TextStyle titleTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle titleTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 16,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
-TextStyle subtitleTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle subtitleTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 14,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
-TextStyle labelTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle labelTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 12,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
 //* Display
-TextStyle displayLargeTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle displayLargeTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 57,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
-TextStyle displayMediumTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle displayMediumTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 45,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
-TextStyle displaySmallTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle displaySmallTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 45,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
 //* Headline
-TextStyle headlineLargeTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle headlineLargeTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 32,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
-TextStyle headlineMediumTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle headlineMediumTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 28,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
-TextStyle headlineSmallTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle headlineSmallTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 24,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
 //* Title
-TextStyle titleLargeTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle titleLargeTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 22,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
-TextStyle titleMediumTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle titleMediumTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 16,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
-TextStyle titleSmallTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle titleSmallTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 14,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
 //* Label
-TextStyle labelLargeTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle labelLargeTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 14,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
-TextStyle labelMediumTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle labelMediumTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 12,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
-TextStyle labelSmallTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle labelSmallTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 11,
   color: AppColor.blackColor,
   fontWeight: mediumWeight,
 );
 
 //* Label
-TextStyle bodyLargeTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle bodyLargeTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 16,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
-TextStyle bodyMediumTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle bodyMediumTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 14,
   color: AppColor.blackColor,
   fontWeight: regularWeight,
 );
 
-TextStyle bodySmallTextStyle = GoogleFonts.openSans().copyWith(
+TextStyle bodySmallTextStyle = GoogleFonts.poppins().copyWith(
   fontSize: 12,
   color: AppColor.blackColor,
   fontWeight: regularWeight,

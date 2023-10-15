@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/models/approval_cost_model.dart';
 import 'package:erastar_apps/app/models/cash_flow_model.dart';
+import 'package:erastar_apps/app/models/cost_detail_model.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
 
 class CashFlowController {
@@ -78,6 +79,35 @@ class CashFlowController {
     } catch (e) {
       print('Error Approval $e');
       // print(e);
+      return null;
+    }
+  }
+
+  Future<DetailCostModel?> getDetailCost(String? idCost) async {
+    String? authToken = await LocalStorageService.load("headerToken");
+    try {
+      Dio dio = Dio();
+      dio.options.contentType = 'JSON';
+      dio.options.responseType = ResponseType.json;
+      Response response = await dio.get(
+        '$getAPIApprovalCostDetail/$idCost',
+        options: Options(
+          contentType: 'application/json',
+          headers: {
+            'era-auth-token': authToken,
+          },
+        ),
+      );
+      // print('response detailCost $response');
+      if (response.statusCode == 200) {
+        DetailCostModel detailCostRes = DetailCostModel.fromJson(response.data);
+
+        return detailCostRes;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
       return null;
     }
   }

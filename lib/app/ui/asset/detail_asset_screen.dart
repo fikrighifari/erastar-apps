@@ -37,7 +37,6 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
   @override
   void initState() {
     fetchData(widget.assetItem.idAsset);
-
     super.initState();
   }
 

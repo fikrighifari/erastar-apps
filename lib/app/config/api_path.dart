@@ -7,9 +7,13 @@ const baseAPIUrlImage = "https://erastarlelangproperty.co.id/";
 const postAPILogin = "${baseAPIUrl}auth";
 const getAPIProfile = "${baseAPIUrl}profile/me";
 
+// Asset Stuff
 const getAPIAsset = "${baseAPIUrl}assets/asset_lists?";
 const getAPIAssetDetail = "${baseAPIUrl}assets/asset_detail/";
+
+// Cashflow Stuff
 const getAPIApprovalCost = "${baseAPIUrl}invoice_cost/cost_lists?";
+const getAPIApprovalCostDetail = "${baseAPIUrl}invoice_cost/cost_detail/";
 const getAPICashFlow = "${baseAPIUrl}invoices/invoice_cashflow?";
 const getAPIInvoice = "${baseAPIUrl}invoices/invoice_lists?";
 const getAPITopMarketing = "${baseAPIUrl}marketing/top_marketing?";

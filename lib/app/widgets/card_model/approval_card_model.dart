@@ -1,4 +1,5 @@
 class ApprovalCardModel {
+  String? idCost;
   String? title;
   String? description;
   String? date;
@@ -6,6 +7,7 @@ class ApprovalCardModel {
   String? status;
 
   ApprovalCardModel({
+    this.idCost,
     this.title,
     this.description,
     this.date,
