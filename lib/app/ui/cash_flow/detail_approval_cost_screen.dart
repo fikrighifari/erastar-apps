@@ -49,11 +49,14 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
         value = valueCostDetail.dataDetailCost!.value.toString();
         createdDate = valueCostDetail.dataDetailCost!.createdAt.toString();
         updatedDate = valueCostDetail.dataDetailCost!.updatedAt.toString();
+        print(updatedDate);
         status = valueCostDetail.dataDetailCost!.status;
 
         //Get Data Detail Invoice
         invoiceNumber = valueCostDetail.dataDetailCost!.invoice!.invoiceNum;
         buyerName = valueCostDetail.dataDetailCost!.invoice!.buyerName;
+        buyerPhone = valueCostDetail.dataDetailCost!.invoice!.buyerPhone;
+
         buyerEmail = valueCostDetail.dataDetailCost!.invoice!.buyerEmail;
         valueInvoice =
             valueCostDetail.dataDetailCost!.invoice!.valueInvoice.toString();
@@ -66,46 +69,138 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(
-            backButton: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: AppColor.whiteColor,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+      appBar: CustomAppBar(
+          backButton: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: AppColor.whiteColor,
             ),
-            title: 'Detail Approval Cost'),
-        body: FutureBuilder<DetailCostModel?>(
-            future: futureCostDetail,
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                  return const Text('Press button to start');
-                case ConnectionState.active:
-                  return const Text('Press button to start.');
-                case ConnectionState.waiting:
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                case ConnectionState.done:
-                  return SafeArea(
-                      child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.all(defaultMargin),
-                      child: Column(
-                        children: [
-                          CustomContainer(
-                            radius: 4,
-                            padding: EdgeInsets.all(defaultMargin),
-                            width: double.infinity,
-                            backgroundColor: AppColor.whiteColor,
-                            child: Column(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: 'Detail Approval Cost'),
+      body: FutureBuilder<DetailCostModel?>(
+        future: futureCostDetail,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return const Text('Press button to start');
+            case ConnectionState.active:
+              return const Text('Press button to start.');
+            case ConnectionState.waiting:
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            case ConnectionState.done:
+              return SafeArea(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.all(defaultMargin),
+                    child: Column(
+                      children: [
+                        CustomContainer(
+                          radius: 4,
+                          padding: EdgeInsets.all(defaultMargin),
+                          width: double.infinity,
+                          backgroundColor: AppColor.whiteColor,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
+                                'Detail Cost',
+                                color: AppColor.primayRedColor,
+                                fontSize: 16,
+                                fontWeight: boldWeight,
+                              ),
+                              SizedBox(
+                                height: defaultMargin,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Judul'),
+                                  TextWidget(title)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Keterangan'),
+                                  TextWidget(description)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Jumlah'),
+                                  TextWidget(value)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Tanggal dibuat'),
+                                  TextWidget(createdDate)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              // updatedDate == null
+                              //     ? Container()
+                              //     : Row(
+                              //         mainAxisAlignment:
+                              //             MainAxisAlignment.spaceBetween,
+                              //         children: [
+                              //           const TextWidget(
+                              //               'Tanggal diperbaharui'),
+                              //           TextWidget(updatedDate ?? '-')
+                              //         ],
+                              //       ),
+                              // const Divider(
+                              //   thickness: 1,
+                              // ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Status'),
+                                  TextWidget(status)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomContainer(
+                          radius: 4,
+                          padding: EdgeInsets.all(defaultMargin),
+                          width: double.infinity,
+                          backgroundColor: AppColor.whiteColor,
+                          child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 TextWidget(
-                                  'Detail Cost',
+                                  'Detail Invoice',
                                   color: AppColor.primayRedColor,
                                   fontSize: 16,
                                   fontWeight: boldWeight,
@@ -117,21 +212,78 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const TextWidget('Judul'),
-                                    TextWidget(title)
+                                    const TextWidget('Nomor Invoice'),
+                                    TextWidget(invoiceNumber)
                                   ],
                                 ),
-                                Divider(
+                                const Divider(
                                   thickness: 1,
                                 ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const TextWidget('Nama Pembeli'),
+                                    TextWidget(buyerName)
+                                  ],
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const TextWidget('Email Pembeli'),
+                                    TextWidget(buyerEmail)
+                                  ],
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const TextWidget('Kontak Pembeli'),
+                                    TextWidget(buyerPhone)
+                                  ],
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const TextWidget('Jumlah Invoice'),
+                                    TextWidget(valueInvoice)
+                                  ],
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const TextWidget('Status'),
+                                    TextWidget(statusInvoice)
+                                  ],
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                              ]),
+                        )
+                      ],
                     ),
-                  ));
-              }
-            }));
+                  ),
+                ),
+              );
+          }
+        },
+      ),
+    );
   }
 }
