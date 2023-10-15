@@ -1,7 +1,5 @@
-import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/ui/asset/detail_asset_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class AssetCard extends StatelessWidget {
@@ -15,7 +13,7 @@ class AssetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(assetCardModel.idAsset);
+        // print(assetCardModel.idAsset);
         Navigator.push(
           context,
           MaterialPageRoute(

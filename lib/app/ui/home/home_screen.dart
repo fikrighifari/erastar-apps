@@ -226,70 +226,70 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Header Content
-                              InkWell(
-                                onTap: () {
-                                  Modular.to.pushNamed('/profile/');
-                                },
-                                child: CustomContainer(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: defaultMargin,
-                                    vertical: 10,
-                                  ),
-                                  width: double.infinity,
-                                  backgroundColor: AppColor.primayRedColor,
-                                  child: Row(
-                                    children: [
-                                      avatarProfile != null
-                                          ? SizedBox(
-                                              width: 50,
-                                              height: 50,
-                                              child: CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                  '$baseAPIUrlImage$avatarProfile',
-                                                ),
-                                                backgroundColor:
-                                                    AppColor.whiteColor,
-                                              ),
-                                            )
-                                          : SizedBox(
-                                              width: 50,
-                                              height: 50,
-                                              child: SvgPicture.asset(
-                                                'assets/icons/ic_default_avatar.svg',
-                                                colorFilter:
-                                                    const ColorFilter.mode(
-                                                  AppColor.whiteColor,
-                                                  BlendMode.srcIn,
-                                                ),
-                                              ),
-                                            ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextWidget(
-                                            nameProfile,
-                                            color: AppColor.whiteColor,
-                                          ),
-                                          TextWidget(
-                                            roleProfile,
-                                            color: AppColor.whiteColor,
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      SvgPicture.asset(
-                                        'assets/icons/ic_notification.svg',
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              // InkWell(
+                              //   onTap: () {
+                              //     Modular.to.pushNamed('/profile/');
+                              //   },
+                              //   child: CustomContainer(
+                              //     padding: EdgeInsets.symmetric(
+                              //       horizontal: defaultMargin,
+                              //       vertical: 10,
+                              //     ),
+                              //     width: double.infinity,
+                              //     backgroundColor: AppColor.primayRedColor,
+                              //     child: Row(
+                              //       children: [
+                              //         avatarProfile != null
+                              //             ? SizedBox(
+                              //                 width: 50,
+                              //                 height: 50,
+                              //                 child: CircleAvatar(
+                              //                   backgroundImage: NetworkImage(
+                              //                     '$baseAPIUrlImage$avatarProfile',
+                              //                   ),
+                              //                   backgroundColor:
+                              //                       AppColor.whiteColor,
+                              //                 ),
+                              //               )
+                              //             : SizedBox(
+                              //                 width: 50,
+                              //                 height: 50,
+                              //                 child: SvgPicture.asset(
+                              //                   'assets/icons/ic_default_avatar.svg',
+                              //                   colorFilter:
+                              //                       const ColorFilter.mode(
+                              //                     AppColor.whiteColor,
+                              //                     BlendMode.srcIn,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //         const SizedBox(
+                              //           width: 10,
+                              //         ),
+                              //         Column(
+                              //           mainAxisAlignment:
+                              //               MainAxisAlignment.start,
+                              //           crossAxisAlignment:
+                              //               CrossAxisAlignment.start,
+                              //           children: [
+                              //             TextWidget(
+                              //               nameProfile,
+                              //               color: AppColor.whiteColor,
+                              //             ),
+                              //             TextWidget(
+                              //               roleProfile,
+                              //               color: AppColor.whiteColor,
+                              //             ),
+                              //           ],
+                              //         ),
+                              //         const Spacer(),
+                              //         SvgPicture.asset(
+                              //           'assets/icons/ic_notification.svg',
+                              //         )
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
 
                               Padding(
                                 padding: EdgeInsets.symmetric(

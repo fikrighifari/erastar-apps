@@ -20,7 +20,7 @@ class DashboardController {
           },
         ),
       );
-      print('response profile data $response');
+      // print('response profile data $response');
       if (response.statusCode == 200) {
         ProfileModel profileRes = ProfileModel.fromJson(response.data);
         // print('profile masuk aja');

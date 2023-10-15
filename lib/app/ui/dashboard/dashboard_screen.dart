@@ -1,3 +1,4 @@
+import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/dashboard_controller.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/themes/themes.dart';
@@ -20,6 +21,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   late DataProfile dataProfile;
   late String? nameProfile = '';
   late String? roleProfile = '';
+  late String? avatarProfile = '';
   bool isLoading = false;
 
   int currentIndex = 0;
@@ -37,11 +39,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
         if (value.status == "success") {
           dataProfile = value.data;
           nameProfile = value.data.name ?? '';
-          // avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
+          avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
           roleProfile = value.data.role!.name;
           // data1();
         }
       }
+
+      return futureProfile;
     });
   }
 
@@ -215,214 +219,83 @@ class _DashboardScreenState extends State<DashboardScreen> {
       }
     }
 
-    appBar() {
-      return PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: AppColor.primayRedColor,
-          centerTitle: false,
-          title: isLoading
-              ? SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  child: const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColor.primayRedColor,
-                    ),
-                  ),
-                )
-              : Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Modular.to.pushNamed('/profile/');
-                      },
-                      child: CustomContainer(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: defaultMargin,
-                          vertical: 10,
-                        ),
-                        width: double.infinity,
-                        backgroundColor: AppColor.primayRedColor,
-                        child: Row(
-                          children: [
-                            // avatarProfile != null
-                            //     ? SizedBox(
-                            //         width: 50,
-                            //         height: 50,
-                            //         child: CircleAvatar(
-                            //           backgroundImage: NetworkImage(
-                            //             '$baseAPIUrlImage$avatarProfile',
-                            //           ),
-                            //           backgroundColor: AppColor.whiteColor,
-                            //         ),
-                            //       )
-                            //     :
-                            SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: SvgPicture.asset(
-                                'assets/icons/ic_default_avatar.svg',
-                                colorFilter: const ColorFilter.mode(
-                                  AppColor.whiteColor,
-                                  BlendMode.srcIn,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextWidget(
-                                  nameProfile,
-                                  color: AppColor.whiteColor,
-                                ),
-                                TextWidget(
-                                  'roleProfile',
-                                  color: AppColor.whiteColor,
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            SvgPicture.asset(
-                              'assets/icons/ic_notification.svg',
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-        ),
-      );
-    }
-
     return Scaffold(
-        // appBar: PreferredSize(
-        //   preferredSize: const Size.fromHeight(60),
-        //   child: AppBar(
-        //       automaticallyImplyLeading: false,
-        //       backgroundColor: AppColor.primayRedColor,
-        //       centerTitle: false,
-        //       title: isLoading
-        //           ? CircularProgressIndicator(
-        //               color: AppColor.primayRedColor,
-        //             )
-        //           // SizedBox(
-        //           //     height: MediaQuery.of(context).size.height,
-        //           //     width: MediaQuery.of(context).size.width,
-        //           //     child: const Center(
-        //           //       child: CircularProgressIndicator(
-        //           //         color: AppColor.primayRedColor,
-        //           //       ),
-        //           //     ),
-        //           //   )
-        //           : Row(
-        //               children: [
-        //                 SizedBox(
-        //                   width: 50,
-        //                   height: 50,
-        //                   child: SvgPicture.asset(
-        //                     'assets/icons/ic_default_avatar.svg',
-        //                     colorFilter: const ColorFilter.mode(
-        //                       AppColor.whiteColor,
-        //                       BlendMode.srcIn,
-        //                     ),
-        //                   ),
-        //                 ),
-        //                 Column(
-        //                   children: [
-        //                     isLoading
-        //                         ? LinearProgressIndicator()
-        //                         : TextWidget(
-        //                             nameProfile,
-        //                             color: AppColor.whiteColor,
-        //                           ),
-        //                     TextWidget(
-        //                       roleProfile,
-        //                       color: AppColor.whiteColor,
-        //                     ),
-        //                   ],
-        //                 ),
-        //                 Spacer(),
-        //                 SvgPicture.asset(
-        //                   'assets/icons/ic_notification.svg',
-        //                 )
-        //               ],
-        //             )
-        //       // isLoading
-        //       //     ? SizedBox(
-        //       //         height: MediaQuery.of(context).size.height,
-        //       //         width: MediaQuery.of(context).size.width,
-        //       //         child: const Center(
-        //       //           child: CircularProgressIndicator(
-        //       //             color: AppColor.primayRedColor,
-        //       //           ),
-        //       //         ),
-        //       //       )
-        //       //     : Row(
-        //       //         children: [
-        //       //           InkWell(
-        //       //             onTap: () {
-        //       //               Modular.to.pushNamed('/profile/');
-        //       //             },
-        //       //             child: Row(
-        //       //               children: [
-        //       //                 // avatarProfile != null
-        //       //                 //     ? SizedBox(
-        //       //                 //         width: 50,
-        //       //                 //         height: 50,
-        //       //                 //         child: CircleAvatar(
-        //       //                 //           backgroundImage: NetworkImage(
-        //       //                 //             '$baseAPIUrlImage$avatarProfile',
-        //       //                 //           ),
-        //       //                 //           backgroundColor: AppColor.whiteColor,
-        //       //                 //         ),
-        //       //                 //       )
-        //       //                 //     :
-        //       //                 SizedBox(
-        //       //                   width: 50,
-        //       //                   height: 50,
-        //       //                   child: SvgPicture.asset(
-        //       //                     'assets/icons/ic_default_avatar.svg',
-        //       //                     colorFilter: const ColorFilter.mode(
-        //       //                       AppColor.whiteColor,
-        //       //                       BlendMode.srcIn,
-        //       //                     ),
-        //       //                   ),
-        //       //                 ),
-        //       //                 const SizedBox(
-        //       //                   width: 10,
-        //       //                 ),
-        //       //                 Column(
-        //       //                   mainAxisAlignment: MainAxisAlignment.start,
-        //       //                   crossAxisAlignment: CrossAxisAlignment.start,
-        //       //                   children: [
-        //       //                     TextWidget(
-        //       //                       nameProfile,
-        //       //                       color: AppColor.whiteColor,
-        //       //                     ),
-        //       //                     TextWidget(
-        //       //                       'roleProfile',
-        //       //                       color: AppColor.whiteColor,
-        //       //                     ),
-        //       //                   ],
-        //       //                 ),
-        //       //                 const Spacer(),
-        //       //                 SvgPicture.asset(
-        //       //                   'assets/icons/ic_notification.svg',
-        //       //                 )
-        //       //               ],
-        //       //             ),
-        //       //           ),
-        //       //         ],
-        //       //       ),
-        //       ),
-        // ),
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: AppColor.primayRedColor,
+              title: FutureBuilder<ProfileModel?>(
+                  future: futureProfile,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                        return const Text('Press button to start');
+                      case ConnectionState.active:
+                        return const Text('Press button to start.');
+                      case ConnectionState.waiting:
+                        return const Center(
+                          child: LinearProgressIndicator(
+                            color: AppColor.whiteColor,
+                          ),
+                        );
+                      case ConnectionState.done:
+                        return InkWell(
+                          onTap: () {
+                            Modular.to.pushNamed('/profile/');
+                          },
+                          child: Row(
+                            children: [
+                              avatarProfile == null
+                                  ? SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: SvgPicture.asset(
+                                        'assets/icons/ic_default_avatar.svg',
+                                        colorFilter: const ColorFilter.mode(
+                                          AppColor.whiteColor,
+                                          BlendMode.srcIn,
+                                        ),
+                                      ),
+                                    )
+                                  : SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                          '$baseAPIUrlImage$avatarProfile',
+                                        ),
+                                        backgroundColor: AppColor.whiteColor,
+                                      ),
+                                    ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget(
+                                    nameProfile.toString(),
+                                    color: AppColor.whiteColor,
+                                  ),
+                                  TextWidget(
+                                    roleProfile.toString(),
+                                    color: AppColor.whiteColor,
+                                  ),
+                                ],
+                              ),
+                              Spacer(),
+                              SvgPicture.asset(
+                                'assets/icons/ic_notification.svg',
+                              )
+                            ],
+                          ),
+                        );
+                    }
+                  })),
+        ),
         body:
 
             // rolesUser == 'superadmin'
