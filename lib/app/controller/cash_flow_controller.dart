@@ -111,4 +111,29 @@ class CashFlowController {
       return null;
     }
   }
+
+  static Future<Response> approveCost(
+    String costId,
+    String invoiceId,
+  ) async {
+    String token = await LocalStorageService.load("headerToken");
+    try {
+      Dio dio = Dio();
+      return await dio.put(putAPIApproveCost,
+          data: {
+            "cost_id": costId,
+            "invoice_id": invoiceId,
+            "status": "approved"
+          },
+          options: Options(
+              headers: {"era-auth-token": token},
+              followRedirects: false,
+              validateStatus: (status) {
+                print('berhasil');
+                return status! <= 500;
+              }));
+    } on DioError catch (e) {
+      return e.response!;
+    }
+  }
 }

@@ -31,7 +31,9 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
       buyerEmail,
       buyerPhone,
       valueInvoice,
-      statusInvoice;
+      statusInvoice,
+      costId,
+      invoiceId;
 
   @override
   void initState() {
@@ -43,25 +45,25 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
     futureCostDetail = CashFlowController().getDetailCost(idCostData);
     futureCostDetail.then((valueCostDetail) {
       if (valueCostDetail != null) {
+        print(valueCostDetail.dataDetailCost!.id);
         //Get Data Detail Cost
+        costId = valueCostDetail.dataDetailCost!.id;
         title = valueCostDetail.dataDetailCost!.title;
         description = valueCostDetail.dataDetailCost!.description;
         value = valueCostDetail.dataDetailCost!.value.toString();
         createdDate = valueCostDetail.dataDetailCost!.createdAt.toString();
         updatedDate = valueCostDetail.dataDetailCost!.updatedAt.toString();
-        print(updatedDate);
         status = valueCostDetail.dataDetailCost!.status;
 
         //Get Data Detail Invoice
+        invoiceId = valueCostDetail.dataDetailCost!.invoice!.id;
         invoiceNumber = valueCostDetail.dataDetailCost!.invoice!.invoiceNum;
         buyerName = valueCostDetail.dataDetailCost!.invoice!.buyerName;
         buyerPhone = valueCostDetail.dataDetailCost!.invoice!.buyerPhone;
-
         buyerEmail = valueCostDetail.dataDetailCost!.invoice!.buyerEmail;
         valueInvoice =
             valueCostDetail.dataDetailCost!.invoice!.valueInvoice.toString();
-        statusInvoice =
-            valueCostDetail.dataDetailCost!.invoice!.status.toString();
+        statusInvoice = valueCostDetail.dataDetailCost!.invoice!.status!.name;
       }
     });
   }
@@ -275,7 +277,27 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                   thickness: 1,
                                 ),
                               ]),
-                        )
+                        ),
+                        CustomButton(
+                          isRounded: true,
+                          buttonType: ButtonType.noOutLined,
+                          borderRadius: 8,
+                          onPressed: () {
+                            print(costId);
+                            print(invoiceId);
+                            CashFlowController.approveCost(
+                              costId.toString(),
+                              invoiceId.toString(),
+                            );
+                          },
+                          width: 100,
+                          height: 40,
+                          backgroundColor: AppColor.greenColor,
+                          text: const TextWidget(
+                            'Approve',
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
                   ),
