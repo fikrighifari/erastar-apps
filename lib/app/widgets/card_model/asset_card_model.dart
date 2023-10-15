@@ -1,4 +1,5 @@
 class AssetCardModel {
+  String? idAsset;
   String? idListing;
   int? price;
   String? title;
@@ -8,6 +9,7 @@ class AssetCardModel {
   String? type;
 
   AssetCardModel({
+    this.idAsset,
     this.idListing,
     this.title,
     this.price,

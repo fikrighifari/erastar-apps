@@ -8,6 +8,7 @@ const postAPILogin = "${baseAPIUrl}auth";
 const getAPIProfile = "${baseAPIUrl}profile/me";
 
 const getAPIAsset = "${baseAPIUrl}assets/asset_lists?";
+const getAPIAssetDetail = "${baseAPIUrl}assets/asset_detail/";
 const getAPIApprovalCost = "${baseAPIUrl}invoice_cost/cost_lists?";
 const getAPICashFlow = "${baseAPIUrl}invoices/invoice_cashflow?";
 const getAPIInvoice = "${baseAPIUrl}invoices/invoice_lists?";
