@@ -1,4 +1,5 @@
 class ArusKasCardModel {
+  String? idInvoice;
   String? title;
   String? description;
   String? date;
@@ -6,6 +7,7 @@ class ArusKasCardModel {
   String? status;
 
   ArusKasCardModel({
+    this.idInvoice,
     this.title,
     this.description,
     this.date,

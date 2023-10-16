@@ -15,7 +15,9 @@ const getAPIAssetDetail = "${baseAPIUrl}assets/asset_detail/";
 const getAPIApprovalCost = "${baseAPIUrl}invoice_cost/cost_lists?";
 const getAPIApprovalCostDetail = "${baseAPIUrl}invoice_cost/cost_detail/";
 const putAPIApproveCost = "${baseAPIUrl}invoice_cost/status_update";
-
 const getAPICashFlow = "${baseAPIUrl}invoices/invoice_cashflow?";
+const getAPICashFlowDetail =
+    "${baseAPIUrl}invoices/invoice_cashflow?invoice_id=";
+
 const getAPIInvoice = "${baseAPIUrl}invoices/invoice_lists?";
 const getAPITopMarketing = "${baseAPIUrl}marketing/top_marketing?";

@@ -399,6 +399,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ArusKasCard(
                                                     arusKasCardModel:
                                                         ArusKasCardModel(
+                                                      idInvoice: cashFlowList
+                                                          .invoice!.id,
                                                       title: cashFlowList.title,
                                                       description: cashFlowList
                                                           .description,
