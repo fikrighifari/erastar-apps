@@ -278,25 +278,55 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                 ),
                               ]),
                         ),
-                        CustomButton(
-                          isRounded: true,
-                          buttonType: ButtonType.noOutLined,
-                          borderRadius: 8,
-                          onPressed: () {
-                            print(costId);
-                            print(invoiceId);
-                            CashFlowController.approveCost(
-                              costId.toString(),
-                              invoiceId.toString(),
-                            );
-                          },
-                          width: 100,
-                          height: 40,
-                          backgroundColor: AppColor.greenColor,
-                          text: const TextWidget(
-                            'Approve',
-                            color: Colors.white,
-                          ),
+                        SizedBox(
+                          height: defaultMargin,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomButton(
+                              isRounded: true,
+                              buttonType: ButtonType.noOutLined,
+                              borderRadius: 8,
+                              onPressed: () {
+                                print(costId);
+                                print(invoiceId);
+                                CashFlowController.approveCost(
+                                  costId.toString(),
+                                  invoiceId.toString(),
+                                  'approved',
+                                );
+                              },
+                              width: 100,
+                              height: 40,
+                              backgroundColor: AppColor.greenColor,
+                              text: const TextWidget(
+                                'Approve',
+                                color: Colors.white,
+                              ),
+                            ),
+                            CustomButton(
+                              isRounded: true,
+                              buttonType: ButtonType.noOutLined,
+                              borderRadius: 8,
+                              onPressed: () {
+                                print(costId);
+                                print(invoiceId);
+                                CashFlowController.approveCost(
+                                  costId.toString(),
+                                  invoiceId.toString(),
+                                  'reject',
+                                );
+                              },
+                              width: 100,
+                              height: 40,
+                              backgroundColor: AppColor.primayRedColor,
+                              text: const TextWidget(
+                                'Tolak',
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

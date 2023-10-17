@@ -118,6 +118,7 @@ class CashFlowController {
   static Future<Response> approveCost(
     String costId,
     String invoiceId,
+    String status,
   ) async {
     String token = await LocalStorageService.load("headerToken");
     try {
@@ -126,7 +127,7 @@ class CashFlowController {
           data: {
             "cost_id": costId,
             "invoice_id": invoiceId,
-            "status": "approved"
+            "status": status,
           },
           options: Options(
               headers: {"era-auth-token": token},
