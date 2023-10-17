@@ -89,9 +89,13 @@ class _SalesScreenState extends State<SalesScreen> {
                                   Padding(
                                     padding: EdgeInsets.all(defaultMargin),
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         TextWidget.titleMedium(
-                                            'Penjualan Aset'),
+                                          'Penjualan Aset',
+                                          fontWeight: boldWeight,
+                                        ),
                                         listInvoice!.isNotEmpty
                                             ? ListView.builder(
                                                 shrinkWrap: true,

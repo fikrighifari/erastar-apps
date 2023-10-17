@@ -74,6 +74,7 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.backgroundGrey,
       appBar: CustomAppBar(
           backButton: IconButton(
             icon: const Icon(
@@ -100,205 +101,274 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
             case ConnectionState.done:
               return SafeArea(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      // Detail Asset
-                      CustomContainer(
-                        radius: 4,
-                        padding: EdgeInsets.all(defaultMargin),
-                        width: double.infinity,
-                        backgroundColor: AppColor.whiteColor,
-                        child: Column(
-                          children: [
-                            TextWidget(
-                              'Detail Asset',
-                              color: AppColor.primayRedColor,
-                              fontSize: 16,
-                              fontWeight: boldWeight,
-                            ),
-                            SizedBox(
-                              height: defaultMargin,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('ID Listing'),
-                                TextWidget(listingId)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Nama Asset'),
-                                TextWidget(assetName)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Alamat'),
-                                TextWidget(address)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Status Asset'),
-                                TextWidget(status)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Tipe Asset'),
-                                TextWidget(type)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Harga Asset'),
-                                TextWidget(assetPrice)
-                              ],
-                            ),
-                          ],
+                  child: Padding(
+                    padding: EdgeInsets.all(defaultMargin),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Detail Asset
+                        CustomContainer(
+                          radius: 6,
+                          padding: EdgeInsets.all(defaultMargin),
+                          width: double.infinity,
+                          backgroundColor: AppColor.whiteColor,
+                          child: Column(
+                            children: [
+                              TextWidget(
+                                'Detail Asset',
+                                color: AppColor.primayRedColor,
+                                fontSize: 16,
+                                fontWeight: boldWeight,
+                              ),
+                              SizedBox(
+                                height: defaultMargin,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('ID Listing'),
+                                  TextWidget(listingId)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Nama Asset'),
+                                  TextWidget(assetName)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Alamat'),
+                                  TextWidget(address)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Status Asset'),
+                                  TextWidget(status)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Tipe Asset'),
+                                  TextWidget(type)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Harga Asset'),
+                                  TextWidget(assetPrice)
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      CustomContainer(
-                        radius: 4,
-                        padding: EdgeInsets.all(defaultMargin),
-                        width: double.infinity,
-                        backgroundColor: AppColor.whiteColor,
-                        child: Column(
-                          children: [
-                            TextWidget(
-                              'Detail Invoice',
-                              color: AppColor.primayRedColor,
-                              fontSize: 16,
-                              fontWeight: boldWeight,
-                            ),
-                            SizedBox(
-                              height: defaultMargin,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Nomor Invoice'),
-                                TextWidget(invoiceNumber)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Nama Pembeli'),
-                                TextWidget(buyerName)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Email Pembeli'),
-                                TextWidget(buyerEmail)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Kontak Pembeli'),
-                                TextWidget(buyerPhone)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Value Invoice'),
-                                TextWidget(valueInvoice)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Status Invoice'),
-                                TextWidget(statusInvoice)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Tanggal dibuat'),
-                                TextWidget(createdDate)
-                              ],
-                            ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     const TextWidget('Tanggal diperbaharui'),
-                            //     TextWidget(invoiceNumber)
-                            //   ],
-                            // ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Nomor Invoice'),
-                                TextWidget(invoiceNumber)
-                              ],
-                            ),
-                          ],
+                        CustomContainer(
+                          radius: 4,
+                          padding: EdgeInsets.all(defaultMargin),
+                          width: double.infinity,
+                          backgroundColor: AppColor.whiteColor,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
+                                'Detail Invoice',
+                                color: AppColor.primayRedColor,
+                                fontSize: 16,
+                                fontWeight: boldWeight,
+                              ),
+                              SizedBox(
+                                height: defaultMargin,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Nomor Invoice'),
+                                  TextWidget(invoiceNumber)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Nama Pembeli'),
+                                  TextWidget(buyerName)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Email Pembeli'),
+                                  TextWidget(buyerEmail)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Kontak Pembeli'),
+                                  TextWidget(buyerPhone)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Value Invoice'),
+                                  TextWidget(valueInvoice)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Status Invoice'),
+                                  TextWidget(statusInvoice)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Tanggal dibuat'),
+                                  TextWidget(createdDate)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //   children: [
+                              //     const TextWidget('Tanggal diperbaharui'),
+                              //     TextWidget(invoiceNumber)
+                              //   ],
+                              // ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Nomor Invoice'),
+                                  TextWidget(invoiceNumber)
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      CustomContainer(
-                        radius: 4,
-                        padding: EdgeInsets.all(defaultMargin),
-                        width: double.infinity,
-                        backgroundColor: AppColor.whiteColor,
-                        child: Column(
-                          children: [
-                            TextWidget(
-                              'Detail Lelang',
-                              color: AppColor.primayRedColor,
-                              fontSize: 16,
-                              fontWeight: boldWeight,
-                            ),
-                            SizedBox(
-                              height: defaultMargin,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Harga Lelang'),
-                                TextWidget(auctionPrice)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Status Lelang'),
-                                TextWidget(statusAuction)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Tanggal Lelang Berakhir'),
-                                TextWidget(endDateAuction)
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const TextWidget('Pengumuman Lelang'),
-                                Expanded(
-                                  child: TextWidget(
-                                    noteAuction,
-                                    textAlign: TextAlign.right,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                        CustomContainer(
+                          radius: 4,
+                          padding: EdgeInsets.all(defaultMargin),
+                          width: double.infinity,
+                          backgroundColor: AppColor.whiteColor,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextWidget(
+                                'Detail Lelang',
+                                color: AppColor.primayRedColor,
+                                fontSize: 16,
+                                fontWeight: boldWeight,
+                              ),
+                              SizedBox(
+                                height: defaultMargin,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Harga Lelang'),
+                                  TextWidget(auctionPrice)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Status Lelang'),
+                                  TextWidget(statusAuction)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Tanggal Lelang Berakhir'),
+                                  TextWidget(endDateAuction)
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const TextWidget('Pengumuman Lelang'),
+                                  Expanded(
+                                    child: TextWidget(
+                                      noteAuction,
+                                      textAlign: TextAlign.right,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               );

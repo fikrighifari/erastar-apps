@@ -154,7 +154,7 @@ class CashFlowController {
           },
         ),
       );
-      print('response detail arus kas $response');
+      // print('response detail arus kas $response');
       if (response.statusCode == 200) {
         DetailCashFlow detailCashFlow = DetailCashFlow.fromJson(response.data);
 
