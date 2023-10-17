@@ -19,5 +19,9 @@ const getAPICashFlow = "${baseAPIUrl}invoices/invoice_cashflow?";
 const getAPICashFlowDetail =
     "${baseAPIUrl}invoices/invoice_cashflow?invoice_id=";
 
+// Invoice Stuff
 const getAPIInvoice = "${baseAPIUrl}invoices/invoice_lists?";
+const getAPIInvoiceDetail = "${baseAPIUrl}invoices/invoice_detail/";
+
+// Top Marketing Stuff
 const getAPITopMarketing = "${baseAPIUrl}marketing/top_marketing?";

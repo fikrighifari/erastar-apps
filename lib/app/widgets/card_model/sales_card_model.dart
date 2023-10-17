@@ -1,4 +1,5 @@
 class SalesCardModel {
+  String? idInvoice;
   String? idListing;
   String? title;
   String? marketingName;
@@ -8,6 +9,7 @@ class SalesCardModel {
   int? value;
 
   SalesCardModel({
+    this.idInvoice,
     this.idListing,
     this.title,
     this.marketingName,

@@ -439,6 +439,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   SalesCard(
                                                     salesCardModel:
                                                         SalesCardModel(
+                                                      idInvoice:
+                                                          listDataInvoice.id,
                                                       idListing: listDataInvoice
                                                           .asset!.listingId,
                                                       title: listDataInvoice

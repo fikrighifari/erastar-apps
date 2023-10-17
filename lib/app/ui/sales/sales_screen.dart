@@ -106,6 +106,9 @@ class _SalesScreenState extends State<SalesScreen> {
                                                       SalesCard(
                                                         salesCardModel:
                                                             SalesCardModel(
+                                                          idInvoice:
+                                                              listDataInvoice
+                                                                  .id,
                                                           idListing:
                                                               listDataInvoice
                                                                   .asset!
