@@ -35,6 +35,8 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
       costId,
       invoiceId;
 
+  bool isLoading = false;
+
   @override
   void initState() {
     fetchData(widget.approvalItem.idCost);
@@ -98,22 +100,188 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
               return SafeArea(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: EdgeInsets.all(defaultMargin),
-                    child: Column(
-                      children: [
-                        CustomContainer(
-                          radius: 4,
-                          padding: EdgeInsets.all(defaultMargin),
-                          width: double.infinity,
-                          backgroundColor: AppColor.whiteColor,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                      padding: EdgeInsets.all(defaultMargin),
+                      child: Stack(
+                        children: [
+                          Column(
                             children: [
-                              TextWidget(
-                                'Detail Cost',
-                                color: AppColor.primayRedColor,
-                                fontSize: 16,
-                                fontWeight: boldWeight,
+                              CustomContainer(
+                                radius: 4,
+                                padding: EdgeInsets.all(defaultMargin),
+                                width: double.infinity,
+                                backgroundColor: AppColor.whiteColor,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextWidget(
+                                      'Detail Cost',
+                                      color: AppColor.primayRedColor,
+                                      fontSize: 16,
+                                      fontWeight: boldWeight,
+                                    ),
+                                    SizedBox(
+                                      height: defaultMargin,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const TextWidget('Judul'),
+                                        TextWidget(title)
+                                      ],
+                                    ),
+                                    const Divider(
+                                      thickness: 1,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const TextWidget('Keterangan'),
+                                        TextWidget(description)
+                                      ],
+                                    ),
+                                    const Divider(
+                                      thickness: 1,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const TextWidget('Jumlah'),
+                                        TextWidget(value)
+                                      ],
+                                    ),
+                                    const Divider(
+                                      thickness: 1,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const TextWidget('Tanggal dibuat'),
+                                        TextWidget(createdDate)
+                                      ],
+                                    ),
+                                    const Divider(
+                                      thickness: 1,
+                                    ),
+                                    // updatedDate == null
+                                    //     ? Container()
+                                    //     : Row(
+                                    //         mainAxisAlignment:
+                                    //             MainAxisAlignment.spaceBetween,
+                                    //         children: [
+                                    //           const TextWidget(
+                                    //               'Tanggal diperbaharui'),
+                                    //           TextWidget(updatedDate ?? '-')
+                                    //         ],
+                                    //       ),
+                                    // const Divider(
+                                    //   thickness: 1,
+                                    // ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const TextWidget('Status'),
+                                        TextWidget(status)
+                                      ],
+                                    ),
+                                    const Divider(
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              CustomContainer(
+                                radius: 4,
+                                padding: EdgeInsets.all(defaultMargin),
+                                width: double.infinity,
+                                backgroundColor: AppColor.whiteColor,
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      TextWidget(
+                                        'Detail Invoice',
+                                        color: AppColor.primayRedColor,
+                                        fontSize: 16,
+                                        fontWeight: boldWeight,
+                                      ),
+                                      SizedBox(
+                                        height: defaultMargin,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const TextWidget('Nomor Invoice'),
+                                          TextWidget(invoiceNumber)
+                                        ],
+                                      ),
+                                      const Divider(
+                                        thickness: 1,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const TextWidget('Nama Pembeli'),
+                                          TextWidget(buyerName)
+                                        ],
+                                      ),
+                                      const Divider(
+                                        thickness: 1,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const TextWidget('Email Pembeli'),
+                                          TextWidget(buyerEmail)
+                                        ],
+                                      ),
+                                      const Divider(
+                                        thickness: 1,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const TextWidget('Kontak Pembeli'),
+                                          TextWidget(buyerPhone)
+                                        ],
+                                      ),
+                                      const Divider(
+                                        thickness: 1,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const TextWidget('Jumlah Invoice'),
+                                          TextWidget(valueInvoice)
+                                        ],
+                                      ),
+                                      const Divider(
+                                        thickness: 1,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const TextWidget('Status'),
+                                          TextWidget(statusInvoice)
+                                        ],
+                                      ),
+                                      const Divider(
+                                        thickness: 1,
+                                      ),
+                                    ]),
                               ),
                               SizedBox(
                                 height: defaultMargin,
@@ -122,215 +290,73 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const TextWidget('Judul'),
-                                  TextWidget(title)
+                                  CustomButton(
+                                    isRounded: true,
+                                    buttonType: ButtonType.noOutLined,
+                                    borderRadius: 8,
+                                    onPressed: () {
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+
+                                      Future.delayed(const Duration(seconds: 1),
+                                          () {
+                                        setState(() async {
+                                          CashFlowController.approveCost(
+                                            costId.toString(),
+                                            invoiceId.toString(),
+                                            'approved',
+                                          );
+                                          UiUtils.successMessage(
+                                              'Data Telah disetujui', context);
+                                          Future.delayed(
+                                              const Duration(seconds: 1), () {
+                                            Navigator.of(context).pop();
+                                          });
+                                        });
+
+                                        // Perform the logic or navigate to a new screen
+                                        // ...
+                                      });
+                                    },
+                                    width: 100,
+                                    height: 40,
+                                    backgroundColor: AppColor.greenColor,
+                                    text: const TextWidget(
+                                      'Approve',
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  CustomButton(
+                                    isRounded: true,
+                                    buttonType: ButtonType.noOutLined,
+                                    borderRadius: 8,
+                                    onPressed: () {
+                                      print(costId);
+                                      print(invoiceId);
+                                      CashFlowController.approveCost(
+                                        costId.toString(),
+                                        invoiceId.toString(),
+                                        'reject',
+                                      );
+                                    },
+                                    width: 100,
+                                    height: 40,
+                                    backgroundColor: AppColor.primayRedColor,
+                                    text: const TextWidget(
+                                      'Tolak',
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ],
-                              ),
-                              const Divider(
-                                thickness: 1,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const TextWidget('Keterangan'),
-                                  TextWidget(description)
-                                ],
-                              ),
-                              const Divider(
-                                thickness: 1,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const TextWidget('Jumlah'),
-                                  TextWidget(value)
-                                ],
-                              ),
-                              const Divider(
-                                thickness: 1,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const TextWidget('Tanggal dibuat'),
-                                  TextWidget(createdDate)
-                                ],
-                              ),
-                              const Divider(
-                                thickness: 1,
-                              ),
-                              // updatedDate == null
-                              //     ? Container()
-                              //     : Row(
-                              //         mainAxisAlignment:
-                              //             MainAxisAlignment.spaceBetween,
-                              //         children: [
-                              //           const TextWidget(
-                              //               'Tanggal diperbaharui'),
-                              //           TextWidget(updatedDate ?? '-')
-                              //         ],
-                              //       ),
-                              // const Divider(
-                              //   thickness: 1,
-                              // ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const TextWidget('Status'),
-                                  TextWidget(status)
-                                ],
-                              ),
-                              const Divider(
-                                thickness: 1,
                               ),
                             ],
                           ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        CustomContainer(
-                          radius: 4,
-                          padding: EdgeInsets.all(defaultMargin),
-                          width: double.infinity,
-                          backgroundColor: AppColor.whiteColor,
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextWidget(
-                                  'Detail Invoice',
-                                  color: AppColor.primayRedColor,
-                                  fontSize: 16,
-                                  fontWeight: boldWeight,
-                                ),
-                                SizedBox(
-                                  height: defaultMargin,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const TextWidget('Nomor Invoice'),
-                                    TextWidget(invoiceNumber)
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const TextWidget('Nama Pembeli'),
-                                    TextWidget(buyerName)
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const TextWidget('Email Pembeli'),
-                                    TextWidget(buyerEmail)
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const TextWidget('Kontak Pembeli'),
-                                    TextWidget(buyerPhone)
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const TextWidget('Jumlah Invoice'),
-                                    TextWidget(valueInvoice)
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const TextWidget('Status'),
-                                    TextWidget(statusInvoice)
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                ),
-                              ]),
-                        ),
-                        SizedBox(
-                          height: defaultMargin,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomButton(
-                              isRounded: true,
-                              buttonType: ButtonType.noOutLined,
-                              borderRadius: 8,
-                              onPressed: () {
-                                print(costId);
-                                print(invoiceId);
-                                CashFlowController.approveCost(
-                                  costId.toString(),
-                                  invoiceId.toString(),
-                                  'approved',
-                                );
-                              },
-                              width: 100,
-                              height: 40,
-                              backgroundColor: AppColor.greenColor,
-                              text: const TextWidget(
-                                'Approve',
-                                color: Colors.white,
-                              ),
-                            ),
-                            CustomButton(
-                              isRounded: true,
-                              buttonType: ButtonType.noOutLined,
-                              borderRadius: 8,
-                              onPressed: () {
-                                print(costId);
-                                print(invoiceId);
-                                CashFlowController.approveCost(
-                                  costId.toString(),
-                                  invoiceId.toString(),
-                                  'reject',
-                                );
-                              },
-                              width: 100,
-                              height: 40,
-                              backgroundColor: AppColor.primayRedColor,
-                              text: const TextWidget(
-                                'Tolak',
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                          isLoading
+                              ? Center(child: CircularProgressIndicator())
+                              : Container(),
+                        ],
+                      )),
                 ),
               );
           }
