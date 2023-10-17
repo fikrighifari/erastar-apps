@@ -96,38 +96,46 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                 children: [
                   Padding(
                     padding: EdgeInsets.all(defaultMargin),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // _filterKas(),
-                        // _contentKas(),
-                        Text('Arus Kas'),
-                        listDataCashFlow!.isNotEmpty
-                            ? ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: listDataCashFlow!.length,
-                                itemBuilder: (context, index) {
-                                  var cashFlowList = listDataCashFlow![index];
-                                  return Column(
-                                    children: [
-                                      ArusKasCard(
-                                        arusKasCardModel: ArusKasCardModel(
-                                          title: cashFlowList.title,
-                                          description: cashFlowList.description,
-                                          date:
-                                              cashFlowList.createdAt.toString(),
-                                          value: cashFlowList.value,
-                                          status: cashFlowList.status,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // _filterKas(),
+                          // _contentKas(),
+                          Text('Arus Kas'),
+                          listDataCashFlow!.isNotEmpty
+                              ? ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: listDataCashFlow!.length,
+                                  itemBuilder: (context, index) {
+                                    var cashFlowList = listDataCashFlow![index];
+                                    return Column(
+                                      children: [
+                                        ArusKasCard(
+                                          arusKasCardModel: ArusKasCardModel(
+                                            idInvoice: cashFlowList.invoice!.id,
+                                            title: cashFlowList.title,
+                                            description:
+                                                cashFlowList.description,
+                                            date: cashFlowList.createdAt
+                                                .toString(),
+                                            value: cashFlowList.value,
+                                            status: cashFlowList.status,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              )
-                            : Text('Data Arus Kas Kosong')
-                      ],
+                                      ],
+                                    );
+                                  },
+                                )
+                              : Text('Data Arus Kas Kosong'),
+
+                          SizedBox(
+                            height: 100,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(

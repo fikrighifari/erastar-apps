@@ -15,7 +15,7 @@ class CashFlowController {
     try {
       var params = {
         "page": 1,
-        "limit": 4,
+        "limit": '',
         "sort": "desc",
       };
       Dio dio = Dio();
