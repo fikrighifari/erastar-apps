@@ -146,6 +146,7 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                                     children: [
                                       ApprovalCard(
                                           approvalCardModel: ApprovalCardModel(
+                                        idCost: approvalList.id,
                                         title: approvalList.title,
                                         description: approvalList.description,
                                         date: approvalList.createdAt.toString(),

@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     margin: const EdgeInsets.only(bottom: 24),
                     child: Image.asset(
-                      'assets/images/logo_transparent.png',
+                      'assets/era_star_04.png',
                       width: 75,
                     ),
                   ),
