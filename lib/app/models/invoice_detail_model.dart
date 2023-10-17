@@ -121,8 +121,8 @@ class Asset {
     required this.namaPic,
     required this.telpPic,
     required this.alamatPic,
-    required this.feeEra,
-    required this.feeEraPercentage,
+    // required this.feeEra,
+    // required this.feeEraPercentage,
     required this.statusSertifikat,
     required this.createdAt,
     required this.updatedAt,
@@ -155,8 +155,8 @@ class Asset {
   final String? namaPic;
   final String? telpPic;
   final String? alamatPic;
-  final int? feeEra;
-  final int? feeEraPercentage;
+  // final int? feeEra;
+  // final int? feeEraPercentage;
   final StatusSertifikat? statusSertifikat;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -197,8 +197,8 @@ class Asset {
       namaPic: json["nama_pic"],
       telpPic: json["telp_pic"],
       alamatPic: json["alamat_pic"],
-      feeEra: json["fee_era"],
-      feeEraPercentage: json["fee_era_percentage"],
+      // feeEra: json["fee_era"],
+      // feeEraPercentage: json["fee_era_percentage"],
       statusSertifikat: json["status_sertifikat"] == null
           ? null
           : StatusSertifikat.fromJson(json["status_sertifikat"]),

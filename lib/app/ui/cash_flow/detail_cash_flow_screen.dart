@@ -66,10 +66,10 @@ class _DetailCashFlowScreenState extends State<DetailCashFlowScreen> {
                       SizedBox(
                         height: defaultMargin,
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const TextWidget('Nomor Invoice'),
+                          TextWidget('Nomor Invoice'),
                           TextWidget('invoiceNumber')
                         ],
                       ),
