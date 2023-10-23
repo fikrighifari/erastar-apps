@@ -19,7 +19,7 @@ class DetailAssetScreen extends StatefulWidget {
 class _DetailAssetScreenState extends State<DetailAssetScreen> {
   DataAsset? dataAsset;
   late Future<DetailAssetModel?> futureAssetDetail;
-  late List<ImagesAsset?> listImages = [];
+  late List<ImageDetailAsset?> listImages = [];
 
   String? listingId,
       title,
@@ -66,13 +66,11 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
         picContactNumber = valueDetailAsset.dataDetailAsset!.telpPic;
         imgPath = valueDetailAsset.dataDetailAsset!.images.first.path;
         imgName = valueDetailAsset.dataDetailAsset!.images.first.filename;
-        print(imgPath);
-        print(imgName);
+        listImages = valueDetailAsset.dataDetailAsset!.images;
       }
 
       return futureAssetDetail;
     });
-    // imgUrl = (imgPath + imgName!);
   }
 
   @override
@@ -102,11 +100,9 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
                 child: CircularProgressIndicator(),
               );
             case ConnectionState.done:
-              return SafeArea(
-                  child: SingleChildScrollView(
+              return SingleChildScrollView(
                 child: Column(
                   children: [
-                    // SvgPicture.asset(assetName),
                     CustomContainer(
                       padding: EdgeInsets.symmetric(
                         horizontal: defaultMargin,
@@ -186,9 +182,48 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
                         ],
                       ),
                     ),
+                    // ListView.builder(
+                    //   scrollDirection: Axis.horizontal,
+                    //   shrinkWrap: true,
+                    //   physics: NeverScrollableScrollPhysics(),
+                    //   itemCount: listImages.length,
+                    //   itemBuilder: (context, index) {
+                    //     var listDataImages = listImages[index];
+                    //     return Row(
+                    //       children: [
+                    //         SizedBox(
+                    //           width: 100,
+                    //           height: 100,
+                    //           child: Image.network(
+                    //             baseAPIUrlImage +
+                    //                 listDataImages!.path! +
+                    //                 listDataImages.filename.toString(),
+                    //           ),
+                    //         )
+                    //       ],
+                    //     );
+                    //   },
+                    // )
+                    SingleChildScrollView(
+                      scrollDirection:
+                          Axis.horizontal, // Set scroll direction to horizontal
+                      child: Row(
+                        children: listImages.map((listDataImages) {
+                          return SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: Image.network(
+                              baseAPIUrlImage +
+                                  listDataImages!.path! +
+                                  listDataImages.filename.toString(),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
                   ],
                 ),
-              ));
+              );
           }
         },
       ),
