@@ -100,129 +100,144 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
                 child: CircularProgressIndicator(),
               );
             case ConnectionState.done:
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    CustomContainer(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: defaultMargin,
-                        vertical: defaultMargin,
-                      ),
-                      backgroundColor: AppColor.whiteColor,
-                      width: double.infinity,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              return Column(
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
                         children: [
                           Image.network(baseAPIUrlImage + imgPath! + imgName!),
-                          Row(
-                            children: [
-                              TextWidget(
-                                listingId.toString(),
-                              ),
-                              Spacer(),
-                              TextWidget(type.toString()),
-                              TextWidget(status.toString()),
-                            ],
-                          ),
-                          TextWidget(title),
-                          TextWidget(price),
-                          TextWidget(description),
-                          const TextWidget(
-                            'Photo',
-                            color: AppColor.primayRedColor,
-                            fontSize: 15,
-                          ),
-                          TextWidget(address),
-                          const TextWidget(
-                            'Spesifikasi',
-                            color: AppColor.primayRedColor,
-                            fontSize: 15,
-                          ),
-                          Row(
-                            children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextWidget('L. Bangunan'),
-                                  TextWidget(buildingArea),
-                                  TextWidget('L. Tanah'),
-                                  TextWidget(landArea),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextWidget('Kamar Tidur'),
-                                  TextWidget(bedRoom),
-                                  TextWidget('Kamar Mandi'),
-                                  TextWidget(bathroom),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const TextWidget(
-                            'Sertifikat',
-                            color: AppColor.primayRedColor,
-                            fontSize: 15,
-                          ),
-                          TextWidget(certificate),
-                          const TextWidget(
-                            'Kontak PIC',
-                            color: AppColor.primayRedColor,
-                            fontSize: 15,
-                          ),
-                          TextWidget(picName),
-                          TextWidget(picContactNumber),
+                          // ListView(
+                          //   children: [
+                          //     const SizedBox(
+                          //       height: 328,
+                          //     ),
+                          //     Container(
+                          //       padding: const EdgeInsets.only(
+                          //         bottom: 20,
+                          //       ),
+                          //       // height: 50,
+                          //       width: MediaQuery.of(context).size.width,
+                          //       decoration: const BoxDecoration(
+                          //         color: AppColor.whiteColor,
+                          //         borderRadius: BorderRadius.vertical(
+                          //           top: Radius.circular(20),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Column(
+                          //       children: [
+                          //         SizedBox(
+                          //           height: 30,
+                          //         ),
+                          //         Padding(
+                          //           padding: const EdgeInsets.symmetric(
+                          //             horizontal: 20,
+                          //           ),
+                          //           child: Column(
+                          //             crossAxisAlignment:
+                          //                 CrossAxisAlignment.start,
+                          //             mainAxisAlignment:
+                          //                 MainAxisAlignment.start,
+                          //             children: [
+                          //               Row(
+                          //                 children: [
+                          //                   TextWidget(
+                          //                     listingId.toString(),
+                          //                   ),
+                          //                   Spacer(),
+                          //                   TextWidget(
+                          //                     type.toString(),
+                          //                     color: AppColor.blueColor,
+                          //                   ),
+                          //                   TextWidget(status.toString()),
+                          //                 ],
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
-                    ),
-                    // ListView.builder(
-                    //   scrollDirection: Axis.horizontal,
-                    //   shrinkWrap: true,
-                    //   physics: NeverScrollableScrollPhysics(),
-                    //   itemCount: listImages.length,
-                    //   itemBuilder: (context, index) {
-                    //     var listDataImages = listImages[index];
-                    //     return Row(
-                    //       children: [
-                    //         SizedBox(
-                    //           width: 100,
-                    //           height: 100,
-                    //           child: Image.network(
-                    //             baseAPIUrlImage +
-                    //                 listDataImages!.path! +
-                    //                 listDataImages.filename.toString(),
-                    //           ),
-                    //         )
-                    //       ],
-                    //     );
-                    //   },
-                    // )
-                    SingleChildScrollView(
-                      scrollDirection:
-                          Axis.horizontal, // Set scroll direction to horizontal
-                      child: Row(
-                        children: listImages.map((listDataImages) {
-                          return SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: Image.network(
-                              baseAPIUrlImage +
-                                  listDataImages!.path! +
-                                  listDataImages.filename.toString(),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ],
-                ),
+                      // TextWidget(title),
+                      // TextWidget(price),
+                      // TextWidget(description),
+                      // const TextWidget(
+                      //   'Photo',
+                      //   color: AppColor.primayRedColor,
+                      //   fontSize: 15,
+                      // ),
+                      // TextWidget(address),
+                      // const TextWidget(
+                      //   'Spesifikasi',
+                      //   color: AppColor.primayRedColor,
+                      //   fontSize: 15,
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     Column(
+                      //       mainAxisAlignment: MainAxisAlignment.start,
+                      //       crossAxisAlignment: CrossAxisAlignment.start,
+                      //       children: [
+                      //         TextWidget('L. Bangunan'),
+                      //         TextWidget(buildingArea),
+                      //         TextWidget('L. Tanah'),
+                      //         TextWidget(landArea),
+                      //       ],
+                      //     ),
+                      //     SizedBox(
+                      //       width: 5,
+                      //     ),
+                      //     Column(
+                      //       mainAxisAlignment: MainAxisAlignment.start,
+                      //       crossAxisAlignment: CrossAxisAlignment.start,
+                      //       children: [
+                      //         TextWidget('Kamar Tidur'),
+                      //         TextWidget(bedRoom),
+                      //         TextWidget('Kamar Mandi'),
+                      //         TextWidget(bathroom),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
+                      // const TextWidget(
+                      //   'Sertifikat',
+                      //   color: AppColor.primayRedColor,
+                      //   fontSize: 15,
+                      // ),
+                      // TextWidget(certificate),
+                      // const TextWidget(
+                      //   'Kontak PIC',
+                      //   color: AppColor.primayRedColor,
+                      //   fontSize: 15,
+                      // ),
+                      // TextWidget(picName),
+                      // TextWidget(picContactNumber),
+                    ],
+                  ),
+                  // SingleChildScrollView(
+                  //   scrollDirection:
+                  //       Axis.horizontal, // Set scroll direction to horizontal
+                  //   child: Row(
+                  //     children: listImages.map((listDataImages) {
+                  //       return SizedBox(
+                  //         width: 100,
+                  //         height: 100,
+                  //         child: Image.network(
+                  //           baseAPIUrlImage +
+                  //               listDataImages!.path! +
+                  //               listDataImages.filename.toString(),
+                  //         ),
+                  //       );
+                  //     }).toList(),
+                  //   ),
+                  // ),
+                ],
               );
           }
         },
