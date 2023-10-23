@@ -98,7 +98,7 @@ class DataListAsset {
   final int? kamarMandi;
   final int? price;
   final int? initialPrice;
-  final Images? images;
+  final ImagesAsset? images;
   final dynamic sertifikat;
   final String? type;
   final Status? status;
@@ -136,7 +136,8 @@ class DataListAsset {
       kamarMandi: json["kamar_mandi"],
       price: json["price"],
       initialPrice: json["initial_price"],
-      images: json["images"] == null ? null : Images.fromJson(json["images"]),
+      images:
+          json["images"] == null ? null : ImagesAsset.fromJson(json["images"]),
       sertifikat: json["sertifikat"],
       type: json["type"],
       status: json["status"] == null ? null : Status.fromJson(json["status"]),
@@ -156,8 +157,8 @@ class DataListAsset {
   }
 }
 
-class Images {
-  Images({
+class ImagesAsset {
+  ImagesAsset({
     required this.id,
     required this.assetId,
     required this.caption,
@@ -175,8 +176,8 @@ class Images {
   final DateTime? createdAt;
   final int? v;
 
-  factory Images.fromJson(Map<String, dynamic> json) {
-    return Images(
+  factory ImagesAsset.fromJson(Map<String, dynamic> json) {
+    return ImagesAsset(
       id: json["_id"],
       assetId: json["asset_id"],
       caption: json["caption"],

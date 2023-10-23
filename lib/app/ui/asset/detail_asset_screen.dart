@@ -1,9 +1,9 @@
+import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/asset_controller.dart';
 import 'package:erastar_apps/app/models/asset_detail_model.dart';
 import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
 import 'package:erastar_apps/export.dart';
-export 'package:flutter/material.dart';
 
 class DetailAssetScreen extends StatefulWidget {
   const DetailAssetScreen({
@@ -19,6 +19,8 @@ class DetailAssetScreen extends StatefulWidget {
 class _DetailAssetScreenState extends State<DetailAssetScreen> {
   DataAsset? dataAsset;
   late Future<DetailAssetModel?> futureAssetDetail;
+  late List<ImagesAsset?> listImages = [];
+
   String? listingId,
       title,
       description,
@@ -32,7 +34,10 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
       bathroom,
       certificate,
       picName,
-      picContactNumber;
+      picContactNumber,
+      imgPath,
+      imgName,
+      imgUrl;
 
   @override
   void initState() {
@@ -59,10 +64,15 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
         certificate = valueDetailAsset.dataDetailAsset!.statusSertifikat!.name;
         picName = valueDetailAsset.dataDetailAsset!.namaPic;
         picContactNumber = valueDetailAsset.dataDetailAsset!.telpPic;
+        imgPath = valueDetailAsset.dataDetailAsset!.images.first.path;
+        imgName = valueDetailAsset.dataDetailAsset!.images.first.filename;
+        print(imgPath);
+        print(imgName);
       }
 
       return futureAssetDetail;
     });
+    // imgUrl = (imgPath + imgName!);
   }
 
   @override
@@ -108,6 +118,7 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Image.network(baseAPIUrlImage + imgPath! + imgName!),
                           Row(
                             children: [
                               TextWidget(

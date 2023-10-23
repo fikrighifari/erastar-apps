@@ -70,6 +70,175 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
     });
   }
 
+  void showApproveDialog() {
+    showDialog(
+      builder: (_) => AlertDialog(
+        title: const TextWidget.titleMedium(
+          'Approval Cost',
+          textAlign: TextAlign.center,
+          color: AppColor.blackColor,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const TextWidget.bodyMedium(
+              'Apakah anda yakin akan menyetujui cost ini?',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: defaultMargin,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: const BorderSide(color: Colors.green))),
+                  child: TextWidget.titleSmall(
+                    'Ya',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isLoading = true;
+                    });
+
+                    Future.delayed(const Duration(seconds: 1), () {
+                      setState(() async {
+                        CashFlowController.approveCost(
+                          costId.toString(),
+                          invoiceId.toString(),
+                          'approved',
+                        );
+                        UiUtils.successMessage('Data Telah disetujui', context);
+                        Future.delayed(const Duration(seconds: 1), () {
+                          Navigator.of(context).pop();
+                        });
+                      });
+
+                      // Perform the logic or navigate to a new screen
+                      // ...
+                    });
+                  },
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primayRedColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: TextWidget.titleSmall(
+                    'Tidak',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      context: context,
+    );
+  }
+
+  void showRejectDialog() {
+    showDialog(
+      builder: (_) => AlertDialog(
+        title: const TextWidget.titleMedium(
+          'Approval Cost',
+          textAlign: TextAlign.center,
+          color: AppColor.blackColor,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const TextWidget.bodyMedium(
+              'Apakah anda yakin akan menyetujui cost ini?',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: defaultMargin,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: const BorderSide(color: Colors.green))),
+                  child: TextWidget.titleSmall(
+                    'Ya',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isLoading = true;
+                    });
+                    // print(costId);
+                    // print(invoiceId);
+
+                    Future.delayed(const Duration(seconds: 1), () {
+                      setState(() async {
+                        CashFlowController.approveCost(
+                          costId.toString(),
+                          invoiceId.toString(),
+                          'reject',
+                        );
+                        UiUtils.errorMessage(
+                            'Pengajuan cost tidak disetujui', context);
+                        Future.delayed(const Duration(seconds: 1), () {
+                          Navigator.of(context).pop();
+                        });
+                      });
+
+                      // Perform the logic or navigate to a new screen
+                      // ...
+                    });
+                  },
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primayRedColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: TextWidget.titleSmall(
+                    'Tidak',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      context: context,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -297,29 +466,7 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                     onPressed: () {
                                       // print(costId);
                                       // print(invoiceId);
-                                      setState(() {
-                                        isLoading = true;
-                                      });
-
-                                      Future.delayed(const Duration(seconds: 1),
-                                          () {
-                                        setState(() async {
-                                          CashFlowController.approveCost(
-                                            costId.toString(),
-                                            invoiceId.toString(),
-                                            'approved',
-                                          );
-                                          UiUtils.successMessage(
-                                              'Data Telah disetujui', context);
-                                          Future.delayed(
-                                              const Duration(seconds: 1), () {
-                                            Navigator.of(context).pop();
-                                          });
-                                        });
-
-                                        // Perform the logic or navigate to a new screen
-                                        // ...
-                                      });
+                                      showApproveDialog();
                                     },
                                     width: 100,
                                     height: 40,
@@ -333,41 +480,7 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                     isRounded: true,
                                     buttonType: ButtonType.noOutLined,
                                     borderRadius: 8,
-                                    onPressed: () {
-                                      setState(() {
-                                        isLoading = true;
-                                      });
-                                      // print(costId);
-                                      // print(invoiceId);
-
-                                      Future.delayed(const Duration(seconds: 1),
-                                          () {
-                                        setState(() async {
-                                          CashFlowController.approveCost(
-                                            costId.toString(),
-                                            invoiceId.toString(),
-                                            'reject',
-                                          );
-                                          UiUtils.errorMessage(
-                                              'Pengajuan cost tidak disetujui',
-                                              context);
-                                          Future.delayed(
-                                              const Duration(seconds: 1), () {
-                                            Navigator.of(context).pop();
-                                          });
-                                        });
-
-                                        // Perform the logic or navigate to a new screen
-                                        // ...
-                                      });
-                                      // print(costId);
-                                      // print(invoiceId);
-                                      // CashFlowController.approveCost(
-                                      //   costId.toString(),
-                                      //   invoiceId.toString(),
-                                      //   'reject',
-                                      // );
-                                    },
+                                    onPressed: () {},
                                     width: 100,
                                     height: 40,
                                     backgroundColor: AppColor.primayRedColor,
