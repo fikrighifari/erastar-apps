@@ -140,32 +140,37 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                   ),
                   Padding(
                     padding: EdgeInsets.all(defaultMargin),
-                    child: Column(
-                      children: [
-                        Text('Approval'),
-                        listApproval!.isNotEmpty
-                            ? ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: listApproval!.length,
-                                itemBuilder: (context, index) {
-                                  var approvalList = listApproval![index];
-                                  return Column(
-                                    children: [
-                                      ApprovalCard(
-                                          approvalCardModel: ApprovalCardModel(
-                                        idCost: approvalList.id,
-                                        title: approvalList.title,
-                                        description: approvalList.description,
-                                        date: approvalList.createdAt.toString(),
-                                        value: approvalList.value,
-                                        status: approvalList.status,
-                                      ))
-                                    ],
-                                  );
-                                })
-                            : Text('Data Approval Kosong')
-                      ],
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text('Approval'),
+                          listApproval!.isNotEmpty
+                              ? ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: listApproval!.length,
+                                  itemBuilder: (context, index) {
+                                    var approvalList = listApproval![index];
+                                    return Column(
+                                      children: [
+                                        ApprovalCard(
+                                            approvalCardModel:
+                                                ApprovalCardModel(
+                                          idInvoice: approvalList.invoice!.id,
+                                          idCost: approvalList.id,
+                                          title: approvalList.title,
+                                          description: approvalList.description,
+                                          date:
+                                              approvalList.createdAt.toString(),
+                                          value: approvalList.value,
+                                          status: approvalList.status,
+                                        ))
+                                      ],
+                                    );
+                                  })
+                              : Text('Data Approval Kosong')
+                        ],
+                      ),
                     ),
                   )
                 ],

@@ -295,6 +295,8 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                     buttonType: ButtonType.noOutLined,
                                     borderRadius: 8,
                                     onPressed: () {
+                                      // print(costId);
+                                      // print(invoiceId);
                                       setState(() {
                                         isLoading = true;
                                       });
@@ -332,13 +334,39 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                     buttonType: ButtonType.noOutLined,
                                     borderRadius: 8,
                                     onPressed: () {
-                                      print(costId);
-                                      print(invoiceId);
-                                      CashFlowController.approveCost(
-                                        costId.toString(),
-                                        invoiceId.toString(),
-                                        'reject',
-                                      );
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+                                      // print(costId);
+                                      // print(invoiceId);
+
+                                      Future.delayed(const Duration(seconds: 1),
+                                          () {
+                                        setState(() async {
+                                          CashFlowController.approveCost(
+                                            costId.toString(),
+                                            invoiceId.toString(),
+                                            'reject',
+                                          );
+                                          UiUtils.errorMessage(
+                                              'Pengajuan cost tidak disetujui',
+                                              context);
+                                          Future.delayed(
+                                              const Duration(seconds: 1), () {
+                                            Navigator.of(context).pop();
+                                          });
+                                        });
+
+                                        // Perform the logic or navigate to a new screen
+                                        // ...
+                                      });
+                                      // print(costId);
+                                      // print(invoiceId);
+                                      // CashFlowController.approveCost(
+                                      //   costId.toString(),
+                                      //   invoiceId.toString(),
+                                      //   'reject',
+                                      // );
                                     },
                                     width: 100,
                                     height: 40,

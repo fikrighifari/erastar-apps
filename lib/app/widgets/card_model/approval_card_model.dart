@@ -5,6 +5,7 @@ class ApprovalCardModel {
   String? date;
   int? value;
   String? status;
+  String? idInvoice;
 
   ApprovalCardModel({
     this.idCost,
@@ -13,5 +14,6 @@ class ApprovalCardModel {
     this.date,
     this.value,
     this.status,
+    this.idInvoice,
   });
 }

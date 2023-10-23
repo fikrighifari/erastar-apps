@@ -364,6 +364,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ApprovalCard(
                                                       approvalCardModel:
                                                           ApprovalCardModel(
+                                                    idInvoice: approvalList
+                                                        .invoice!.id
+                                                        .toString(),
                                                     idCost: approvalList.id,
                                                     title: approvalList.title,
                                                     description: approvalList

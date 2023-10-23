@@ -1,15 +1,192 @@
-import 'package:erastar_apps/app/themes/themes.dart';
+import 'package:erastar_apps/app/controller/cash_flow_controller.dart';
 import 'package:erastar_apps/app/ui/cash_flow/detail_approval_cost_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
-class ApprovalCard extends StatelessWidget {
+class ApprovalCard extends StatefulWidget {
   final ApprovalCardModel approvalCardModel;
   const ApprovalCard({
     super.key,
     required this.approvalCardModel,
   });
+
+  @override
+  State<ApprovalCard> createState() => _ApprovalCardState();
+}
+
+class _ApprovalCardState extends State<ApprovalCard> {
+  void showApproveDialog() {
+    showDialog(
+      builder: (_) => AlertDialog(
+        title: const TextWidget.titleMedium(
+          'Approval Cost',
+          textAlign: TextAlign.center,
+          color: AppColor.blackColor,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const TextWidget.bodyMedium(
+              'Apakah anda yakin akan menyetujui cost ini?',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: defaultMargin,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: const BorderSide(color: Colors.green))),
+                  child: TextWidget.titleSmall(
+                    'Ya',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    // print(
+                    //     'idCost ' + widget.approvalCardModel.idCost.toString());
+                    // print('idInvoice ' +
+                    //     widget.approvalCardModel.idInvoice.toString());
+
+                    // setState(() {
+                    //   isLoading = true;
+                    // });
+
+                    Future.delayed(const Duration(seconds: 1), () {
+                      setState(() async {
+                        CashFlowController.approveCost(
+                          widget.approvalCardModel.idCost.toString(),
+                          widget.approvalCardModel.idInvoice.toString(),
+                          'approved',
+                        );
+                        Navigator.of(context).pop();
+                        UiUtils.successMessage('Data Telah disetujui', context);
+                        // Future.delayed(const Duration(seconds: 1), () {
+                        //   Navigator.of(context).pop();
+                        // });
+                      });
+                    });
+                  },
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primayRedColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: TextWidget.titleSmall(
+                    'Tidak',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      context: context,
+    );
+  }
+
+  void showRejectDialog() {
+    showDialog(
+      builder: (_) => AlertDialog(
+        title: const TextWidget.titleMedium(
+          'Approval Cost',
+          textAlign: TextAlign.center,
+          color: AppColor.blackColor,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const TextWidget.bodyMedium(
+              'Apakah anda yakin akan menolak cost ini?',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: defaultMargin,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          side: const BorderSide(color: Colors.green))),
+                  child: TextWidget.titleSmall(
+                    'Ya',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    // print(
+                    //     'idCost ' + widget.approvalCardModel.idCost.toString());
+                    // print('idInvoice ' +
+                    //     widget.approvalCardModel.idInvoice.toString());
+
+                    // setState(() {
+                    //   isLoading = true;
+                    // });
+
+                    Future.delayed(const Duration(seconds: 1), () {
+                      setState(() async {
+                        CashFlowController.approveCost(
+                          widget.approvalCardModel.idCost.toString(),
+                          widget.approvalCardModel.idInvoice.toString(),
+                          'reject',
+                        );
+                        Navigator.of(context).pop();
+                        UiUtils.successMessage(
+                            'Data berhasil ditolak', context);
+                        // Future.delayed(const Duration(seconds: 1), () {
+                        //   Navigator.of(context).pop();
+                        // });
+                      });
+                    });
+                  },
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primayRedColor,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: TextWidget.titleSmall(
+                    'Tidak',
+                    color: AppColor.whiteColor,
+                    fontWeight: boldWeight,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      context: context,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +197,7 @@ class ApprovalCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => DetailApprovalCostScreen(
-              approvalItem: approvalCardModel,
+              approvalItem: widget.approvalCardModel,
             ),
           ),
         );
@@ -37,10 +214,10 @@ class ApprovalCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextWidget.labelLarge(
-              approvalCardModel.title.toString(),
+              widget.approvalCardModel.title.toString(),
             ),
             TextWidget.labelLarge(
-              approvalCardModel.description.toString(),
+              widget.approvalCardModel.description.toString(),
             ),
             const Divider(
               color: AppColor.naturalGrey1,
@@ -52,7 +229,7 @@ class ApprovalCard extends StatelessWidget {
                   "Tanggal",
                 ),
                 TextWidget(
-                  approvalCardModel.date.toString(),
+                  widget.approvalCardModel.date.toString(),
                 )
               ],
             ),
@@ -63,7 +240,7 @@ class ApprovalCard extends StatelessWidget {
                   "Biaya Pengeluaran",
                 ),
                 Text(
-                  approvalCardModel.value.toString(),
+                  widget.approvalCardModel.value.toString(),
                 )
               ],
             ),
@@ -75,7 +252,7 @@ class ApprovalCard extends StatelessWidget {
                   // style: dateTextStyle,
                 ),
                 TextWidget(
-                  approvalCardModel.status,
+                  widget.approvalCardModel.status,
                   // style: incomePriceTextStyle,
                 )
               ],
@@ -90,7 +267,9 @@ class ApprovalCard extends StatelessWidget {
                   isRounded: true,
                   buttonType: ButtonType.noOutLined,
                   borderRadius: 8,
-                  onPressed: () {},
+                  onPressed: () {
+                    showApproveDialog();
+                  },
                   width: 100,
                   height: 40,
                   backgroundColor: AppColor.greenColor,
@@ -104,7 +283,9 @@ class ApprovalCard extends StatelessWidget {
                   buttonType: ButtonType.noOutLined,
                   backgroundColor: AppColor.primayRedColor,
                   borderRadius: 8,
-                  onPressed: () {},
+                  onPressed: () {
+                    showRejectDialog();
+                  },
                   width: 100,
                   height: 40,
                   text: const TextWidget(

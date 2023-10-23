@@ -24,6 +24,7 @@ class AssetCard extends StatelessWidget {
         );
       },
       child: CustomContainer(
+        // height: 200,
         margin: EdgeInsets.fromLTRB(
           0,
           0,
@@ -47,8 +48,8 @@ class AssetCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         child: Image.network(
                           assetCardModel.imgUrl.toString(),
-                          // width: 50,
-                          height: 200,
+                          width: double.infinity,
+                          height: 150,
                           fit: BoxFit.cover,
                         ),
                       ),

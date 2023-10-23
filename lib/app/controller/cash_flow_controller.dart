@@ -52,7 +52,7 @@ class CashFlowController {
       String? authToken = await LocalStorageService.load("headerToken");
       var params = {
         "page": 1,
-        "limit": 4,
+        "limit": 10,
         "sort": "desc",
         "status": "pending",
       };
