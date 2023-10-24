@@ -48,6 +48,36 @@ class AuthServices extends ChangeNotifier {
     // return null;
   }
 
+  Future<dynamic> resetPassowrd(
+    BuildContext context,
+    String email,
+  ) async {
+    Map<String, dynamic> body = {
+      "email": email,
+    };
+    try {
+      Dio dio = Dio();
+      Response response = await dio.post(postResetPassword,
+          data: jsonEncode(body),
+          options: Options(
+            contentType: 'application/json',
+          ));
+
+      print("response  Data $response");
+      // print(response.data['token']);
+
+      if (response.statusCode == 200) {
+        return response;
+      }
+      return null;
+    } on DioException catch (e) {
+      // UiUtils.errorMessage(e.response!.data["message"], context);
+      print(e.response!.data);
+    }
+    return null;
+    // return null;
+  }
+
   getData() async {
     verifykl = 11;
 

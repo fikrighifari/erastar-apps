@@ -16,7 +16,6 @@ class AssetScreen extends StatefulWidget {
 class _AssetScreenState extends State<AssetScreen> {
   bool isLoading = false;
   late Future<AssetModel?> futureAsset;
-  late Future<ProfileModel?> futureProfile;
   late List<DataListAsset>? listAsset = [];
 
   late DataProfile dataProfile;
@@ -39,20 +38,6 @@ class _AssetScreenState extends State<AssetScreen> {
   }
 
   fetchData() async {
-    //Get Profile
-    futureProfile = AssetController().getProfile();
-    futureProfile.then((valueProfile) async {
-      if (valueProfile != null) {
-        if (valueProfile.status == "success") {
-          dataProfile = valueProfile.data;
-          nameProfile = valueProfile.data.name;
-          avatarProfile =
-              '${valueProfile.data.avatarPath}${valueProfile.data.avatar}';
-          roleProfile = valueProfile.data.role!.name;
-        }
-      }
-    });
-
     futureAsset = AssetController().getAsset();
     futureAsset.then((valueAsset) {
       if (valueAsset != null) {
