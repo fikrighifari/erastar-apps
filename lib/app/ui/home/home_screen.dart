@@ -5,16 +5,14 @@ import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/models/cash_flow_model.dart';
 import 'package:erastar_apps/app/models/invoice_model.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
-import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
-import 'package:erastar_apps/app/widgets/card_model/cash_flow_card_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
+import 'package:erastar_apps/app/widgets/card_model/cash_flow_card_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
 import 'package:erastar_apps/app/widgets/cards/approval_card.dart';
-import 'package:erastar_apps/app/widgets/cards/cash_flow_card.dart';
 import 'package:erastar_apps/app/widgets/cards/asset_card.dart';
+import 'package:erastar_apps/app/widgets/cards/cash_flow_card.dart';
 import 'package:erastar_apps/app/widgets/cards/sales_card.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -341,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   );
                                                 }).toList(),
                                               )
-                                            : Text('Data Asset Kosong')),
+                                            : const Text('Data Asset Kosong')),
 
                                     // Approval List
                                     TextWidget(
@@ -379,7 +377,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ],
                                               );
                                             })
-                                        : Text('Data Approval Kosong'),
+                                        : const Text('Data Approval Kosong'),
 
                                     //Arus Kas
                                     TextWidget(
@@ -419,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               );
                                             },
                                           )
-                                        : Text('Data Arus Kas Kosong'),
+                                        : const Text('Data Arus Kas Kosong'),
 
                                     //Penjualan Aset
                                     TextWidget(
@@ -468,7 +466,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ],
                                               );
                                             })
-                                        : Text('Data Penjualan Aset Kosong')
+                                        : const Text(
+                                            'Data Penjualan Aset Kosong')
                                   ],
                                 ),
                               ),

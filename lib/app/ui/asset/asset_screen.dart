@@ -207,7 +207,8 @@ class _AssetScreenState extends State<AssetScreen> {
                                                       );
                                                     }).toList(),
                                                   )
-                                                : Text('Data Asset Kosong')),
+                                                : const Text(
+                                                    'Data Asset Kosong')),
                                       ],
                                     ),
                                   )

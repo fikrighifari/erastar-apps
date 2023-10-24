@@ -1,4 +1,3 @@
-import 'package:erastar_apps/app/models/top_marketing_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/top_marketing_card_model.dart';
 import 'package:erastar_apps/export.dart';
 
@@ -14,7 +13,7 @@ class TopMarketingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       margin: const EdgeInsets.symmetric(
         vertical: 10,
       ),

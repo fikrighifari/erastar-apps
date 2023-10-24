@@ -1,6 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 part of 'reusable_components.dart';
 
-Widget displayNone() => SizedBox.shrink();
+Widget displayNone() => const SizedBox.shrink();
 
 class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon, prefixIcon;
@@ -46,52 +48,52 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        this.labelText != null
+        labelText != null
             ? Text(
-                this.labelText.toString(),
-                style: this.labelStyle ?? defaultTextStyle,
+                labelText.toString(),
+                style: labelStyle ?? defaultTextStyle,
               )
             : displayNone(),
-        SizedBox(
+        const SizedBox(
           height: 6,
         ),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: this.backgroundColor ?? AppColor.whiteColor,
+            color: backgroundColor ?? AppColor.whiteColor,
           ),
           child: TextField(
-            controller: this.controller,
-            maxLines: this.maxLine ?? 1,
-            minLines: this.minLine ?? 1,
-            keyboardType: this.keyboardType,
-            readOnly: this.readOnly,
-            onTap: this.onTap,
-            style: this.textStyle ?? TextStyle(fontSize: 13),
+            controller: controller,
+            maxLines: maxLine ?? 1,
+            minLines: minLine ?? 1,
+            keyboardType: keyboardType,
+            readOnly: readOnly,
+            onTap: onTap,
+            style: textStyle ?? const TextStyle(fontSize: 13),
             decoration: InputDecoration(
               errorText: null,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: AppColor.blackColor,
                 ),
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
-              contentPadding: this.padding ??
-                  EdgeInsets.symmetric(horizontal: 16).copyWith(
+              contentPadding: padding ??
+                  const EdgeInsets.symmetric(horizontal: 16).copyWith(
                     top: 10,
                     bottom: 10,
                   ),
-              hintText: this.hintText,
-              hintStyle: TextStyle(
+              hintText: hintText,
+              hintStyle: const TextStyle(
                 color: Colors.grey,
               ),
-              suffixIcon: this.suffixIcon,
-              prefixIcon: this.prefixIcon,
+              suffixIcon: suffixIcon,
+              prefixIcon: prefixIcon,
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: AppColor.primayRedColor,
                   width: 1.0,
                 ),
@@ -99,10 +101,10 @@ class CustomTextField extends StatelessWidget {
               ),
             ),
             cursorColor: Colors.grey,
-            obscureText: this.obscureText,
+            obscureText: obscureText,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
       ],
@@ -124,7 +126,7 @@ class SuffixIconTextOutline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: this.onTap,
+      onTap: onTap,
       child: Transform.scale(
         scale: .5,
         child: SvgPicture.asset(
@@ -157,9 +159,9 @@ class CustomTextButton extends StatelessWidget {
           primary: AppColor.primayRedColor,
           padding: padding,
         ),
-        onPressed: this.onTap ?? () {},
+        onPressed: onTap ?? () {},
         child: Text(
-          this.text,
+          text,
           style: style,
         ));
   }
@@ -212,47 +214,47 @@ class OutlineTextField extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: this.backgroundColor ?? AppColor.whiteColor,
+        color: backgroundColor ?? AppColor.whiteColor,
       ),
-      margin: this.margin,
+      margin: margin,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Flexible(
               child: TextFormField(
-            inputFormatters: this.inputFormatter,
-            focusNode: this.focusNode,
-            obscureText: this.obscureText,
-            controller: this.controller,
-            onChanged: this.onChanged,
-            onTap: this.onTap,
-            readOnly: this.readOnly,
-            keyboardType: this.keyboardType,
-            maxLines: this.maxLine,
-            minLines: this.minLine,
-            validator: this.validator,
+            inputFormatters: inputFormatter,
+            focusNode: focusNode,
+            obscureText: obscureText,
+            controller: controller,
+            onChanged: onChanged,
+            onTap: onTap,
+            readOnly: readOnly,
+            keyboardType: keyboardType,
+            maxLines: maxLine,
+            minLines: minLine,
+            validator: validator,
             decoration: InputDecoration(
-              fillColor: this.readOnly ? AppColor.blackColor : null,
-              filled: this.readOnly && this.filled,
+              fillColor: readOnly ? AppColor.blackColor : null,
+              filled: readOnly && filled,
               isDense: true,
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: AppColor.whiteColor,
                 ),
               ),
-              border: OutlineInputBorder(),
-              contentPadding:
-                  padding ?? EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              hintText: this.hintText,
+              border: const OutlineInputBorder(),
+              contentPadding: padding ??
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              hintText: hintText,
               hintStyle: TextStyle(
-                color: this.textHintColor,
+                color: textHintColor,
               ),
               labelStyle: TextStyle(
-                color: this.textLabelColor,
+                color: textLabelColor,
               ),
-              labelText: this.labelText,
-              suffixIcon: this.suffixIcon,
-              helperText: this.helperText,
+              labelText: labelText,
+              suffixIcon: suffixIcon,
+              helperText: helperText,
             ),
           ))
         ],
@@ -291,12 +293,12 @@ class OutlineTextField extends StatelessWidget {
           keyboardType: keyboardType,
           maxLine: maxline,
           minLine: minline,
-          margin: margin ?? EdgeInsets.only(bottom: 12),
+          margin: margin ?? const EdgeInsets.only(bottom: 12),
           backgroundColor: AppColor.backgroundColor,
           textLabelColor: AppColor.primayRedColor,
           labelText: label,
           suffixIcon: suffixIcon,
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 12,
             vertical: 14,
           ).copyWith(top: 14),

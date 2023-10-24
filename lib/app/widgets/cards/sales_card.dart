@@ -1,7 +1,5 @@
-import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/ui/sales/detail_sales_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class SalesCard extends StatelessWidget {
@@ -25,8 +23,8 @@ class SalesCard extends StatelessWidget {
         );
       },
       child: CustomContainer(
-        padding: EdgeInsets.all(8),
-        margin: EdgeInsets.symmetric(
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(
           vertical: 5,
         ),
         containerType: RoundedContainerType.outlined,

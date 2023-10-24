@@ -1,5 +1,3 @@
-import 'package:erastar_apps/app/themes/themes.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class EditProfileScreen extends StatefulWidget {

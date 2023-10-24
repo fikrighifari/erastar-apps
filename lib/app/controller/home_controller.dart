@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:dio/dio.dart';
 import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/models/approval_cost_model.dart';

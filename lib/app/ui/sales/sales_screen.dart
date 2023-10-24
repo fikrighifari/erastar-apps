@@ -1,9 +1,7 @@
 import 'package:erastar_apps/app/controller/sales_controller.dart';
 import 'package:erastar_apps/app/models/invoice_model.dart';
-import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
 import 'package:erastar_apps/app/widgets/cards/sales_card.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class SalesScreen extends StatefulWidget {
@@ -131,7 +129,8 @@ class _SalesScreenState extends State<SalesScreen> {
                                                 ],
                                               );
                                             })
-                                        : Text('Data Penjualan Aset Kosong')
+                                        : const Text(
+                                            'Data Penjualan Aset Kosong')
                                   ],
                                 ),
                               ),

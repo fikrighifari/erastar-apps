@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 part of 'reusable_components.dart';
 
 enum ButtonType { outLined, noOutLined }
@@ -98,13 +100,13 @@ class MyOutlineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        shape: this.borderRadius != null
+        shape: borderRadius != null
             ? RoundedRectangleBorder(
-                borderRadius: this.borderRadius!,
+                borderRadius: borderRadius!,
               )
-            : RoundedRectangleBorder(
+            : const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(12))),
-        backgroundColor: this.bacgroundColor ?? AppColor.netral1(),
+        backgroundColor: bacgroundColor ?? AppColor.netral1(),
         elevation: 0,
         primary: color ?? AppColor.primayRedColor,
         padding: padding,
@@ -112,21 +114,21 @@ class MyOutlineButton extends StatelessWidget {
           color: color ?? AppColor.primayRedColor,
         ),
       ),
-      onPressed: this.onTap ?? () {},
+      onPressed: onTap ?? () {},
       child: prefixIcon != null
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                this.prefixIcon!,
-                Spacing(width: 8),
+                prefixIcon!,
+                const Spacing(width: 8),
                 Text(
-                  this.text,
+                  text,
                   style: style,
                 ),
               ],
             )
           : Text(
-              this.text,
+              text,
               style: style,
             ),
     );
@@ -145,7 +147,7 @@ class Spacing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: this.height ?? 12,
+      height: height ?? 12,
       width: width,
     );
   }

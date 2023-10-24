@@ -1,6 +1,4 @@
 import 'package:erastar_apps/app/services/auth_service.dart';
-import 'package:erastar_apps/app/themes/themes.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 import 'package:provider/provider.dart';
 
@@ -159,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               isLoading
-                  ? Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator())
                   : Container(),
             ],
           ),

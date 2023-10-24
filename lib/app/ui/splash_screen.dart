@@ -1,6 +1,5 @@
-import 'package:erastar_apps/export.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:erastar_apps/export.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

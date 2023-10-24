@@ -1,12 +1,13 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:io';
+
 import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/dashboard_controller.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
-import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/ui/asset/asset_screen.dart';
-import 'package:erastar_apps/app/ui/home/home_screen.dart';
 import 'package:erastar_apps/app/ui/cash_flow/cash_flow_screen.dart';
+import 'package:erastar_apps/app/ui/home/home_screen.dart';
 import 'package:erastar_apps/app/ui/sales/sales_screen.dart';
 import 'package:erastar_apps/app/ui/sales/top_marketing_screen.dart';
 import 'package:erastar_apps/export.dart';
@@ -25,6 +26,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   late String? roleProfile = '';
   late String? avatarProfile = '';
   bool isLoading = false;
+  DateTime timeBackPressed = DateTime.now();
 
   int currentIndex = 0;
   @override
@@ -44,7 +46,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           avatarProfile = '${value.data.avatarPath}${value.data.avatar}';
           roleProfile = value.data.role!.name;
 
-          print(roleProfile);
+          // print(roleProfile);
           // data1();
         }
       }
@@ -223,128 +225,145 @@ class _DashboardScreenState extends State<DashboardScreen> {
       }
     }
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: AppBar(
-            automaticallyImplyLeading: false,
-            backgroundColor: AppColor.primayRedColor,
-            title: FutureBuilder<ProfileModel?>(
-                future: futureProfile,
-                builder:
-                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                      return const Text('Press button to start');
-                    case ConnectionState.active:
-                      return const Text('Press button to start.');
-                    case ConnectionState.waiting:
-                      return const Center(
-                        child: LinearProgressIndicator(
-                          color: AppColor.whiteColor,
-                        ),
-                      );
-                    case ConnectionState.done:
-                      return InkWell(
-                        onTap: () {
-                          Modular.to.pushNamed('/profile/');
-                        },
-                        child: Row(
-                          children: [
-                            avatarProfile == null
-                                ? SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: SvgPicture.asset(
-                                      'assets/icons/ic_default_avatar.svg',
-                                      colorFilter: const ColorFilter.mode(
-                                        AppColor.whiteColor,
-                                        BlendMode.srcIn,
+    return WillPopScope(
+      onWillPop: () async {
+        final difference = DateTime.now().difference(timeBackPressed);
+        final isExitWarning = difference >= const Duration(seconds: 2);
+        timeBackPressed = DateTime.now();
+
+        if (isExitWarning) {
+          Fluttertoast.showToast(msg: 'Press back again to exit');
+
+          return false;
+        } else {
+          Fluttertoast.cancel();
+          return exit(0);
+        }
+        // return exit(0);
+      },
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: AppColor.primayRedColor,
+              title: FutureBuilder<ProfileModel?>(
+                  future: futureProfile,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                        return const Text('Press button to start');
+                      case ConnectionState.active:
+                        return const Text('Press button to start.');
+                      case ConnectionState.waiting:
+                        return const Center(
+                          child: LinearProgressIndicator(
+                            color: AppColor.whiteColor,
+                          ),
+                        );
+                      case ConnectionState.done:
+                        return InkWell(
+                          onTap: () {
+                            Modular.to.pushNamed('/profile/');
+                          },
+                          child: Row(
+                            children: [
+                              avatarProfile == null
+                                  ? SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: SvgPicture.asset(
+                                        'assets/icons/ic_default_avatar.svg',
+                                        colorFilter: const ColorFilter.mode(
+                                          AppColor.whiteColor,
+                                          BlendMode.srcIn,
+                                        ),
+                                      ),
+                                    )
+                                  : SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircleAvatar(
+                                        backgroundImage: NetworkImage(
+                                          '$baseAPIUrlImage$avatarProfile',
+                                        ),
+                                        backgroundColor: AppColor.whiteColor,
                                       ),
                                     ),
-                                  )
-                                : SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                        '$baseAPIUrlImage$avatarProfile',
-                                      ),
-                                      backgroundColor: AppColor.whiteColor,
-                                    ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  TextWidget(
+                                    nameProfile.toString(),
+                                    color: AppColor.whiteColor,
                                   ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextWidget(
-                                  nameProfile.toString(),
-                                  color: AppColor.whiteColor,
-                                ),
-                                TextWidget(
-                                  roleProfile.toString(),
-                                  color: AppColor.whiteColor,
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            SvgPicture.asset(
-                              'assets/icons/ic_notification.svg',
-                            )
-                          ],
-                        ),
-                      );
-                  }
-                })),
-      ),
-      body: FutureBuilder<ProfileModel?>(
-        future: futureProfile,
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return const Text('Press button to start');
-            case ConnectionState.active:
-              return const Text('Press button to start.');
-            case ConnectionState.waiting:
-              return const Center(
-                child: LinearProgressIndicator(
-                  color: AppColor.whiteColor,
-                ),
-              );
-            case ConnectionState.done:
-              if (roleProfile == 'Superadmin') {
-                return Container(child: bodyContentSuperAdmin());
-              } else {
-                return Container(child: bodyContentMentor());
-              }
-          }
-        },
-      ),
-      bottomNavigationBar: FutureBuilder<ProfileModel?>(
-        future: futureProfile,
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              return const Text('Press button to start');
-            case ConnectionState.active:
-              return const Text('Press button to start.');
-            case ConnectionState.waiting:
-              return const Center(
-                child: LinearProgressIndicator(
-                  color: AppColor.whiteColor,
-                ),
-              );
-            case ConnectionState.done:
-              if (roleProfile == 'Superadmin') {
-                return customButtonNavigation();
-              } else {
-                return customButtonNavigationMentor();
-              }
-          }
-        },
+                                  TextWidget(
+                                    roleProfile.toString(),
+                                    color: AppColor.whiteColor,
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              SvgPicture.asset(
+                                'assets/icons/ic_notification.svg',
+                              )
+                            ],
+                          ),
+                        );
+                    }
+                  })),
+        ),
+        body: FutureBuilder<ProfileModel?>(
+          future: futureProfile,
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return const Text('Press button to start');
+              case ConnectionState.active:
+                return const Text('Press button to start.');
+              case ConnectionState.waiting:
+                return const Center(
+                  child: LinearProgressIndicator(
+                    color: AppColor.whiteColor,
+                  ),
+                );
+              case ConnectionState.done:
+                if (roleProfile == 'Superadmin') {
+                  return Container(child: bodyContentSuperAdmin());
+                } else {
+                  return Container(child: bodyContentMentor());
+                }
+            }
+          },
+        ),
+        bottomNavigationBar: FutureBuilder<ProfileModel?>(
+          future: futureProfile,
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return const Text('Press button to start');
+              case ConnectionState.active:
+                return const Text('Press button to start.');
+              case ConnectionState.waiting:
+                return const Center(
+                  child: LinearProgressIndicator(
+                    color: AppColor.whiteColor,
+                  ),
+                );
+              case ConnectionState.done:
+                if (roleProfile == 'Superadmin') {
+                  return customButtonNavigation();
+                } else {
+                  return customButtonNavigationMentor();
+                }
+            }
+          },
+        ),
       ),
     );
   }

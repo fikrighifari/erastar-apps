@@ -1,7 +1,5 @@
-import 'package:erastar_apps/app/themes/themes.dart';
 import 'package:erastar_apps/app/ui/cash_flow/detail_cash_flow_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/cash_flow_card_model.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class ArusKasCard extends StatelessWidget {
@@ -45,7 +43,7 @@ class ArusKasCard extends StatelessWidget {
                       arusKasCardModel.title,
                       fontWeight: FontWeight.bold,
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width / 1.5,
                       child: TextWidget(
                         arusKasCardModel.description,

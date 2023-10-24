@@ -40,6 +40,8 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                 valueTopMarketing.dataTopMarketing!.dataMonthYear.toString();
             listTopMarketing =
                 valueTopMarketing.dataTopMarketing!.dataListTopMarketing;
+            topName = valueTopMarketing
+                .dataTopMarketing!.dataListTopMarketing.first.name;
           });
         }
       }
@@ -65,10 +67,9 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextWidget.titleMedium('Top Sales Marketing'),
-
+                  const TextWidget.titleMedium('Top Sales Marketing'),
                   CustomContainer(
-                    margin: EdgeInsets.only(top: 8),
+                    margin: const EdgeInsets.only(top: 8),
                     backgroundColor: AppColor.primayRedColor,
                     padding: EdgeInsets.all(defaultMargin),
                     radius: 4,
@@ -121,7 +122,7 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                           width: 50,
                           height: 50,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         Row(
@@ -132,16 +133,16 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  TextWidget.titleSmall(
+                                  const TextWidget.titleSmall(
                                     'National',
                                     color: AppColor.whiteColor,
                                   ),
-                                  TextWidget.titleSmall(
+                                  const TextWidget.titleSmall(
                                     'ERA STAR',
                                     color: AppColor.whiteColor,
                                   ),
                                   TextWidget.titleSmall(
-                                    'Budi',
+                                    topName.toString(),
                                     color: AppColor.whiteColor,
                                   ),
                                 ]),
@@ -169,18 +170,6 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                               children: listTopMarketing!.map((dt) {
                                 return Column(
                                   children: [
-                                    // AssetCard(
-                                    //   assetCardModel: AssetCardModel(
-                                    //       title: dt.title,
-                                    //       idListing: dt.listingId,
-                                    //       address: dt.address,
-                                    //       type: dt.type,
-                                    //       price: dt.price,
-                                    //       date: dt.createdAt.toString(),
-                                    //       imgUrl: baseAPIUrlImage +
-                                    //           dt.images!.path.toString() +
-                                    //           dt.images!.filename.toString()),
-                                    // ),
                                     TopMarketingCard(
                                         topMarketingCardModel:
                                             TopMarketingCardModel(
@@ -195,8 +184,7 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                                 );
                               }).toList(),
                             )
-                          : Text('Data Asset Kosong')),
-                  // TopMarketingCard()
+                          : const Text('Data Asset Kosong')),
                 ],
               ),
             )

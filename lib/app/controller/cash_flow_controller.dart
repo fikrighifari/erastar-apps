@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, avoid_print
 
 import 'package:dio/dio.dart';
 import 'package:erastar_apps/app/config/api_path.dart';

@@ -103,7 +103,7 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                         children: [
                           // _filterKas(),
                           // _contentKas(),
-                          Text('Arus Kas'),
+                          const Text('Arus Kas'),
                           listDataCashFlow!.isNotEmpty
                               ? ListView.builder(
                                   shrinkWrap: true,
@@ -129,9 +129,9 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                                     );
                                   },
                                 )
-                              : Text('Data Arus Kas Kosong'),
+                              : const Text('Data Arus Kas Kosong'),
 
-                          SizedBox(
+                          const SizedBox(
                             height: 100,
                           ),
                         ],
@@ -143,7 +143,7 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Text('Approval'),
+                          const Text('Approval'),
                           listApproval!.isNotEmpty
                               ? ListView.builder(
                                   shrinkWrap: true,
@@ -168,7 +168,7 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                                       ],
                                     );
                                   })
-                              : Text('Data Approval Kosong')
+                              : const Text('Data Approval Kosong')
                         ],
                       ),
                     ),

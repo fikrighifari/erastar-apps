@@ -2,8 +2,6 @@ import 'package:erastar_apps/app/config/api_path.dart';
 import 'package:erastar_apps/app/controller/profile_controller.dart';
 import 'package:erastar_apps/app/models/profile_model.dart';
 import 'package:erastar_apps/app/services/local_storage_service.dart';
-import 'package:erastar_apps/app/themes/themes.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class ProfileScreen extends StatefulWidget {

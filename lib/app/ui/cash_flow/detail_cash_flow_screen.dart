@@ -32,7 +32,7 @@ class _DetailCashFlowScreenState extends State<DetailCashFlowScreen> {
   @override
   void initState() {
     fetchData(widget.arusKasCardItem.idInvoice);
-    print(widget.arusKasCardItem.idInvoice);
+    // print(widget.arusKasCardItem.idInvoice);
     super.initState();
   }
 
@@ -102,7 +102,8 @@ class _DetailCashFlowScreenState extends State<DetailCashFlowScreen> {
                                 child: listDetailCashFlow.isNotEmpty
                                     ? ListView.builder(
                                         shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
                                         itemCount: listDetailCashFlow.length,
                                         itemBuilder: (context, index) {
                                           var listDataDetailCashFlow =
@@ -263,7 +264,7 @@ class _DetailCashFlowScreenState extends State<DetailCashFlowScreen> {
                                           );
                                         },
                                       )
-                                    : Text('Data tidak ditemukan'),
+                                    : const Text('Data tidak ditemukan'),
                               ),
                             ),
                           ));

@@ -1,5 +1,3 @@
-import 'package:erastar_apps/app/themes/themes.dart';
-import 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 import 'package:erastar_apps/export.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -26,13 +24,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               containerType: RoundedContainerType.outlined,
               radius: 10,
               borderColor: Colors.transparent,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 10,
                 vertical: 10,
               ),
               child: Column(
                 children: [
-                  TextWidget('Change Password'),
+                  const TextWidget('Change Password'),
                   CustomTextField(
                     // controller: controller.password,
                     prefixIcon: const Icon(Icons.lock),

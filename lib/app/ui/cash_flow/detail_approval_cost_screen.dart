@@ -47,7 +47,7 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
     futureCostDetail = CashFlowController().getDetailCost(idCostData);
     futureCostDetail.then((valueCostDetail) {
       if (valueCostDetail != null) {
-        print(valueCostDetail.dataDetailCost!.id);
+        // print(valueCostDetail.dataDetailCost!.id);
         //Get Data Detail Cost
         costId = valueCostDetail.dataDetailCost!.id;
         title = valueCostDetail.dataDetailCost!.title;
@@ -496,7 +496,7 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                             ],
                           ),
                           isLoading
-                              ? Center(child: CircularProgressIndicator())
+                              ? const Center(child: CircularProgressIndicator())
                               : Container(),
                         ],
                       )),
