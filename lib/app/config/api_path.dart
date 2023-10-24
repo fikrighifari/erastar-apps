@@ -4,6 +4,7 @@ const baseAPIUrlImage = "https://erastarlelangproperty.co.id/";
 // Auth Stuff
 const postAPILogin = "${baseAPIUrl}auth";
 const getAPIProfile = "${baseAPIUrl}profile/me";
+const putChangePassword = "${baseAPIUrl}profile/change_password";
 const postResetPassword = "${baseAPIUrl}auth/request_reset_password";
 
 // Asset Stuff
