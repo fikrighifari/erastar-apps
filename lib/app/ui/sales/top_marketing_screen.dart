@@ -152,39 +152,41 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                     ),
                   ),
                   Container(
-                      margin: EdgeInsets.only(top: defaultMargin),
-                      // color: Colors.red,
-                      child: listTopMarketing!.isNotEmpty
-                          ? GridView.count(
-                              primary: true,
-                              crossAxisCount: 2,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              physics: const NeverScrollableScrollPhysics(),
-                              childAspectRatio: MediaQuery.of(context)
-                                      .size
-                                      .width /
-                                  (MediaQuery.of(context).size.height / 1.18),
-                              // mainAxisSpacing: 5.0,
-                              crossAxisSpacing: 5.0,
-                              children: listTopMarketing!.map((dt) {
-                                return Column(
-                                  children: [
-                                    TopMarketingCard(
-                                        topMarketingCardModel:
-                                            TopMarketingCardModel(
-                                      avatarUrl: baseAPIUrlImage +
-                                          dt.avatarPath! +
-                                          dt.avatar.toString(),
-                                      provinceName: dt.provinsi!.lokasiNama,
-                                      officeName: dt.office!.name,
-                                      marketingName: dt.name,
-                                    ))
-                                  ],
-                                );
-                              }).toList(),
-                            )
-                          : const Text('Data Asset Kosong')),
+                    margin: EdgeInsets.only(top: defaultMargin),
+                    // color: Colors.red,
+                    child: listTopMarketing!.isNotEmpty
+                        ? GridView.count(
+                            primary: true,
+                            crossAxisCount: 2,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            physics: const NeverScrollableScrollPhysics(),
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 1.18),
+                            // mainAxisSpacing: 5.0,
+                            crossAxisSpacing: 5.0,
+                            children: listTopMarketing!.map((dt) {
+                              return Column(
+                                children: [
+                                  TopMarketingCard(
+                                      topMarketingCardModel:
+                                          TopMarketingCardModel(
+                                    avatarUrl: baseAPIUrlImage +
+                                        dt.avatarPath! +
+                                        dt.avatar.toString(),
+                                    provinceName: dt.provinsi!.lokasiNama,
+                                    officeName: dt.office!.name,
+                                    marketingName: dt.name,
+                                  ))
+                                ],
+                              );
+                            }).toList(),
+                          )
+                        : const EmptyData(
+                            text: 'Data Top Marketing tidak ditemukan',
+                          ),
+                  ),
                 ],
               ),
             )

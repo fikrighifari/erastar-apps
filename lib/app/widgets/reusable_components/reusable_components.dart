@@ -8,3 +8,4 @@ part 'custom_scaffold.dart';
 part 'custom_text.dart';
 part 'custom_text_field.dart';
 part 'ui_utils.dart';
+part 'empty_data.dart';

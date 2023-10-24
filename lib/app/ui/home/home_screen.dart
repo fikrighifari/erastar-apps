@@ -240,106 +240,110 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
 
                                     Container(
-                                        margin:
-                                            EdgeInsets.only(top: defaultMargin),
-                                        // color: Colors.red,
-                                        child: listAsset!.isNotEmpty
-                                            ? GridView.count(
-                                                primary: true,
-                                                crossAxisCount: 2,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                physics:
-                                                    const NeverScrollableScrollPhysics(),
-                                                childAspectRatio:
-                                                    MediaQuery.of(context)
-                                                            .size
-                                                            .width /
-                                                        (MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            1.18),
-                                                // mainAxisSpacing: 5.0,
-                                                crossAxisSpacing: 5.0,
-                                                children: listAsset!.map((dt) {
-                                                  // return Container(
-                                                  //   color: Colors.white,
-                                                  //   child: InkWell(
-                                                  //     splashColor:
-                                                  //         Theme.of(context).splashColor,
-                                                  //     highlightColor: Theme.of(context)
-                                                  //         .highlightColor,
-                                                  //     onTap: () {},
-                                                  //     child: Column(
-                                                  //       crossAxisAlignment:
-                                                  //           CrossAxisAlignment.center,
-                                                  //       children: <Widget>[
-                                                  //         Center(
-                                                  //           child: Padding(
-                                                  //             padding:
-                                                  //                 const EdgeInsets.all(
-                                                  //                     5),
-                                                  //             child: SvgPicture.asset(
-                                                  //               'assets/images/default-image-square.svg',
-                                                  //               fit: BoxFit.fitWidth,
-                                                  //             ),
-                                                  //           ),
-                                                  //         ),
-                                                  //         const SizedBox(
-                                                  //           height: 5,
-                                                  //         ),
-                                                  //         Flexible(
-                                                  //           child: Row(
-                                                  //               mainAxisSize:
-                                                  //                   MainAxisSize.max,
-                                                  //               mainAxisAlignment:
-                                                  //                   MainAxisAlignment
-                                                  //                       .center,
-                                                  //               children: <Widget>[
-                                                  //                 Flexible(
-                                                  //                   child: TextWidget
-                                                  //                       .labelMedium(
-                                                  //                     ' dt.name',
-                                                  //                     color: AppColor
-                                                  //                         .blackColor,
-                                                  //                     fontWeight:
-                                                  //                         boldWeight,
-                                                  //                   ),
-                                                  //                 ),
-                                                  //               ]),
-                                                  //         ),
-                                                  //         const SizedBox(
-                                                  //           height: 5,
-                                                  //         ),
-                                                  //       ],
-                                                  //     ),
-                                                  //   ),
-                                                  // );
-                                                  return Column(
-                                                    children: [
-                                                      AssetCard(
-                                                        assetCardModel: AssetCardModel(
-                                                            idAsset: dt.id,
-                                                            title: dt.title,
-                                                            idListing:
-                                                                dt.listingId,
-                                                            address: dt.address,
-                                                            type: dt.type,
-                                                            price: dt.price,
-                                                            date: dt.createdAt
-                                                                .toString(),
-                                                            imgUrl: baseAPIUrlImage +
-                                                                dt.images!.path
-                                                                    .toString() +
-                                                                dt.images!
-                                                                    .filename
-                                                                    .toString()),
-                                                      ),
-                                                    ],
-                                                  );
-                                                }).toList(),
-                                              )
-                                            : const Text('Data Asset Kosong')),
+                                      margin:
+                                          EdgeInsets.only(top: defaultMargin),
+                                      // color: Colors.red,
+                                      child: listAsset!.isNotEmpty
+                                          ? GridView.count(
+                                              primary: true,
+                                              crossAxisCount: 2,
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              physics:
+                                                  const NeverScrollableScrollPhysics(),
+                                              childAspectRatio:
+                                                  MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      (MediaQuery.of(context)
+                                                              .size
+                                                              .height /
+                                                          1.18),
+                                              // mainAxisSpacing: 5.0,
+                                              crossAxisSpacing: 5.0,
+                                              children: listAsset!.map((dt) {
+                                                // return Container(
+                                                //   color: Colors.white,
+                                                //   child: InkWell(
+                                                //     splashColor:
+                                                //         Theme.of(context).splashColor,
+                                                //     highlightColor: Theme.of(context)
+                                                //         .highlightColor,
+                                                //     onTap: () {},
+                                                //     child: Column(
+                                                //       crossAxisAlignment:
+                                                //           CrossAxisAlignment.center,
+                                                //       children: <Widget>[
+                                                //         Center(
+                                                //           child: Padding(
+                                                //             padding:
+                                                //                 const EdgeInsets.all(
+                                                //                     5),
+                                                //             child: SvgPicture.asset(
+                                                //               'assets/images/default-image-square.svg',
+                                                //               fit: BoxFit.fitWidth,
+                                                //             ),
+                                                //           ),
+                                                //         ),
+                                                //         const SizedBox(
+                                                //           height: 5,
+                                                //         ),
+                                                //         Flexible(
+                                                //           child: Row(
+                                                //               mainAxisSize:
+                                                //                   MainAxisSize.max,
+                                                //               mainAxisAlignment:
+                                                //                   MainAxisAlignment
+                                                //                       .center,
+                                                //               children: <Widget>[
+                                                //                 Flexible(
+                                                //                   child: TextWidget
+                                                //                       .labelMedium(
+                                                //                     ' dt.name',
+                                                //                     color: AppColor
+                                                //                         .blackColor,
+                                                //                     fontWeight:
+                                                //                         boldWeight,
+                                                //                   ),
+                                                //                 ),
+                                                //               ]),
+                                                //         ),
+                                                //         const SizedBox(
+                                                //           height: 5,
+                                                //         ),
+                                                //       ],
+                                                //     ),
+                                                //   ),
+                                                // );
+                                                return Column(
+                                                  children: [
+                                                    AssetCard(
+                                                      assetCardModel: AssetCardModel(
+                                                          idAsset: dt.id,
+                                                          title: dt.title,
+                                                          idListing:
+                                                              dt.listingId,
+                                                          address: dt.address,
+                                                          type: dt.type,
+                                                          price: dt.price,
+                                                          date: dt.createdAt
+                                                              .toString(),
+                                                          imgUrl: baseAPIUrlImage +
+                                                              dt.images!.path
+                                                                  .toString() +
+                                                              dt.images!
+                                                                  .filename
+                                                                  .toString()),
+                                                    ),
+                                                  ],
+                                                );
+                                              }).toList(),
+                                            )
+                                          : const EmptyData(
+                                              text:
+                                                  'Data Asset tidak ditemukan',
+                                            ),
+                                    ),
 
                                     // Approval List
                                     TextWidget(
@@ -377,7 +381,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ],
                                               );
                                             })
-                                        : const Text('Data Approval Kosong'),
+                                        : const EmptyData(
+                                            text:
+                                                'Data Approval tidak ditemukan',
+                                          ),
 
                                     //Arus Kas
                                     TextWidget(
@@ -417,7 +424,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                               );
                                             },
                                           )
-                                        : const Text('Data Arus Kas Kosong'),
+                                        : const EmptyData(
+                                            text:
+                                                'Data Arus Kas tidak ditemukan',
+                                          ),
 
                                     //Penjualan Aset
                                     TextWidget(
@@ -466,8 +476,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ],
                                               );
                                             })
-                                        : const Text(
-                                            'Data Penjualan Aset Kosong')
+                                        : const EmptyData(
+                                            text: 'Data Sales tidak ditemukan',
+                                          ),
                                   ],
                                 ),
                               ),

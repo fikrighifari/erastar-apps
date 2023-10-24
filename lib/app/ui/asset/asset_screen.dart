@@ -140,60 +140,62 @@ class _AssetScreenState extends State<AssetScreen> {
                                           ],
                                         ),
                                         Container(
-                                            margin: EdgeInsets.only(
-                                                top: defaultMargin),
-                                            // color: Colors.red,
-                                            child: listAsset!.isNotEmpty
-                                                ? GridView.count(
-                                                    primary: true,
-                                                    crossAxisCount: 2,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    physics:
-                                                        const NeverScrollableScrollPhysics(),
-                                                    childAspectRatio:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width /
-                                                            (MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .height /
-                                                                1.18),
-                                                    // mainAxisSpacing: 5.0,
-                                                    crossAxisSpacing: 5.0,
-                                                    children:
-                                                        listAsset!.map((dt) {
-                                                      return Column(
-                                                        children: [
-                                                          AssetCard(
-                                                            assetCardModel: AssetCardModel(
-                                                                idAsset: dt.id,
-                                                                title: dt.title,
-                                                                idListing: dt
-                                                                    .listingId,
-                                                                address:
-                                                                    dt.address,
-                                                                type: dt.type,
-                                                                price: dt.price,
-                                                                date: dt
-                                                                    .createdAt
-                                                                    .toString(),
-                                                                imgUrl: baseAPIUrlImage +
-                                                                    dt.images!
-                                                                        .path
-                                                                        .toString() +
-                                                                    dt.images!
-                                                                        .filename
-                                                                        .toString()),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    }).toList(),
-                                                  )
-                                                : const Text(
-                                                    'Data Asset Kosong')),
+                                          margin: EdgeInsets.only(
+                                              top: defaultMargin),
+                                          // color: Colors.red,
+                                          child: listAsset!.isNotEmpty
+                                              ? GridView.count(
+                                                  primary: true,
+                                                  crossAxisCount: 2,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  childAspectRatio:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width /
+                                                          (MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height /
+                                                              1.18),
+                                                  // mainAxisSpacing: 5.0,
+                                                  crossAxisSpacing: 5.0,
+                                                  children:
+                                                      listAsset!.map((dt) {
+                                                    return Column(
+                                                      children: [
+                                                        AssetCard(
+                                                          assetCardModel: AssetCardModel(
+                                                              idAsset: dt.id,
+                                                              title: dt.title,
+                                                              idListing:
+                                                                  dt.listingId,
+                                                              address:
+                                                                  dt.address,
+                                                              type: dt.type,
+                                                              price: dt.price,
+                                                              date: dt.createdAt
+                                                                  .toString(),
+                                                              imgUrl: baseAPIUrlImage +
+                                                                  dt.images!
+                                                                      .path
+                                                                      .toString() +
+                                                                  dt.images!
+                                                                      .filename
+                                                                      .toString()),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  }).toList(),
+                                                )
+                                              : const EmptyData(
+                                                  text:
+                                                      'Data Asset tidak ditemukan',
+                                                ),
+                                        ),
                                       ],
                                     ),
                                   )

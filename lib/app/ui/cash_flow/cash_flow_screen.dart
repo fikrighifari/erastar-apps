@@ -129,7 +129,9 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                                     );
                                   },
                                 )
-                              : const Text('Data Arus Kas Kosong'),
+                              : const EmptyData(
+                                  text: 'Data Arus Kas tidak ditemukan',
+                                ),
 
                           const SizedBox(
                             height: 100,
@@ -168,7 +170,9 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                                       ],
                                     );
                                   })
-                              : const Text('Data Approval Kosong')
+                              : const EmptyData(
+                                  text: 'Data Approval tidak ditemukan',
+                                ),
                         ],
                       ),
                     ),

@@ -129,8 +129,9 @@ class _SalesScreenState extends State<SalesScreen> {
                                                 ],
                                               );
                                             })
-                                        : const Text(
-                                            'Data Penjualan Aset Kosong')
+                                        : const EmptyData(
+                                            text: 'Data Sales tidak ditemukan',
+                                          ),
                                   ],
                                 ),
                               ),
