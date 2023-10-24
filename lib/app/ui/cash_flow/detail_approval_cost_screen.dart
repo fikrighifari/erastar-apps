@@ -166,7 +166,7 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const TextWidget.bodyMedium(
-              'Apakah anda yakin akan menyetujui cost ini?',
+              'Apakah anda yakin akan menolak cost ini?',
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -480,7 +480,9 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                     isRounded: true,
                                     buttonType: ButtonType.noOutLined,
                                     borderRadius: 8,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      showRejectDialog();
+                                    },
                                     width: 100,
                                     height: 40,
                                     backgroundColor: AppColor.primayRedColor,

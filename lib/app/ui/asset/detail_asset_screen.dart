@@ -109,23 +109,6 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
                       height: 350,
                       fit: BoxFit.cover,
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: defaultMargin,
-                        vertical: defaultMargin,
-                      ),
-                      child: Row(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: SvgPicture.asset(
-                                'assets/icons/ic_btn_back.svg'),
-                          ),
-                        ],
-                      ),
-                    ),
                     ListView(
                       children: [
                         const SizedBox(
@@ -249,6 +232,23 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
                           ),
                         ),
                       ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: defaultMargin,
+                        vertical: defaultMargin,
+                      ),
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: SvgPicture.asset(
+                                'assets/icons/ic_btn_back.svg'),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

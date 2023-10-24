@@ -15,23 +15,19 @@ class SalesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(salesCardModel.idInvoice);
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  DetailSalesScreen(salesCardItem: salesCardModel)
-
-              // DetailCashFlowScreen(
-              //   arusKasCardItem: arusKasCardModel,
-              // ),
-              ),
+            builder: (context) => DetailSalesScreen(
+              salesCardItem: salesCardModel,
+            ),
+          ),
         );
       },
       child: CustomContainer(
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.symmetric(
-          vertical: 10,
+          vertical: 5,
         ),
         containerType: RoundedContainerType.outlined,
         radius: 10,

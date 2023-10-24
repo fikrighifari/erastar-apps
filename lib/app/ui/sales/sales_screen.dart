@@ -82,71 +82,58 @@ class _SalesScreenState extends State<SalesScreen> {
                           child: SingleChildScrollView(
                             child: SizedBox(
                               height: MediaQuery.of(context).size.height,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(defaultMargin),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        TextWidget.titleMedium(
-                                          'Penjualan Aset',
-                                          fontWeight: boldWeight,
-                                        ),
-                                        listInvoice!.isNotEmpty
-                                            ? ListView.builder(
-                                                shrinkWrap: true,
-                                                physics:
-                                                    const NeverScrollableScrollPhysics(),
-                                                itemCount: listInvoice!.length,
-                                                itemBuilder: (context, index) {
-                                                  var listDataInvoice =
-                                                      listInvoice![index];
-                                                  return Column(
-                                                    children: [
-                                                      SalesCard(
-                                                        salesCardModel:
-                                                            SalesCardModel(
-                                                          idInvoice:
-                                                              listDataInvoice
-                                                                  .id,
-                                                          idListing:
-                                                              listDataInvoice
-                                                                  .asset!
-                                                                  .listingId,
-                                                          title: listDataInvoice
-                                                              .asset!.title,
-                                                          marketingName:
-                                                              listDataInvoice
-                                                                  .commission!
-                                                                  .marketing!
-                                                                  .name,
-                                                          officeName:
-                                                              listDataInvoice
-                                                                  .asset!
-                                                                  .office!
-                                                                  .name,
-                                                          status:
-                                                              listDataInvoice
-                                                                  .status!.name,
-                                                          value: listDataInvoice
-                                                              .valueInvoice,
-                                                          date: listDataInvoice
-                                                              .createdAt
-                                                              .toString(),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  );
-                                                })
-                                            : Text('Data Penjualan Aset Kosong')
-                                      ],
+                              child: Padding(
+                                padding: EdgeInsets.all(defaultMargin),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    TextWidget.titleMedium(
+                                      'Penjualan Aset',
+                                      fontWeight: boldWeight,
                                     ),
-                                  )
-                                ],
+                                    listInvoice!.isNotEmpty
+                                        ? ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            itemCount: listInvoice!.length,
+                                            itemBuilder: (context, index) {
+                                              var listDataInvoice =
+                                                  listInvoice![index];
+                                              return Column(
+                                                children: [
+                                                  SalesCard(
+                                                    salesCardModel:
+                                                        SalesCardModel(
+                                                      idInvoice:
+                                                          listDataInvoice.id,
+                                                      idListing: listDataInvoice
+                                                          .asset!.listingId,
+                                                      title: listDataInvoice
+                                                          .asset!.title,
+                                                      marketingName:
+                                                          listDataInvoice
+                                                              .commission!
+                                                              .marketing!
+                                                              .name,
+                                                      officeName:
+                                                          listDataInvoice.asset!
+                                                              .office!.name,
+                                                      status: listDataInvoice
+                                                          .status!.name,
+                                                      value: listDataInvoice
+                                                          .valueInvoice,
+                                                      date: listDataInvoice
+                                                          .createdAt
+                                                          .toString(),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            })
+                                        : Text('Data Penjualan Aset Kosong')
+                                  ],
+                                ),
                               ),
                             ),
                           ),
