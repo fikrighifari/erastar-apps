@@ -420,6 +420,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       value: cashFlowList.value,
                                                       status:
                                                           cashFlowList.status,
+                                                      type: cashFlowList.type,
                                                     ),
                                                   ),
                                                 ],

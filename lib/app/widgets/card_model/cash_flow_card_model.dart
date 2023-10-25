@@ -5,6 +5,7 @@ class ArusKasCardModel {
   String? date;
   int? value;
   String? status;
+  String? type;
 
   ArusKasCardModel({
     this.idInvoice,
@@ -13,5 +14,6 @@ class ArusKasCardModel {
     this.date,
     this.value,
     this.status,
+    this.type,
   });
 }

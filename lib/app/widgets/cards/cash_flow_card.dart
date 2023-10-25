@@ -53,16 +53,15 @@ class ArusKasCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                // arusKas.type == "cost"
-                //     ? SvgPicture.asset(
-                //         "assets/icons/ic_arrow_red.svg",
-                //         width: 30,
-                //       )
-                //     :
-                SvgPicture.asset(
-                  "assets/icons/ic_arrow.svg",
-                  width: 30,
-                )
+                arusKasCardModel.type == 'cost'
+                    ? SvgPicture.asset(
+                        "assets/icons/ic_arrow_red.svg",
+                        width: 30,
+                      )
+                    : SvgPicture.asset(
+                        "assets/icons/ic_arrow.svg",
+                        width: 30,
+                      )
               ],
             ),
             const Divider(
@@ -73,14 +72,13 @@ class ArusKasCard extends StatelessWidget {
               children: [
                 const TextWidget(
                   "Jumlah",
-                  // color: AppColors.naturalGrey1,
                   fontSize: 13,
                 ),
                 TextWidget(
                   rupiah(arusKasCardModel.value.toString()),
-                  // style: arusKas.type == "cost"
-                  //     ? priceTextStyle
-                  //     : incomePriceTextStyle,
+                  color: arusKasCardModel.type == 'cost'
+                      ? AppColor.primayRedColor
+                      : AppColor.greenColor,
                 ),
               ],
             ),

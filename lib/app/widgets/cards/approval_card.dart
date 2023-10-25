@@ -193,7 +193,6 @@ class _ApprovalCardState extends State<ApprovalCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // print(approvalCardModel.idCost);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -238,8 +237,9 @@ class _ApprovalCardState extends State<ApprovalCard> {
                 const TextWidget.labelLarge(
                   "Biaya Pengeluaran",
                 ),
-                Text(
+                TextWidget(
                   rupiah(widget.approvalCardModel.value.toString()),
+                  color: AppColor.primayRedColor,
                 )
               ],
             ),

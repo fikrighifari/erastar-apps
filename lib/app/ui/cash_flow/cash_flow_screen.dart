@@ -123,6 +123,7 @@ class _CashFlowScreenState extends State<CashFlowScreen>
                                                 .toString(),
                                             value: cashFlowList.value,
                                             status: cashFlowList.status,
+                                            type: cashFlowList.type,
                                           ),
                                         ),
                                       ],
