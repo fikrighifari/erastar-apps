@@ -3,10 +3,12 @@ import 'package:erastar_apps/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Jiffy.locale("id");
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

@@ -1,5 +1,6 @@
 import 'package:erastar_apps/app/ui/asset/detail_asset_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class AssetCard extends StatelessWidget {
@@ -155,11 +156,9 @@ class AssetCard extends StatelessWidget {
                     ],
                   ),
                   TextWidget(
-                    assetCardModel.price.toString(),
+                    rupiah(assetCardModel.price.toString()),
                     color: AppColor.primayRedColor,
-                    // properti.price.toString(),
                   ),
-
                   Text(
                     assetCardModel.title.toString().toUpperCase(),
                     overflow: TextOverflow.ellipsis,
@@ -170,14 +169,8 @@ class AssetCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: defaultTextStyle.copyWith(fontWeight: boldWeight),
                   ),
-                  // Text(
-                  //   properti.createdAt.toString(),
-                  //   style: dateTextStyle,
-                  //   overflow: TextOverflow.ellipsis,
-                  // ),
                   TextWidget(
-                    // 'Jiffy(properti.createdAt).yMMMMd',
-                    assetCardModel.date.toString(),
+                    Jiffy(assetCardModel.date).yMMMMd,
                   )
                 ],
               ),

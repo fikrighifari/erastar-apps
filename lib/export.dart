@@ -7,3 +7,4 @@ export 'package:package_info_plus/package_info_plus.dart';
 export 'package:erastar_apps/app/widgets/reusable_components/reusable_components.dart';
 export 'package:erastar_apps/app/themes/themes.dart';
 export 'package:fluttertoast/fluttertoast.dart';
+export 'package:jiffy/jiffy.dart';

@@ -1,6 +1,7 @@
 import 'package:erastar_apps/app/controller/cash_flow_controller.dart';
 import 'package:erastar_apps/app/ui/cash_flow/detail_approval_cost_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class ApprovalCard extends StatefulWidget {
@@ -228,9 +229,7 @@ class _ApprovalCardState extends State<ApprovalCard> {
                 const TextWidget.labelLarge(
                   "Tanggal",
                 ),
-                TextWidget(
-                  widget.approvalCardModel.date.toString(),
-                )
+                TextWidget(Jiffy(widget.approvalCardModel.date).yMMMMd),
               ],
             ),
             Row(
@@ -240,7 +239,7 @@ class _ApprovalCardState extends State<ApprovalCard> {
                   "Biaya Pengeluaran",
                 ),
                 Text(
-                  widget.approvalCardModel.value.toString(),
+                  rupiah(widget.approvalCardModel.value.toString()),
                 )
               ],
             ),
@@ -252,7 +251,7 @@ class _ApprovalCardState extends State<ApprovalCard> {
                   // style: dateTextStyle,
                 ),
                 TextWidget(
-                  widget.approvalCardModel.status,
+                  widget.approvalCardModel.status.toString().toTitleCase(),
                   // style: incomePriceTextStyle,
                 )
               ],

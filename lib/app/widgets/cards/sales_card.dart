@@ -1,5 +1,6 @@
 import 'package:erastar_apps/app/ui/sales/detail_sales_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class SalesCard extends StatelessWidget {
@@ -42,7 +43,7 @@ class SalesCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 TextWidget(
-                  salesCardModel.value.toString(),
+                  rupiah(salesCardModel.value.toString()),
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                   // color: dataSales.status!.name == 'Sold'
@@ -67,10 +68,8 @@ class SalesCard extends StatelessWidget {
                 SizedBox(
                   width: 100,
                   child: TextWidget(
-                    // 'Jiffy(dataSales.createdAt).yMMMMd'
-                    salesCardModel.date.toString(),
+                    Jiffy(salesCardModel.date).yMMMMd,
                     fontSize: 12,
-                    // color: AppColors.naturalGrey1,
                     fontWeight: regularWeight,
                     textAlign: TextAlign.right,
                   ),

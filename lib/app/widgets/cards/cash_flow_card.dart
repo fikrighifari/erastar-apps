@@ -1,5 +1,6 @@
 import 'package:erastar_apps/app/ui/cash_flow/detail_cash_flow_screen.dart';
 import 'package:erastar_apps/app/widgets/card_model/cash_flow_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class ArusKasCard extends StatelessWidget {
@@ -76,7 +77,7 @@ class ArusKasCard extends StatelessWidget {
                   fontSize: 13,
                 ),
                 TextWidget(
-                  arusKasCardModel.value.toString(),
+                  rupiah(arusKasCardModel.value.toString()),
                   // style: arusKas.type == "cost"
                   //     ? priceTextStyle
                   //     : incomePriceTextStyle,
@@ -92,8 +93,7 @@ class ArusKasCard extends StatelessWidget {
                   fontSize: 13,
                 ),
                 TextWidget(
-                  arusKasCardModel.date.toString(),
-                  // style: listingTextStyle,
+                  Jiffy(arusKasCardModel.date).yMMMMd,
                 ),
               ],
             ),
@@ -106,7 +106,7 @@ class ArusKasCard extends StatelessWidget {
                   fontSize: 13,
                 ),
                 TextWidget(
-                  arusKasCardModel.status,
+                  arusKasCardModel.status.toString().toTitleCase(),
                   // style: listingTextStyle,
                 ),
               ],
