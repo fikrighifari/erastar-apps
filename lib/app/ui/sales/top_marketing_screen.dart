@@ -163,7 +163,7 @@ class _TopMarketingScreenState extends State<TopMarketingScreen> {
                                           //       )
                                           //     :
                                           Image.asset(
-                                            "assets/images/img_trophy.png",
+                                            "assets/era_star_04.png",
                                             width: 50,
                                             height: 50,
                                           ),
