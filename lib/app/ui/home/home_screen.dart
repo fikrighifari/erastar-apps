@@ -319,6 +319,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   children: [
                                                     AssetCard(
                                                       assetCardModel: AssetCardModel(
+                                                          status:
+                                                              dt.status!.name,
                                                           idAsset: dt.id,
                                                           title: dt.title,
                                                           idListing:

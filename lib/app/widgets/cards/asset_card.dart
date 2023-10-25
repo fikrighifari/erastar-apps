@@ -14,7 +14,6 @@ class AssetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // print(assetCardModel.idAsset);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -46,7 +45,7 @@ class AssetCard extends StatelessWidget {
                         fit: BoxFit.cover,
                       )
                     : ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(10),
                         child: Image.network(
                           assetCardModel.imgUrl.toString(),
                           width: double.infinity,
@@ -66,26 +65,20 @@ class AssetCard extends StatelessWidget {
                           horizontal: 10,
                         ),
                         height: 25,
-                        decoration: const BoxDecoration(
-                          color:
-                              // properti.type == 'new'
-                              // ? AppColors.cyanColor
-                              // :
-                              AppColor.yellowColor,
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(5),
-                            topLeft: Radius.circular(5),
+                        decoration: BoxDecoration(
+                          color: assetCardModel.type == 'new'
+                              ? AppColor.cyanColor
+                              : AppColor.yellowColor,
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(10),
+                            topLeft: Radius.circular(10),
                           ),
                         ),
                         child: TextWidget(
-                          assetCardModel.type,
-                          // 'New',
-                          // properti.type.toString().toTitleCase(),
-                          color:
-                              // properti.type == 'new'
-                              // ? AppColors.whiteColor
-                              // :
-                              AppColor.blackColor,
+                          assetCardModel.type.toString().toTitleCase(),
+                          color: assetCardModel.type == 'new'
+                              ? AppColor.whiteColor
+                              : AppColor.blackColor,
                         ),
                       ),
                     ],
@@ -103,25 +96,20 @@ class AssetCard extends StatelessWidget {
                           horizontal: 10,
                         ),
                         height: 25,
-                        decoration: const BoxDecoration(
-                          color:
-                              // properti.type == 'new'
-                              // ? AppColors.cyanColor
-                              // :
-                              AppColor.yellowColor,
-                          borderRadius: BorderRadius.only(
+                        decoration: BoxDecoration(
+                          color: assetCardModel.status == 'Open'
+                              ? AppColor.cyanColor
+                              : AppColor.yellowColor,
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(5),
                             topRight: Radius.circular(5),
                           ),
                         ),
                         child: TextWidget(
-                          assetCardModel.type,
-                          // properti.type.toString().toTitleCase(),
-                          color:
-                              // properti.type == 'new'
-                              // ? AppColors.whiteColor
-                              // :
-                              AppColor.blackColor,
+                          assetCardModel.status.toString().toTitleCase(),
+                          color: assetCardModel.status == 'Open'
+                              ? AppColor.whiteColor
+                              : AppColor.blackColor,
                         ),
                       ),
                     ],

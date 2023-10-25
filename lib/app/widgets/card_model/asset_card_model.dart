@@ -7,6 +7,7 @@ class AssetCardModel {
   String? date;
   String? imgUrl;
   String? type;
+  String? status;
 
   AssetCardModel({
     this.idAsset,
@@ -17,5 +18,6 @@ class AssetCardModel {
     this.date,
     this.imgUrl,
     this.type,
+    this.status,
   });
 }
