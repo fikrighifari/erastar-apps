@@ -1,6 +1,7 @@
 import 'package:erastar_apps/app/controller/cash_flow_controller.dart';
 import 'package:erastar_apps/app/models/cash_flow_detail_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/cash_flow_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class DetailCashFlowScreen extends StatefulWidget {
@@ -233,10 +234,11 @@ class _DetailCashFlowScreenState extends State<DetailCashFlowScreen> {
                                                       children: [
                                                         const TextWidget(
                                                             'Jumlah Invoice'),
-                                                        TextWidget(
-                                                            listDataDetailCashFlow
-                                                                .value
-                                                                .toString())
+                                                        TextWidget(rupiah(
+                                                          listDataDetailCashFlow
+                                                              .value
+                                                              .toString(),
+                                                        ))
                                                       ],
                                                     ),
                                                     const Divider(
@@ -250,8 +252,11 @@ class _DetailCashFlowScreenState extends State<DetailCashFlowScreen> {
                                                         const TextWidget(
                                                             'Status'),
                                                         TextWidget(
-                                                            listDataDetailCashFlow
-                                                                .type)
+                                                          listDataDetailCashFlow
+                                                              .type
+                                                              .toString()
+                                                              .toTitleCase(),
+                                                        )
                                                       ],
                                                     ),
                                                     const Divider(

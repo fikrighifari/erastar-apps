@@ -124,6 +124,9 @@ class _SalesScreenState extends State<SalesScreen> {
                                                       date: listDataInvoice
                                                           .createdAt
                                                           .toString(),
+                                                      statusAsset:
+                                                          listDataInvoice
+                                                              .status!.name,
                                                     ),
                                                   ),
                                                 ],

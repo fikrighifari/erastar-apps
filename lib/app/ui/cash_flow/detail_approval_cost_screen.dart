@@ -2,6 +2,7 @@ import 'package:erastar_apps/app/controller/cash_flow_controller.dart';
 import 'package:erastar_apps/app/models/approval_cost_model.dart';
 import 'package:erastar_apps/app/models/cost_detail_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/approval_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class DetailApprovalCostScreen extends StatefulWidget {
@@ -318,7 +319,7 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         const TextWidget('Jumlah'),
-                                        TextWidget(value)
+                                        TextWidget(rupiah(value))
                                       ],
                                     ),
                                     const Divider(
@@ -329,7 +330,9 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         const TextWidget('Tanggal dibuat'),
-                                        TextWidget(createdDate)
+                                        TextWidget(
+                                          Jiffy(createdDate).yMMMMd,
+                                        )
                                       ],
                                     ),
                                     const Divider(
@@ -354,7 +357,9 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         const TextWidget('Status'),
-                                        TextWidget(status)
+                                        TextWidget(
+                                          status.toString().toTitleCase(),
+                                        )
                                       ],
                                     ),
                                     const Divider(
@@ -433,7 +438,7 @@ class _DetailApprovalCostScreenState extends State<DetailApprovalCostScreen> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           const TextWidget('Jumlah Invoice'),
-                                          TextWidget(valueInvoice)
+                                          TextWidget(rupiah(valueInvoice))
                                         ],
                                       ),
                                       const Divider(

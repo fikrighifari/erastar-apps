@@ -474,6 +474,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       date: listDataInvoice
                                                           .createdAt
                                                           .toString(),
+                                                      statusAsset:
+                                                          listDataInvoice
+                                                              .status!.name,
                                                     ),
                                                   ),
                                                 ],

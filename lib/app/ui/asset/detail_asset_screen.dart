@@ -3,6 +3,7 @@ import 'package:erastar_apps/app/controller/asset_controller.dart';
 import 'package:erastar_apps/app/models/asset_detail_model.dart';
 import 'package:erastar_apps/app/models/asset_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/asset_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class DetailAssetScreen extends StatefulWidget {
@@ -136,19 +137,29 @@ class _DetailAssetScreenState extends State<DetailAssetScreen> {
                                   ),
                                   const Spacer(),
                                   TextWidget(
-                                    type.toString(),
+                                    type.toString().toTitleCase(),
                                     color: AppColor.blueColor,
                                   ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  TextWidget(status.toString()),
+                                  TextWidget(
+                                    status.toString().toTitleCase(),
+                                  ),
                                 ],
                               ),
-                              TextWidget(title),
-                              TextWidget(price),
-                              TextWidget(description),
-                              TextWidget(address),
+                              TextWidget(
+                                title,
+                              ),
+                              TextWidget(
+                                rupiah(price),
+                              ),
+                              TextWidget(
+                                description,
+                              ),
+                              TextWidget(
+                                address.toString().toUpperCase(),
+                              ),
                               const TextWidget(
                                 'Photos',
                                 color: AppColor.primayRedColor,

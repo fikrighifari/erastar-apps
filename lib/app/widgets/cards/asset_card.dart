@@ -101,8 +101,8 @@ class AssetCard extends StatelessWidget {
                               ? AppColor.cyanColor
                               : AppColor.yellowColor,
                           borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(5),
-                            topRight: Radius.circular(5),
+                            bottomLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
                           ),
                         ),
                         child: TextWidget(

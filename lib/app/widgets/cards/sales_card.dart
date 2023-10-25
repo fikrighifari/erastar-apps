@@ -46,9 +46,9 @@ class SalesCard extends StatelessWidget {
                   rupiah(salesCardModel.value.toString()),
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
-                  // color: dataSales.status!.name == 'Sold'
-                  //     ? AppColors.greenColor
-                  //     : AppColors.primayRedColor,
+                  color: salesCardModel.status == 'Sold'
+                      ? AppColor.greenColor
+                      : AppColor.primayRedColor,
                 ),
               ],
             ),
@@ -58,10 +58,7 @@ class SalesCard extends StatelessWidget {
                 SizedBox(
                   width: 200,
                   child: Text(
-                    salesCardModel.title.toString(),
-                    // .toString()
-                    // .toTitleCase(),
-                    // style: listingTextStyle,
+                    salesCardModel.title.toString().toTitleCase(),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -81,14 +78,12 @@ class SalesCard extends StatelessWidget {
               child: salesCardModel.marketingName == null
                   ? const TextWidget('-')
                   : Text(
-                      // 'dataSales.commission!.marketing!.name.toString()',
                       salesCardModel.marketingName.toString(),
                       // style: dateTextStyle,
                       overflow: TextOverflow.ellipsis,
                     ),
             ),
             Text(
-              // ' dataSales.asset!.office!.name.toString()',
               salesCardModel.officeName.toString(),
               // style: dateTextStyle,
               overflow: TextOverflow.ellipsis,
@@ -96,12 +91,11 @@ class SalesCard extends StatelessWidget {
             Text(
               // 'dataSales.status!.name.toString().toTitleCase()',
               salesCardModel.status.toString(),
-              // style: listingTextStyle.copyWith(
-              //   fontWeight: FontWeight.bold,
-              //   color: dataSales.status!.name == 'Sold'
-              //       ? AppColors.greenColor
-              //       : AppColors.primayRedColor,
-              // ),
+              style: TextStyle(
+                color: salesCardModel.status == 'Sold'
+                    ? AppColor.greenColor
+                    : AppColor.primayRedColor,
+              ),
               overflow: TextOverflow.ellipsis,
             ),
           ],

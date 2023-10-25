@@ -6,6 +6,7 @@ class SalesCardModel {
   String? officeName;
   String? status;
   String? date;
+  String? statusAsset;
   int? value;
 
   SalesCardModel({
@@ -17,5 +18,6 @@ class SalesCardModel {
     this.status,
     this.date,
     this.value,
+    this.statusAsset,
   });
 }

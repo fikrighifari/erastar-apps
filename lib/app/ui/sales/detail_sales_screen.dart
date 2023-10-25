@@ -1,6 +1,7 @@
 import 'package:erastar_apps/app/controller/sales_controller.dart';
 import 'package:erastar_apps/app/models/invoice_detail_model.dart';
 import 'package:erastar_apps/app/widgets/card_model/sales_card_model.dart';
+import 'package:erastar_apps/app/widgets/reusable_components/extentions.dart';
 import 'package:erastar_apps/export.dart';
 
 class DetailSalesScreen extends StatefulWidget {
@@ -172,7 +173,9 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const TextWidget('Tipe Asset'),
-                                  TextWidget(type)
+                                  TextWidget(
+                                    type.toString().toTitleCase(),
+                                  )
                                 ],
                               ),
                               const Divider(
@@ -183,7 +186,10 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const TextWidget('Harga Asset'),
-                                  TextWidget(assetPrice)
+                                  TextWidget(
+                                    rupiah(assetPrice),
+                                    color: AppColor.primayRedColor,
+                                  )
                                 ],
                               ),
                             ],
@@ -255,7 +261,10 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const TextWidget('Value Invoice'),
-                                  TextWidget(valueInvoice)
+                                  TextWidget(
+                                    rupiah(valueInvoice),
+                                    color: AppColor.primayRedColor,
+                                  )
                                 ],
                               ),
                               const Divider(
@@ -277,7 +286,7 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const TextWidget('Tanggal dibuat'),
-                                  TextWidget(createdDate)
+                                  TextWidget(Jiffy(createdDate).yMMMMd)
                                 ],
                               ),
                               const Divider(
@@ -323,7 +332,8 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const TextWidget('Harga Lelang'),
-                                  TextWidget(auctionPrice)
+                                  TextWidget(rupiah(auctionPrice),
+                                      color: AppColor.primayRedColor)
                                 ],
                               ),
                               const Divider(
@@ -334,7 +344,9 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const TextWidget('Status Lelang'),
-                                  TextWidget(statusAuction)
+                                  TextWidget(
+                                    statusAuction.toString().toTitleCase(),
+                                  )
                                 ],
                               ),
                               const Divider(
@@ -345,7 +357,7 @@ class _DetailSalesScreenState extends State<DetailSalesScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const TextWidget('Tanggal Lelang Berakhir'),
-                                  TextWidget(endDateAuction)
+                                  TextWidget(Jiffy(endDateAuction).yMMMMd)
                                 ],
                               ),
                               const Divider(
